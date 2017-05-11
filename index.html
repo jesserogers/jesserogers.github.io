@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<section class="intro">
+    <div class="intro-img">
+        <img src="{{'/assets/img/jesse-rogers@2x.png' | relative_url }}" alt="Jesse Rogers, professional designer, illustrator, animator, web developer, photographer, and more">
+         <!-- srcset="{{'/assets/img/jesse-rogers.png' | relative_url }} 400w, {{'/assets/img/jesse-rogers@2x.png' | relative_url }} 800w" -->
+    </div>
+    <div class="intro-txt">
+      <h1>Hi, I'm Jesse.</h1>
+      <p>I draw, take photos, make cool videos, and <span style="text-decoration: line-through;">buttonmash</span> build websites</p>
+    </div>
+</section>
+<section class="featured-projects">
+  <div class="content">
+    {% for project in site.pages %}
+    {% if project.featured == true %}
+    <a href="{{project.url}}" title="{{project.title}}" class="j-row featured-project">
+      <div class="j-col j-col-4 featured-project-img">
+        <img src="{{project.img_ret}}" srcset="{{project.img}} 400w, {{project.img_ret}} 800w" alt="{{project.meta}}" />
+      </div>
+      <div class="j-col j-col-6 push-2 featured-project-txt">
+        <h2>{{project.title}}</h2>
+        <p>{{project.meta}}</p>
+      </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

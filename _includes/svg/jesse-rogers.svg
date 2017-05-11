@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
+    <defs>
+        <style>
+            .jesse-rogers-1 {
+                fill: #fceb5e;
+            }
+            .jesse-rogers-2 {
+                fill: #222;
+            }
+        </style>
+    </defs>
+    <title>Jesse Rogers - Seattle based designer, photographer, web developer, animator, illustrator, and videographer</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1"><polygon class="jesse-rogers-1" points="216 216 144 144 72 144 72 216 216 216"/><path class="jesse-rogers-1" d="M72,0h72a72,72,0,0,1,72,72v0a72,72,0,0,1-72,72H72a0,0,0,0,1,0,0V0A0,0,0,0,1,72,0Z"/><path class="jesse-rogers-2" d="M72,0V144H0a72,72,0,0,0,72,72h0a72,72,0,0,0,72-72V0Z"/></g>
+    </g>
+</svg>

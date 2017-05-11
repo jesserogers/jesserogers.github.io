@@ -1,0 +1,106 @@
+---
+---
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+// Mixins
+{% include scss/mixins.scss %}
+
+// Breakpoints
+{% include scss/breakpoints.scss %}
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 68px 0 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+// Color
+{% include scss/color.scss %}
+
+// Typography
+{% include scss/type.scss %}
+
+// Jesse's Structure Framework
+{% include scss/jframework.scss %}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+nav.main-nav {
+  display: block;
+  @include vertical-center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 68px;
+  background-color: $white;
+  z-index: 3;
+  .logo {
+    display: block;
+    width: 68px;
+    height: 68px;
+    padding: 16px;
+    background: $black;
+    transition: 300ms ease-in-out;
+    .jesse-rogers-1 {
+      fill: rgba($white, 0.5);
+    }
+    .jesse-rogers-2 {
+      fill: white;
+    }
+    .jesse-rogers-1,
+    .jesse-rogers-2 {
+      transition: 300ms ease-in-out;
+    }
+    &:hover {
+      background: $yellow;
+      .jesse-rogers-1 {
+        fill: rgba($black, 0.5);
+      }
+      .jesse-rogers-2 {
+        fill: $black;
+      }
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0 20px 0 0;
+    margin: 0;
+  }
+}
+
+li.nav-item {
+  display: inline-block;
+  a {
+    color: $black;
+    font-size: 0.8em;
+    padding: 0.6rem 1.618rem;
+    transition: 300ms ease;
+    &:hover {
+      box-shadow: inset 0 2px 0 0 $yellow;
+    }
+  }
+  &:last-child {
+    a {
+      border: 2px solid $yellow;
+      &:hover {
+        background: $yellow;
+        box-shadow: 6px 6px 0 0 $black;
+      }
+    }
+  }
+}
+
+// Homepage
+{% include scss/homepage.scss %}

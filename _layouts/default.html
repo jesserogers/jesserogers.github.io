@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% if page.meta %}
+    <meta name="description" content="{{page.meta}}">
+    {% endif %}
+    <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Front-end Web Developer</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  </head>
+  <body>
+    <nav class="main-nav">
+      <a class="logo" href="/">
+        {% include svg/jesse-rogers.svg %}
+      </a>
+      <ul>
+        <li class="nav-item"><a href="#0">Projects</a></li>
+        <li class="nav-item"><a href="#0">Quick Portfolios</a></li>
+        <li class="nav-item"><a href="#0">Journal</a></li>
+        <li class="nav-item"><a href="#0">About</a></li>
+        <li class="nav-item"><a href="#0">Contact</a></li>
+      </ul>
+    </nav>
+    {{content}}
+  </body>
+</html>
