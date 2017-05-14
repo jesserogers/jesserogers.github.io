@@ -46,6 +46,7 @@ nav.main-nav {
   height: 68px;
   background-color: $white;
   z-index: 3;
+  transition: 500ms ease-in;
   .logo {
     display: block;
     width: 68px;
@@ -75,28 +76,37 @@ nav.main-nav {
   }
   ul {
     list-style-type: none;
-    padding: 0 20px 0 0;
+    padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+  }
+  &.is-scrolled {
+    box-shadow: 0 4px 0 0 rgba($black, 0.1);
   }
 }
 
 li.nav-item {
   display: inline-block;
   a {
+    display: block;
     color: $black;
+    line-height: 68px;
     font-size: 0.8em;
-    padding: 0.6rem 1.618rem;
+    padding: 0 1.618rem;
+    height: 68px;
     transition: 300ms ease;
     &:hover {
-      box-shadow: inset 0 2px 0 0 $yellow;
+      background: $yellow;
     }
   }
   &:last-child {
     a {
-      border: 2px solid $yellow;
+      background: $yellow;
       &:hover {
-        background: $yellow;
-        box-shadow: 6px 6px 0 0 $black;
+        background: $black;
+        color: $white;
+        box-shadow: inset 0px -4px 0 0 $yellow;
       }
     }
   }
@@ -104,3 +114,6 @@ li.nav-item {
 
 // Homepage
 {% include scss/homepage.scss %}
+
+// Projects
+{% include scss/projects.scss %}
