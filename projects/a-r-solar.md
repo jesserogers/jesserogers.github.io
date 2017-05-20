@@ -20,7 +20,7 @@ A&R Solar was in the process of a website redesign and needed illustrative compo
         <span></span>
       </div>
       <div class="js-lightbox-info-trigger">
-        <button>Show info</button>
+        <input type="button" value="Show Info"></input>
       </div>
       <div class="js-lightbox-info" style="display: none;">
         <h2>{{image.title}}</h2>

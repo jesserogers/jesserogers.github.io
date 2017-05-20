@@ -49,6 +49,10 @@ section.intro {
   border-top: 2px solid $light-gray;
   margin: 2.618em 0;
   color: $black;
+  transition: 300ms ease;
+  &:hover {
+    border-color: $yellow;
+  }
 }
 .featured-project-img {
   padding: 0;
