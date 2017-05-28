@@ -115,6 +115,15 @@ li.nav-item {
   }
 }
 
+.arrow {
+  transition: 300ms ease;
+  &.black {
+    .lil-arrow {
+      fill: $black;
+    }
+  }
+}
+
 // Homepage
 {% include scss/homepage.scss %}
 

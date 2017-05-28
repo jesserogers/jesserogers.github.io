@@ -212,6 +212,11 @@ li.nav-item {
       color: #fff;
       box-shadow: inset 0px -4px 0 0 #fceb5e; }
 
+.arrow {
+  transition: 300ms ease; }
+  .arrow.black .lil-arrow {
+    fill: #111; }
+
 section.intro {
   width: 100%;
   height: calc(100vh - 68px);
