@@ -16,11 +16,32 @@
         {% include svg/jesse-rogers.svg %}
       </a>
       <ul>
-        <li class="nav-item"><a href="#0">Projects</a></li>
-        <li class="nav-item"><a href="#0">Quick Portfolios</a></li>
-        <li class="nav-item"><a href="#0">Journal</a></li>
-        <li class="nav-item"><a href="#0">About</a></li>
-        <li class="nav-item"><a href="#0">Contact</a></li>
+        <li class="nav-item">
+          <a href="#0">Projects</a>
+        </li>
+        <li class="nav-item has-subnav">
+          <a href="#0">Quick Portfolios</a>
+          <ul class="subnav" style="display: none;">
+            <li class="subnav-item">
+              <a href="/photography">Photography</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#0">Design</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#0">Motion</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#0">Journal</a>
+        </li>
+        <li class="nav-item">
+          <a href="#0">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="#0">Contact</a>
+        </li>
       </ul>
     </nav>
     {{content}}

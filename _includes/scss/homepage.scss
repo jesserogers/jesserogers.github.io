@@ -1,6 +1,7 @@
 section.intro {
   width: 100%;
   height: calc(100vh - 68px);
+  max-height: 1080px;
   background-color: $black;
   overflow: hidden;
   display: -webkit-box;

@@ -10,9 +10,9 @@ In 2015, I was commissioned by Seattle-based solar energy company to illustrate 
 
 A&R Solar was in the process of a website redesign and needed illustrative components to depict the process and prerequisites for a fully solar powered home. These illustrations were to go on a "How it Works" page.
 
-<div class="gallery">
+<div class="gallery-content">
 {% for image in site.data.a-r-solar %}
-  <div class="j-col j-col-4 project-img">
+  <div class="j-col j-col-4 gallery-img">
     <img class="js-project-img" title="{{image.title}}" src="{{image.src}}" alt="Illustration of {{image.title}}" />
     <div class="js-lightbox" style="display: none;">
       <div class="js-lightbox-close">
@@ -36,7 +36,7 @@ A&R Solar was in the process of a website redesign and needed illustrative compo
 
 A&R Solar was really happy with the illustration series, so they asked me to create another illustration for their office beer keg.
 
-<div class="project-img single-img">
+<div class="gallery-img single-img">
 <img src="{{'/assets/img/a-r-solar/a-r-solar-keg-rules-illustration.jpg' | relative_url}}" alt="Banner illustration for A&R Solar's office keg" />
 <div class="js-lightbox" style="display: none;">
   <div class="js-lightbox-close">

@@ -11,31 +11,37 @@ jQuery(document).ready(function($) { //safety pants!
     }
   });
 
+  // Subnav
+
+  $('.has-subnav').hover(function(){
+    $(this).children('.subnav').fadeToggle(300);
+  });
+
   // Lightbox gallery
 
-  $('.project-img').click(function() { //when user clicks on image
+  $('.gallery-img').click(function() { //when user clicks on image
     $(this).addClass("is-visible").children('.js-lightbox').fadeIn("slow", function() {
       // fade in lightbox
     });
   });
   // Previous lightbox
   $('.js-lightbox-prev').click(function() { // when user clicks 'previous' button
-    $(this).closest('.project-img').children('.js-lightbox').fadeOut("slow", function() {
+    $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
       // fade lightbox out
     });
-    $(this).parent('.js-lightbox').parent('.project-img').removeClass("is-visible").prev().children('.js-lightbox').fadeIn("slow", function () { // fade in next lightbox
-      $(this).closest('.project-img').addClass("is-visible"); // add modifying class to previous lightbox's parent element
+    $(this).parent('.js-lightbox').parent('.gallery-img').removeClass("is-visible").prev().children('.js-lightbox').fadeIn("slow", function () { // fade in next lightbox
+      $(this).closest('.gallery-img').addClass("is-visible"); // add modifying class to previous lightbox's parent element
     });
     return false; // pls don't fuck up my shit browser!
   });
 
   // Next lightbox
   $('.js-lightbox-next').click(function() {
-    $(this).closest('.project-img').children('.js-lightbox').fadeOut("slow", function() {
+    $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
       // fade this one out
     });
-    $(this).parent('.js-lightbox').parent('.project-img').removeClass("is-visible").next().children('.js-lightbox').fadeIn("slow", function () {
-      $(this).closest('.project-img').addClass("is-visible");
+    $(this).parent('.js-lightbox').parent('.gallery-img').removeClass("is-visible").next().children('.js-lightbox').fadeIn("slow", function () {
+      $(this).closest('.gallery-img').addClass("is-visible");
     });
     return false;
   });
@@ -57,7 +63,7 @@ jQuery(document).ready(function($) { //safety pants!
     $(this).parent('.js-lightbox').fadeOut("slow", function() {
       $(this).css("display", "none");
     });
-    $(this).parent('.js-lightbox').parent('.project-img').removeClass("is-visible");
+    $(this).parent('.js-lightbox').parent('.gallery-img').removeClass("is-visible");
     return false;
   });
 });

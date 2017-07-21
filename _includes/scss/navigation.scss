@@ -1,0 +1,86 @@
+nav.main-nav {
+  display: block;
+  @include vertical-center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 68px;
+  background-color: $white;
+  z-index: 3;
+  transition: 500ms ease-in;
+  .logo {
+    display: block;
+    width: 68px;
+    height: 68px;
+    padding: 16px;
+    background: $black;
+    transition: 300ms ease-in-out;
+    .jesse-rogers-1 {
+      fill: rgba($white, 0.5);
+    }
+    .jesse-rogers-2 {
+      fill: white;
+    }
+    .jesse-rogers-1,
+    .jesse-rogers-2 {
+      transition: 300ms ease-in-out;
+    }
+    &:hover {
+      background: $yellow;
+      .jesse-rogers-1 {
+        fill: rgba($black, 0.5);
+      }
+      .jesse-rogers-2 {
+        fill: $black;
+      }
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+  }
+  &.is-scrolled {
+    box-shadow: 0 4px 0 0 rgba($black, 0.1);
+  }
+}
+
+li.nav-item {
+  display: inline-block;
+  a {
+    display: block;
+    color: $black;
+    line-height: 68px;
+    font-size: 0.8em;
+    padding: 0 1.618rem;
+    height: 68px;
+    transition: 300ms ease;
+    &:hover {
+      background: $yellow;
+    }
+  }
+  &:last-child {
+    a {
+      background: $yellow;
+      &:hover {
+        background: $black;
+        color: $white;
+        box-shadow: inset 0px -4px 0 0 $yellow;
+      }
+    }
+  }
+  .subnav {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 240px;
+    background: $white;
+    box-shadow: 6px 6px 0 0 $yellow;
+  }
+  &.has-subnav {
+    position: relative;
+  }
+}
