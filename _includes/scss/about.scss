@@ -1,0 +1,44 @@
+.about-me-img {
+  img {
+    display: block;
+  }
+}
+
+.about-me-txt {
+  padding: $spacing-large $spacing-larger;
+}
+
+.press-heading {
+  text-align: center;
+  h2 {
+    font-size: $type-larger;
+  }
+  p {
+    color: lighten($black, 50%);
+  }
+}
+
+.press-list {
+  list-style-type: none;
+  padding: 0;
+  margin: $spacing-larger 0;
+}
+
+.press-article {
+  border-bottom: 2px solid lighten($black, 75%);
+  transition: 300ms ease;
+  a {
+    color: inherit;
+    @include vertical-center;
+    padding: $spacing-small 0;
+  }
+  span {
+    transition: 300ms ease;
+  }
+  &:hover {
+    border-color: $yellow;
+    span {
+      background-color: $yellow;
+    }
+  }
+}

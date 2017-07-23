@@ -1,0 +1,27 @@
+.btn {
+  display: inline-block;
+  padding: $spacing-small $spacing-normal;
+  font-weight: 700;
+  transition: background 300ms ease, color 300ms ease, box-shadow 300ms ease-in;
+  &.black {
+    background-color: $black;
+    color: $white;
+    &:hover {
+      box-shadow: 6px 6px 0 0 $yellow;
+    }
+  }
+  &.yellow {
+    background: $yellow;
+    color: $black;
+    &:hover {
+      box-shadow: 6px 6px 0 0 $black;
+    }
+  }
+  &.white {
+    background: $white;
+    color: $black;
+    &:hover {
+      box-shadow: 6px 6px 0 0 $yellow;
+    }
+  }
+}

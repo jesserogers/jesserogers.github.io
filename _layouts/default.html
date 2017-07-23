@@ -6,7 +6,7 @@
     {% if page.meta %}
     <meta name="description" content="{{page.meta}}">
     {% endif %}
-    <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Front-end Web Developer</title>
+    <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
@@ -37,7 +37,11 @@
           <a href="#0">Journal</a>
         </li>
         <li class="nav-item">
-          <a href="#0">About</a>
+          {% if page.url == '/about/' %}
+          <a href="{{site.url}}/about" class="is-current">About</a>
+          {% else %}
+          <a href="{{site.url}}/about">About</a>
+          {% endif %}
         </li>
         <li class="nav-item">
           <a href="#0">Contact</a>
@@ -45,6 +49,18 @@
       </ul>
     </nav>
     {{content}}
+    <footer class="footer">
+      <div class="content">
+        <div class="j-col j-col-8 copyright">
+          All content ©<script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script> Jesse Rogers. All rights reserved.
+        </div>
+        <div class="j-col j-col-3 push-1 social">
+          <a class="social-icon" href="http://twitter.com/jesserogers">Twitter</a>
+          <a class="social-icon" href="http://instagram.com/jssrgrs">Instagram</a>
+          <a class="social-icon" href="http://dribbble.com/jesserogers">Dribbble</a>
+        </div>
+      </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="{{'/assets/js/main.js' | relative_url}}"></script>
   </body>

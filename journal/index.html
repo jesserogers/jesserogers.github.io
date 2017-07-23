@@ -1,0 +1,38 @@
+---
+layout: default
+title: Journal
+meta: Sporadic updates on my life, work, and life at work. Latest illustrations, ideas, and photos.
+---
+<section class="page-header">
+  <div class="content">
+    <h1>{{page.title}}</h1>
+    <p>Welcome to my online journal! When I remember to, I'll write about what I'm doing at work, fun side projects, and the occasional unsolicited opinion.</p>
+  </div>
+</section>
+<section class="journal-list">
+  <div class="content">
+    {% for post in paginator.posts %}
+    <article class="journal-list-item j-col j-col-3">
+      <a title="{{post.title}}" href="{{post.url | relative_url}}">
+        <h3 class="blog-post-title j-col j-col-6">{{post.title}}</h3>
+        <p class="blog-post-excerpt j-col j-col-6">{{post.meta}}<br><span class="post-date">{{post.date}}</span><br><span>{{post.tag}}</span></p>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="pagination">
+  <div class="content">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+    {% else %}
+    <span class="previous no-previous">Previous</span>
+    {% endif %}
+    <span class="page-number">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    {% else %}
+    <span class="next no-next">Next</span>
+    {% endif %}
+  </div>
+</section>

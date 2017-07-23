@@ -1,0 +1,50 @@
+---
+layout: default
+title: About
+meta: About Seattle designer and photographer Jesse Rogers. Bio, clients, contact info, and more.
+---
+<section class="page-header" style="margin-bottom: 0;">
+  <div class="content">
+    <h1>{{page.title}}</h1>
+    <p>Basically, I like to draw, take photos, make cool videos, and <span class="strikethrough">buttonmash</span> write code.</p>
+  </div>
+</section>
+<section class="about-me vertical-center-row">
+  <div class="j-col j-col-6 wrap about-me-img">
+    <img src="http://placehold.it/720x480" alt="Whatup bitch">
+  </div>
+  <div class="j-col j-col-6 about-me-txt">
+    <h2>Hi, I'm Jesse.</h2>
+    <p>I'm a creative professional in the Greater Seattle Area who is currently leading design at a sweet tech company called <a href="https://adaptiva.com">Adaptiva</a> (read: I'm a huge computer nerd). Right now, I'm really into designing and building intuitive interfaces and creating seamless web experiences.</p>
+  </div>
+</section>
+<section class="color-block yellow">
+  <a class="btn black" href="#0">Let's make cool stuff</a>
+</section>
+<section class="press">
+  <div class="content">
+    <div class="press-heading">
+      <h2>Press</h2>
+      <p>Sometimes nice people and/or magazines ask me questions about my work, and I try really hard to answer them seriously.</p>
+    </div>
+    <ul class="press-list">
+      {% for article in site.data.press %}
+      <li class="press-article">
+        <a href="{{article.url}}">
+          <div class="j-col j-col-6">
+            <span style="font-weight: 700;">{{article.title}}</span>
+          </div>
+          <div class="j-col j-col-3">
+            {{article.src}}
+          </div>
+          <div class="j-col j-col-3" style="text-align: right;">
+            <div class="btn yellow">
+              Read Article
+            </div>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

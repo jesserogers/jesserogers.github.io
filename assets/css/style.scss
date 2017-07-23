@@ -25,14 +25,23 @@ body {
   font-size: 16px;
 }
 
+// Z-index
+{% include scss/zindex.scss %}
+
 // Color
 {% include scss/color.scss %}
 
 // Typography
 {% include scss/type.scss %}
 
-// Jesse's Structure Framework
+// Spacing
+{% include scss/spacing.scss %}
+
+// Structural Framework
 {% include scss/jframework.scss %}
+
+// Button styles
+{% include scss/button.scss %}
 
 .content {
   width: 100%;
@@ -43,6 +52,9 @@ body {
 // Navigation
 {% include scss/navigation.scss %}
 
+// Footer
+{% include scss/footer.scss %}
+
 .arrow {
   transition: 300ms ease;
   &.black {
@@ -52,8 +64,14 @@ body {
   }
 }
 
+// Gallery
+{% include scss/gallery.scss %}
+
 // Homepage
 {% include scss/homepage.scss %}
 
 // Projects
 {% include scss/projects.scss %}
+
+// About
+{% include scss/about.scss %}

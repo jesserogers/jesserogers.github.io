@@ -1,0 +1,18 @@
+footer.footer {
+  background: $black;
+  padding: $spacing-largest 0;
+  color: $white;
+}
+
+.social {
+  text-align: right;
+}
+.social-icon {
+  display: inline-block;
+  padding: 0 $spacing-smallest;
+  color: $yellow;
+  transition: 300ms ease;
+  &:hover {
+    color: $white;
+  }
+}
