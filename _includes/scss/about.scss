@@ -1,3 +1,7 @@
+section.about-me {
+  background: $white;
+}
+
 .about-me-img {
   img {
     display: block;
@@ -6,6 +10,11 @@
 
 .about-me-txt {
   padding: $spacing-large $spacing-larger;
+}
+
+section.press {
+  background: $white;
+  padding: $spacing-large 0;
 }
 
 .press-heading {
@@ -39,6 +48,10 @@
     border-color: $yellow;
     span {
       background-color: $yellow;
+      &:hover {
+        background-color: $black;
+        color: $white;
+      }
     }
   }
 }

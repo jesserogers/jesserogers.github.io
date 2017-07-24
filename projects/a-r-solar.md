@@ -10,7 +10,7 @@ In 2015, I was commissioned by Seattle-based solar energy company to illustrate 
 
 A&R Solar was in the process of a website redesign and needed illustrative components to depict the process and prerequisites for a fully solar powered home. These illustrations were to go on a "How it Works" page.
 
-<div class="gallery-content">
+<div class="gallery">
 {% for image in site.data.a-r-solar %}
   <div class="j-col j-col-4 gallery-img">
     <img class="js-project-img" title="{{image.title}}" src="{{image.src}}" alt="Illustration of {{image.title}}" />
@@ -26,9 +26,9 @@ A&R Solar was in the process of a website redesign and needed illustrative compo
         <h2>{{image.title}}</h2>
         <p>{{image.desc}}</p>
       </div>
-      <button class="js-lightbox-prev">&larr;</button>
+      <button class="js-lightbox-prev">&#x279E;</button>
       <img class="js-lightbox-img" src="{{image.title}}" src="{{image.src}}" alt="Illustration of {{image.title}}" />
-      <button class="js-lightbox-next">&rarr;</button>
+      <button class="js-lightbox-next">&#x279E;</button>
     </div>
   </div>
 {% endfor %}

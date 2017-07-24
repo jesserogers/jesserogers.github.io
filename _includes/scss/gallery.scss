@@ -1,4 +1,4 @@
-.gallery-content {
+.gallery {
   clear: both;
   margin: 1.618em 0;
   overflow: hidden;
@@ -44,9 +44,12 @@
   background: rgba(black, 0.9);
   padding-left: 0;
   transition: padding-left 500ms ease;
+}
+
+.js-lightbox-img-wrap {
+  overflow: hidden;
   img {
     display: block;
-    position: absolute;
     max-width: 90vw;
     max-height: 90vh;
     height: auto;
@@ -199,6 +202,7 @@
 
 .js-lightbox-prev {
   left: 20px;
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .js-lightbox-next {
@@ -211,9 +215,15 @@
   align-items: center;
   padding-left: 300px;
   transition: padding-left 500ms ease;
+  .js-lightbox-img-wrap {
+    @include vertical-center;
+    padding: $spacing-large;
+    img {
+      max-width: 100%;
+    }
+  }
   .js-lightbox-prev,
   .js-lightbox-next {
-    transform: none;
     background: $black;
     &:hover {
       background: $white;
@@ -222,10 +232,12 @@
   }
   .js-lightbox-prev {
     top: calc(100% - 68px);
+    transform: rotate(180deg);
   }
   .js-lightbox-next {
     right: calc(100% - 140px);
     top: calc(100% - 68px);
+    transform: none;
   }
   .js-lightbox-info-trigger {
     &::before {

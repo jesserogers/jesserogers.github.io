@@ -8,9 +8,9 @@ meta: Selected images from Seattle photographer Jesse Rogers' portfolio
     <h1 class="page-title">{{page.title}}</h1>
   </div>
 </header>
-<section class="gallery">
+<section class="photography">
   <div class="content">
-    <div class="gallery-content">
+    <div class="gallery">
       {% for image in site.data.photography %}
       <div class="j-col j-col-4 gallery-img">
         <img class="js-project-img" title="{{image.title}}" src="{{image.original}}" alt="{{image.desc}}" />
@@ -26,9 +26,11 @@ meta: Selected images from Seattle photographer Jesse Rogers' portfolio
             <h2>{{image.title}}</h2>
             <p>{{image.desc}}</p>
           </div>
-          <button class="js-lightbox-prev">&larr;</button>
-          <img class="js-lightbox-img" title="{{image.title}}" src="{{image.original}}" alt="{{image.desc}}" />
-          <button class="js-lightbox-next">&rarr;</button>
+          <button class="js-lightbox-prev">&#x279E;</button>
+          <div class="js-lightbox-img-wrap">
+            <img class="js-lightbox-img" title="{{image.title}}" src="{{image.original}}" alt="{{image.desc}}" />
+          </div>
+          <button class="js-lightbox-next">&#x279E;</button>
         </div>
       </div>
       {% endfor %}

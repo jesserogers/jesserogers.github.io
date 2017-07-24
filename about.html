@@ -30,7 +30,7 @@ meta: About Seattle designer and photographer Jesse Rogers. Bio, clients, contac
     <ul class="press-list">
       {% for article in site.data.press %}
       <li class="press-article">
-        <a href="{{article.url}}">
+        <a href="{{article.url}}" target="_blank" title="{{article.title}} by {{article.src}}">
           <div class="j-col j-col-6">
             <span style="font-weight: 700;">{{article.title}}</span>
           </div>

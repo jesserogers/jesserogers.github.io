@@ -44,6 +44,11 @@ section.intro {
   }
 }
 
+.featured-projects {
+  padding: $spacing-large 0;
+  background: $white;
+}
+
 .featured-project {
   display: block;
   @include vertical-center;

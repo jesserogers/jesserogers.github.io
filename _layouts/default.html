@@ -34,7 +34,11 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#0">Journal</a>
+          {% if page.url == '/journal/' %}
+          <a href="{{"/journal" | relative_url}}" class="is-current">Journal</a>
+          {% else %}
+          <a href="{{"/journal" | relative_url}}">Journal</a>
+          {% endif %}
         </li>
         <li class="nav-item">
           {% if page.url == '/about/' %}

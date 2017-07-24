@@ -1,0 +1,51 @@
+// Heading
+section.post-title {
+  padding: $spacing-larger $spacing-small;
+  background-color: lighten($black, 90%);
+  .content {
+    max-width: 800px;
+  }
+  h1 {
+    font-size: $type-larger;
+    margin: 0 0 $spacing-small;
+  }
+  .post-meta {
+    font-size: $type-small;
+    color: lighten($black, 50%);
+    text-transform: capitalize;
+  }
+  .post-excerpt {
+    font-size: $type-big;
+    color: lighten($black, 40%);
+  }
+}
+
+// Post Body
+section.post-body {
+  background-color: $white;
+  padding: $spacing-large $spacing-small;
+  .content {
+    max-width: 800px;
+    overflow: visible;
+  }
+}
+
+.post-image {
+  position: relative;
+}
+
+.post-image-container {
+  display: inline-block;
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.post-nav-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
+}

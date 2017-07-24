@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<section class="post-title">
+  <div class="content">
+    <span class="post-meta">{{page.posted}} • {{page.tag}}</span>
+    <h1>{{page.title}}</h1>
+    <span class="post-excerpt">{{page.excerpt}}</span>
+  </div>
+</section>
+<section class="post-body">
+  <div class="content">
+    <div class="post-image">
+      <div class="post-image-container">
+        <img src="/assets/img/journal/{{page.image}}" alt="{{page.title}}">
+      </div>
+    </div>
+    {{content}}
+  </div>
+</section>
+<section class="post-nav">
+  <div class="content">
+  {% if page.previous.url %}
+    <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
+    {% else %}
+    <div><!-- Filler div! * does jazz hands * --></div>
+  {% endif %}
+  {% if page.next.url %}
+    <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+    {% else %}
+    <div><!-- Filler div! * does jazz hands * --></div>
+  {% endif %}
+</div>
+</section>

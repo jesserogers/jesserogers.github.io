@@ -14,17 +14,6 @@
 // Breakpoints
 {% include scss/breakpoints.scss %}
 
-html {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  padding: 68px 0 0;
-  margin: 0;
-  font-size: 16px;
-}
-
 // Z-index
 {% include scss/zindex.scss %}
 
@@ -36,6 +25,18 @@ body {
 
 // Spacing
 {% include scss/spacing.scss %}
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 68px 0 0;
+  margin: 0;
+  font-size: 16px;
+  background: $black;
+}
 
 // Structural Framework
 {% include scss/jframework.scss %}
@@ -73,5 +74,14 @@ body {
 // Projects
 {% include scss/projects.scss %}
 
+// Portfolios
+{% include scss/portfolios.scss %}
+
 // About
 {% include scss/about.scss %}
+
+// Journal
+{% include scss/journal.scss %}
+
+// Journal post
+{% include scss/post.scss %}

@@ -6,16 +6,24 @@ meta: Sporadic updates on my life, work, and life at work. Latest illustrations,
 <section class="page-header">
   <div class="content">
     <h1>{{page.title}}</h1>
-    <p>Welcome to my online journal! When I remember to, I'll write about what I'm doing at work, fun side projects, and the occasional unsolicited opinion.</p>
+    <p class="j-col j-col-6 wrap" style="color: #fceb5e;">Welcome to my online journal! When I remember to, I'll write about what I'm doing at work, fun side projects, and the occasional unsolicited opinion.</p>
   </div>
 </section>
 <section class="journal-list">
   <div class="content">
     {% for post in paginator.posts %}
-    <article class="journal-list-item j-col j-col-3">
+    <article class="journal-item j-col j-col-4">
       <a title="{{post.title}}" href="{{post.url | relative_url}}">
-        <h3 class="blog-post-title j-col j-col-6">{{post.title}}</h3>
-        <p class="blog-post-excerpt j-col j-col-6">{{post.meta}}<br><span class="post-date">{{post.date}}</span><br><span>{{post.tag}}</span></p>
+        <div class="journal-item-img">
+          <img src="/assets/img/journal/{{post.image}}" alt="{{post.title}}">
+        </div>
+        <h3>{{post.title}}</h3>
+        <p class="journal-item-excerpt">{{post.meta}}</p>
+        <p class="journal-item-meta">
+          <span class="journal-item-date">{{post.posted}}</span>
+          <br>
+          <span class="journal-item-tag">{{post.tag}}</span>
+        </p>
       </a>
     </article>
     {% endfor %}

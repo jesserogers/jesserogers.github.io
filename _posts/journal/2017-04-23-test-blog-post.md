@@ -2,7 +2,7 @@
 title: Test Blog Post 4
 excerpt: Pok pok hoodie 8-bit, thundercats humblebrag cray truffaut intelligentsia yr lomo
 category: journal
-date: April 23 2017
+posted: April 23 2017
 image: yang.jpg
 tag: motion
 ---
