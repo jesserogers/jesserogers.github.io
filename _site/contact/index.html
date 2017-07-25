@@ -62,47 +62,42 @@
         </li>
       </ul>
     </nav>
-    <section class="intro">
-    <div class="intro-img">
-        <img src="/assets/img/jesse-rogers.png" alt="Jesse Rogers, professional designer, illustrator, animator, web developer, photographer, and more">
-         <!-- srcset="/assets/img/jesse-rogers.png 400w, /assets/img/jesse-rogers@2x.png 800w" -->
-    </div>
-    <div class="intro-txt">
-      <h1>Hi, I'm Jesse.</h1>
-      <p>I draw, take photos, make cool videos, and <span style="text-decoration: line-through;">buttonmash</span> build websites</p>
-    </div>
-</section>
-<section class="featured-projects">
+    <section class="page-header">
   <div class="content">
-    
-    
-    <a href="/projects/a-r-solar/" title="A&amp;R Solar" class="j-row featured-project">
-      <div class="j-col j-col-4 featured-project-img">
-        <img src="/assets/img/a-r-solar.png" srcset="/assets/img/a-r-solar.png 400w, /assets/img/a-r-solar.png 800w" alt="Commissioned illustration series for Seattle-based solar energy company A&R Solar" />
+    <h1>Let's Talk</h1>
+    <p class="j-col j-col-8 wrap">I'm <strong>selectively</strong> taking on commissions right now. Got a really cool project you think I'll be into? Shoot me a message below, and we'll see if it's a good fit.</p>
+  </div>
+</section>
+<section class="contact">
+  <div class="content">
+    <form class="contact-form">
+      <p>
+        <span class="form-txt">Hi Jesse! My name is </span>
+        <input class="contact-field" type="text" name="name" placeholder="Name*" required>
+        <span class="form-txt">, and you can reach me at </span>
+        <input class="contact-field" type="email" name="_replyto" placeholder="Email*" required>
+        <span class="form-txt">. I'm with </span>
+        <input class="contact-field" type="text" name="company" placeholder="Company">
+        <span class="form-txt"> and we have a budget of </span>
+        <input class="contact-field" type="text" name="budget" placeholder="$$$">.
+      </p>
+      <textarea name="message" class="contact-message" placeholder="Tell me more about your project!" required></textarea>
+      <input type="hidden" name="_next" value="http://localhost:4000/contact/#contact"/>
+      <input type="submit" value="Send" class="contact-send">
+    </form>
+  <div class="confirmation">
+    <div class="content">
+      <div class="submit-success" style="display: none;">
+        <div class="submit-success-content">
+          <p>Message received! I'll be in touch soon.</p>
+          <div href="javascript:void(0)" class="submit-close">Okay cool</div>
+        </div>
       </div>
-      <div class="j-col j-col-6 push-2 featured-project-txt">
-        <h2>A&amp;R Solar</h2>
-        <p>Commissioned illustration series for Seattle-based solar energy company A&R Solar</p>
+      <div class="submit-error" style="display: none;">
+        <p>Oops, looks like there was an issue submitting the form. Please try again!</p>
       </div>
-    </a>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    </div>
+  </div>
   </div>
 </section>
 
@@ -119,6 +114,8 @@
       </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
     
     <script type="text/javascript" src="/assets/js/main.js"></script>
   </body>

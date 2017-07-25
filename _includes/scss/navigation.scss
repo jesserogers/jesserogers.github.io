@@ -6,7 +6,7 @@ nav.main-nav {
   top: 0;
   height: 68px;
   background-color: $white;
-  z-index: 3;
+  @include z-index-2;
   transition: 500ms ease-in;
   .logo {
     display: block;

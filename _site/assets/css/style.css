@@ -93,7 +93,7 @@ body { padding: 68px 0 0; margin: 0; font-size: 16px; background: #111; }
 
 .content { width: 100%; max-width: 1200px; margin: auto; }
 
-nav.main-nav { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; width: 100%; position: fixed; top: 0; height: 68px; background-color: #fff; z-index: 3; transition: 500ms ease-in; }
+nav.main-nav { display: block; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; width: 100%; position: fixed; top: 0; height: 68px; background-color: #fff; z-index: 200; transition: 500ms ease-in; }
 nav.main-nav .logo { display: block; width: 68px; height: 68px; padding: 16px; background: #111; transition: 300ms ease-in-out; }
 nav.main-nav .logo .jesse-rogers-1 { fill: rgba(255, 255, 255, 0.5); }
 nav.main-nav .logo .jesse-rogers-2 { fill: white; }
@@ -259,3 +259,37 @@ section.post-body .content { max-width: 800px; overflow: visible; }
 .post-image-container img { display: block; width: 100%; }
 
 .post-nav-arrow { display: inline-block; vertical-align: middle; width: 1rem; }
+
+section.contact { padding: 4.283rem 1rem; background: #fff; }
+
+.contact-form { width: 100%; max-width: 800px; margin: auto; }
+.contact-form p { line-height: 2.618rem; }
+.contact-form textarea { display: block; margin: 1.618rem 0 1rem; width: 100%; -webkit-appearance: none !important; border: 2px solid #111; height: 240px; padding: 0.618rem; font-size: 1rem; resize: vertical; transition: 300ms ease-in; }
+.contact-form textarea::placeholder { color: #ccc; }
+.contact-form textarea.error { background-color: #fceb5e; }
+.contact-form textarea.error::placeholder { color: #111; }
+.contact-form label.error { display: none !important; }
+
+.form-txt { font-size: 1.25rem; }
+
+.contact-field { display: inline-block; outline: none; border: none; border-bottom: 2px solid #111; -webkit-appearance: none !important; font-size: 1.25rem; text-align: center; vertical-align: super; padding: 0; transition: 250ms ease; }
+.contact-field[name="name"], .contact-field[name="company"] { width: 200px; }
+.contact-field[type="email"] { width: 250px; }
+.contact-field[name="budget"] { width: 68px; }
+.contact-field:focus { border-color: #fceb5e; outline: none; }
+.contact-field::placeholder { color: #ccc; }
+.contact-field.error { background-color: #111; color: #fff; }
+
+.contact-send { display: inline-block; padding: 0.618rem 1.618rem; background: #fceb5e; color: #111; font-weight: 700; font-size: 1.25rem; -webkit-appearance: none !important; border: none; cursor: pointer; transition: 400ms ease; }
+.contact-send:focus { outline: none; }
+.contact-send:hover { background: #111; color: #fff; box-shadow: 6px 6px 0 0 #fceb5e; }
+
+.submit-success { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(252, 235, 94, 0.99); z-index: 300; }
+
+.submit-success-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.submit-success-content p { font-size: 4.263rem; margin-bottom: 1.618rem; }
+
+.submit-close { cursor: pointer; display: inline-block; padding: 1rem 2.618rem; background-color: #111; color: #fff; transition: 300ms ease-in; }
+.submit-close:hover { color: #fceb5e; box-shadow: 6px 6px 0 0 #fff; }
+
+.submit-error { text-align: center; padding: 1rem; margin-top: 4.283rem; background: #fceb5e; }

@@ -1,0 +1,130 @@
+section.contact {
+  padding: $spacing-larger $spacing-small;
+  background: $white;
+}
+.contact-form {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  p {
+    line-height: $spacing-large;
+  }
+  textarea {
+    display: block;
+    margin: $spacing-normal 0 $spacing-small;
+    width: 100%;
+    -webkit-appearance: none !important;
+    border: 2px solid $black;
+    height: 240px;
+    padding: $spacing-smallest;
+    font-size: $type-base;
+    resize: vertical;
+    transition: 300ms ease-in;
+    &::placeholder {
+      color: #ccc;
+    }
+    &.error {
+      background-color: $yellow;
+      &::placeholder {
+        color: $black;
+      }
+    }
+  }
+  label.error {
+    display: none !important;
+  }
+}
+.form-txt{
+  font-size: $type-big;
+}
+.contact-field {
+  display: inline-block;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid $black;
+  -webkit-appearance: none !important;
+  font-size: $type-big;
+  text-align: center;
+  vertical-align: super;
+  padding: 0;
+  transition: 250ms ease;
+  &[name="name"],
+  &[name="company"] {
+    width: 200px;
+  }
+  &[type="email"] {
+    width: 250px;
+  }
+  &[name="budget"] {
+    width: 68px;
+  }
+  &:focus {
+    border-color: $yellow;
+    outline: none;
+  }
+  &::placeholder {
+    color: #ccc;
+  }
+  &.error {
+    background-color: $black;
+    color: $white;
+  }
+}
+.contact-send {
+  display: inline-block;
+  padding: $spacing-smallest $spacing-normal;
+  background: $yellow;
+  color: $black;
+  font-weight: 700;
+  font-size: $type-big;
+  -webkit-appearance: none !important;
+  border: none;
+  cursor: pointer;
+  transition: 400ms ease;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: $black;
+    color: $white;
+    box-shadow: 6px 6px 0 0 $yellow;
+  }
+}
+.submit-success {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($yellow, .99);
+  @include z-index-3;
+}
+.submit-success-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  p {
+    font-size: $type-largest;
+    margin-bottom: $spacing-normal;
+  }
+}
+.submit-close {
+  cursor: pointer;
+  display: inline-block;
+  padding: $spacing-small $spacing-large;
+  background-color: $black;
+  color: $white;
+  transition: 300ms ease-in;
+  &:hover {
+    color: $yellow;
+    box-shadow: 6px 6px 0 0 $white;
+  }
+}
+.submit-error {
+  text-align: center;
+  padding: $spacing-small;
+  margin-top: $spacing-larger;
+  background: $yellow;
+}

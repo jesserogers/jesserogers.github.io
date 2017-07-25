@@ -1,3 +1,5 @@
+---
+---
 jQuery(document).ready(function($) { //safety pants!
 
   // Shadow on sticky nav
@@ -66,4 +68,5 @@ jQuery(document).ready(function($) { //safety pants!
     $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible');
     return false;
   });
+  {% include js/contact.js %}
 });

@@ -1,0 +1,42 @@
+---
+layout: default
+validate: true
+---
+<section class="page-header">
+  <div class="content">
+    <h1>Let's Talk</h1>
+    <p class="j-col j-col-8 wrap">I'm <strong>selectively</strong> taking on commissions right now. Got a really cool project you think I'll be into? Shoot me a message below, and we'll see if it's a good fit.</p>
+  </div>
+</section>
+<section class="contact">
+  <div class="content">
+    <form class="contact-form">
+      <p>
+        <span class="form-txt">Hi Jesse! My name is </span>
+        <input class="contact-field" type="text" name="name" placeholder="Name*" required>
+        <span class="form-txt">, and you can reach me at </span>
+        <input class="contact-field" type="email" name="_replyto" placeholder="Email*" required>
+        <span class="form-txt">. I'm with </span>
+        <input class="contact-field" type="text" name="company" placeholder="Company">
+        <span class="form-txt"> and we have a budget of </span>
+        <input class="contact-field" type="text" name="budget" placeholder="$$$">.
+      </p>
+      <textarea name="message" class="contact-message" placeholder="Tell me more about your project!" required></textarea>
+      <input type="hidden" name="_next" value="{{site.url}}/contact/#contact"/>
+      <input type="submit" value="Send" class="contact-send">
+    </form>
+  <div class="confirmation">
+    <div class="content">
+      <div class="submit-success" style="display: none;">
+        <div class="submit-success-content">
+          <p>Message received! I'll be in touch soon.</p>
+          <div href="javascript:void(0)" class="submit-close">Okay cool</div>
+        </div>
+      </div>
+      <div class="submit-error" style="display: none;">
+        <p>Oops, looks like there was an issue submitting the form. Please try again!</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
