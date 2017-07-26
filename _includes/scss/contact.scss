@@ -6,6 +6,7 @@ section.contact {
   width: 100%;
   max-width: 800px;
   margin: auto;
+  overflow: visible;
   p {
     line-height: $spacing-large;
   }
@@ -26,7 +27,7 @@ section.contact {
     &.error {
       background-color: $yellow;
       &::placeholder {
-        color: $black;
+        color: rgba($black, .5);
       }
     }
   }

@@ -8,6 +8,28 @@ $type-larger:     2.618rem;
 $type-largest:    4.263rem;
 $type-jumbo:      6.854rem;
 
+.type-small {
+  font-size: $type-small;
+}
+.type-base {
+  font-size: $type-base;
+}
+.type-big {
+  font-size: $type-big;
+}
+.type-large {
+  font-size: $type-large;
+}
+.type-larger {
+  font-size: $type-larger;
+}
+.type-largest {
+  font-size: $type-larger;
+}
+.type-jumbo {
+  font-size: $type-jumbo;
+}
+
 h1,
 h2,
 h3,

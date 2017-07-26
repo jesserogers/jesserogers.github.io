@@ -21,6 +21,16 @@
     max-width: 800px;
     margin: 1.618em auto;
   }
+  &:first-child {
+    .js-lightbox-prev {
+      visibility: hidden;
+    }
+  }
+  &:last-child {
+    .js-lightbox-next {
+      visibility: hidden;
+    }
+  }
 }
 
 .js-lightbox {
@@ -38,7 +48,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9;
+  @include z-index-6;
   width: 100vw;
   height: 100vh;
   background: rgba(black, 0.9);
@@ -50,8 +60,8 @@
   overflow: hidden;
   img {
     display: block;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 88vw;
+    max-height: 88vh;
     height: auto;
   }
 }

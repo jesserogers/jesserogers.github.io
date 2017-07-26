@@ -6,7 +6,7 @@
     
     <title>Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css?v=51bf50d72869c6c93cbb77e7871ebd97368f5c58">
+    <link rel="stylesheet" href="/assets/css/style.css?v=9c12ec35f19a16f16ffb77d05c437fa46c6b277d">
   </head>
   <body>
     <nav class="main-nav">
@@ -58,14 +58,14 @@
           
         </li>
         <li class="nav-item">
-          <a href="#0">Contact</a>
+          <a href="/contact">Contact</a>
         </li>
       </ul>
     </nav>
     <section class="page-header">
   <div class="content">
     <h1>Let's Talk</h1>
-    <p class="j-col j-col-8 wrap">I'm <strong>selectively</strong> taking on commissions right now. Got a really cool project you think I'll be into? Shoot me a message below, and we'll see if it's a good fit.</p>
+    <p class="j-col j-col-8 wrap">I'm <strong style="color: #fff; border-bottom: 1px solid #fceb5e; box-shadow: inset 0 -.26em 0 0 #fceb5e;">selectively</strong> taking on commissions right now. Got a really cool project you think I'll be into? Shoot me a message below, and we'll see if it's a good fit.</p>
   </div>
 </section>
 <section class="contact">
@@ -81,23 +81,29 @@
         <span class="form-txt"> and we have a budget of </span>
         <input class="contact-field" type="text" name="budget" placeholder="$$$">.
       </p>
-      <textarea name="message" class="contact-message" placeholder="Tell me more about your project!" required></textarea>
+      <textarea name="message" class="contact-message" placeholder="Tell me more about your project!*" required></textarea>
       <input type="hidden" name="_next" value="http://localhost:4000/contact/#contact"/>
-      <input type="submit" value="Send" class="contact-send">
+      <div class="vertical-center-row space-between">
+        <input type="submit" value="Send" class="contact-send">
+        <span style="color: #ccc;">* Required</span>
+      </div>
     </form>
   <div class="confirmation">
     <div class="content">
       <div class="submit-success" style="display: none;">
         <div class="submit-success-content">
           <p>Message received! I'll be in touch soon.</p>
-          <div href="javascript:void(0)" class="submit-close">Okay cool</div>
+          <div class="submit-close">Okay cool</div>
         </div>
-      </div>
-      <div class="submit-error" style="display: none;">
-        <p>Oops, looks like there was an issue submitting the form. Please try again!</p>
       </div>
     </div>
   </div>
+  </div>
+</section>
+<section class="color-block yellow representation">
+  <div class="content">
+    <h2 class="type-larger">Representation</h2>
+
   </div>
 </section>
 

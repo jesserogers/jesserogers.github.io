@@ -10,7 +10,7 @@ meta: Sporadic updates on my life, work, and life at work. Latest illustrations,
   </div>
 </section>
 <section class="journal-list">
-  <div class="content">
+  <div class="content grid-container">
     {% for post in paginator.posts %}
     <article class="journal-item j-col j-col-4">
       <a title="{{post.title}}" href="{{post.url | relative_url}}">

@@ -9,9 +9,6 @@ $contactForm.validate({
       success: function(data) {
         $('.submit-error').fadeOut(300);
         $('.submit-success').fadeIn(300);
-      },
-      error: function(err) {
-        $('.submit-error').fadeIn(300);
       }
     });
   }
