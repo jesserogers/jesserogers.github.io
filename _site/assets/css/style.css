@@ -221,7 +221,7 @@ section.photography, section.design, section.motion { background: #fff; padding:
 
 section.about-me { background: #fff; }
 
-.about-me-img img { display: block; }
+.about-me-img img { display: block; width: 100%; }
 
 .about-me-txt { padding: 2.618rem 4.283rem; }
 
