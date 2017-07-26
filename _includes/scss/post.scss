@@ -1,7 +1,7 @@
 // Heading
 section.post-title {
-  padding: $spacing-larger $spacing-small;
-  background-color: lighten($black, 90%);
+  padding: $spacing-larger $spacing-small 0;
+  background-color: $white;
   .content {
     max-width: 800px;
   }
@@ -25,8 +25,12 @@ section.post-body {
   background-color: $white;
   padding: $spacing-large $spacing-small;
   .content {
-    max-width: 800px;
+    max-width: 700px;
     overflow: visible;
+  }
+  p {
+    font-size: $type-big;
+    line-height: $spacing-large;
   }
 }
 
@@ -36,8 +40,8 @@ section.post-body {
 
 .post-image-container {
   display: inline-block;
-  width: calc(100% + 4rem);
-  margin-left: -2rem;
+  width: calc(100% + 100px);
+  margin-left: -50px;
   img {
     display: block;
     width: 100%;
