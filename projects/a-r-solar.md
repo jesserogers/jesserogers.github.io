@@ -27,7 +27,7 @@ A&R Solar was in the process of a website redesign and needed illustrative compo
         <p>{{image.desc}}</p>
       </div>
       <button class="js-lightbox-prev">&#x279E;</button>
-      <img class="js-lightbox-img" src="{{image.title}}" src="{{image.src}}" alt="Illustration of {{image.title}}" />
+      <img class="js-lightbox-img" data-src="{{image.src}}" alt="Illustration of {{image.title}}" />
       <button class="js-lightbox-next">&#x279E;</button>
     </div>
   </div>

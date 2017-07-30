@@ -1,0 +1,21 @@
+<div class="j-col j-col-4 gallery-img">
+  <img class="js-project-img" title="{{image.title}}" src="{{image.thumb}}" alt="{{image.desc}}" />
+  <div class="js-lightbox" style="display: none;">
+    <div class="js-lightbox-close">
+      <span></span>
+      <span></span>
+    </div>
+    <div class="js-lightbox-info-trigger">
+      <input type="button" value="Show Info"></input>
+    </div>
+    <div class="js-lightbox-info" style="display: none;">
+      <h2>{{image.title}}</h2>
+      <p>{{image.desc}}</p>
+    </div>
+    <button class="js-lightbox-prev">&#x279E;</button>
+    <div class="js-lightbox-img-wrap">
+      <img class="js-lightbox-img" title="{{image.title}}" data-src="{{image.original}}" alt="{{image.desc}}" style="display: none;" />
+    </div>
+    <button class="js-lightbox-next">&#x279E;</button>
+  </div>
+</div>
