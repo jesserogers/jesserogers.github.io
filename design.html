@@ -1,0 +1,20 @@
+---
+layout: default
+title: Design
+meta: Selected designs and illustrations from the work of Seattle visual designer Jesse Rogers
+---
+<header class="page-header">
+  <div class="content">
+    <h1 class="page-title">{{page.title}}</h1>
+    <p>Some visual design, illustration, and UI/UX stuff</p>
+  </div>
+</header>
+<section class="photography">
+  <div class="content">
+    <div class="gallery">
+      {% for image in site.data.design %}
+        {% include html/gallery.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

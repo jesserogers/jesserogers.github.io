@@ -2,6 +2,9 @@
 ---
 jQuery(document).ready(function($) { //safety pants!
 
+  // Lazy Loader
+  {% include js/lazy.js %}
+
   // Shadow on sticky nav
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
@@ -23,4 +26,5 @@ jQuery(document).ready(function($) { //safety pants!
   {% include js/gallery.js %}
 
   {% include js/contact.js %}
+
 });
