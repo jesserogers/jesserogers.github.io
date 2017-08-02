@@ -1,4 +1,4 @@
-// Jesse's J-Framework
+// Column Structure
 .j-row {
   display: block;
   clear: both;
@@ -140,6 +140,8 @@
   }
 }
 
+// Row structures (flex on 'em)
+
 .vertical-center-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -232,6 +234,8 @@
   align-items: flex-start;
 }
 
+// Components
+
 .page-header {
   height: 10vw;
   min-height: 360px;
@@ -261,5 +265,17 @@
   }
   &.yellow {
     background-color: $yellow;
+  }
+}
+
+.responsive-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-bottom: $spacing-large;
+  iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 }

@@ -78,15 +78,15 @@ var nextImage = function() {
 // Image meta button  ----------
 
 $('.js-lightbox-info-trigger').click(function() {
-  var trigger = $(this).children('input');
+  var trigger = $('.js-lightbox-info-trigger input');
   trigger.toggleClass('hide-it-baby');
   if (trigger.hasClass('hide-it-baby')) {
     trigger.val('Hide Info');
   } else {
     trigger.val('Show Info');
   }
-  $(this).next().slideToggle();
-  $(this).parent('.js-lightbox').toggleClass('is-showing-info');
+  $('.js-lightbox-info-trigger').next().slideToggle();
+  $('.js-lightbox-info-trigger').parent('.js-lightbox').toggleClass('is-showing-info');
 });
 
 // Close Lightbox Button  ----------

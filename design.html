@@ -9,11 +9,11 @@ meta: Selected designs and illustrations from the work of Seattle visual designe
     <p>Some visual design, illustration, and UI/UX stuff</p>
   </div>
 </header>
-<section class="photography">
+<section class="design">
   <div class="content">
     <div class="gallery">
       {% for image in site.data.design %}
-        {% include html/gallery.html %}
+        {% include html/gallery.html col="4" %}
       {% endfor %}
     </div>
   </div>

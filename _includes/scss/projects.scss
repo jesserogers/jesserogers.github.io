@@ -1,11 +1,4 @@
-.project-content {
-  p {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 1.618em;
-  }
-}
-.projects {
+section.projects {
   padding: $spacing-larger $spacing-small;
   background: lighten($black, 90%);
   .content {
@@ -13,7 +6,7 @@
   }
 }
 
-.project {
+article.project {
   background-color: $white;
   margin-bottom: $spacing-larger;
   h2 {
@@ -71,4 +64,16 @@
 
 .project-txt {
   padding: $spacing-large;
+}
+
+.project-content {
+  background: $white;
+  padding: $spacing-larger $spacing-small;
+  .content {
+    overflow: visible;
+    max-width: 800px;
+    p {
+      font-size: 1.125em;
+    }
+  }
 }

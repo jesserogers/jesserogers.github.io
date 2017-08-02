@@ -34,15 +34,15 @@ section.post-body {
   }
 }
 
-.post-image {
+.callout {
   position: relative;
 }
 
-.post-image-container {
+.callout-content {
   display: inline-block;
   width: calc(100% + 100px);
   margin-left: -50px;
-  img {
+  > img {
     display: block;
     width: 100%;
   }

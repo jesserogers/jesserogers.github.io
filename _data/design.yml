@@ -3,6 +3,21 @@
   title: 'Destiny Guardian'
   desc: Illustration of my Guardian from Bunie's Destiny, Rise of Iron expansion
 
+- original: '/assets/img/design/porco-rosso-illustration.jpg'
+  thumb: '/assets/img/design/porco-rosso-illustration--thumb.jpg'
+  title: 'Porco Rosso'
+  desc: Tribute to one of my greatest influences, Hayao Miyazaki, and one of my favorite films of his
+
+- original: '/assets/img/design/alaska-illustration.jpg'
+  thumb: '/assets/img/design/alaska-illustration--thumb.jpg'
+  title: 'Boku no Kazoku: Alaska'
+  desc: A human personification of our cat, Alaska, who is a sweet, shy little angel.
+
+- original: '/assets/img/design/shio-illustration.jpg'
+  thumb: '/assets/img/design/shio-illustration--thumb.jpg'
+  title: 'Boku no Kazoku: Shio'
+  desc: A human personification of our cat, Shio, who is the devil incarnate, but undeniably lovable.
+
 - original: '/assets/img/design/industry-giant-illustration.jpg'
   thumb: '/assets/img/design/industry-giant-illustration--thumb.jpg'
   title: 'Industry Giant'
@@ -17,3 +32,53 @@
   thumb: '/assets/img/design/back-to-the-future-spot-illustration--thumb.png'
   title: 'DeLorean Illustration'
   desc: Editorial illustration for a company blog post featuring a sweet DeLorean
+
+- original: '/assets/img/design/davinci-russell-brown-illustration.png'
+  thumb: '/assets/img/design/davinci-russell-brown-illustration--thumb.png'
+  title: 'Illustration of Russell Brown as DaVinci'
+  desc: Something I drew at Adobe MAX 2015 in Los Angeles
+
+- original: '/assets/img/design/fan-illustration.png'
+  thumb: '/assets/img/design/fan-illustration--thumb.png'
+  title: "It's hot, isn't it?"
+  desc: Seattle summers lose their charm once the temperature hits 100 degrees
+
+- original: '/assets/img/design/kanye-illustration.png'
+  thumb: '/assets/img/design/kanye-illustration--thumb.png'
+  title: 'Kanye'
+  desc: Kanye West is a huge inspiration of mine. College Dropout and Graduation were a large part of what kept me going back in my freelancing days, honestly.
+
+- original: '/assets/img/design/princess-bubblegum-illustration.png'
+  thumb: '/assets/img/design/princess-bubblegum-illustration--thumb.png'
+  title: 'Princess Bubblegum'
+  desc: Illustration of Princess Bubblegum from Adventure Time
+
+- original: '/assets/img/design/marceline-the-vampire-queen-illustration.png'
+  thumb: '/assets/img/design/marceline-the-vampire-queen-illustration--thumb.png'
+  title: 'Marceline the Vampire Queen'
+  desc: Illustration of Marceline from Adventure Time
+
+- original: '/assets/img/design/finn-the-human-illustration.png'
+  thumb: '/assets/img/design/finn-the-human-illustration--thumb.png'
+  title: 'Finn the Human'
+  desc: Illustration of Finn from Adventure Time
+
+- original: '/assets/img/design/lumpy-space-princess-illustration.png'
+  thumb: '/assets/img/design/lumpy-space-princess-illustration--thumb.png'
+  title: 'Lumpy Space Princess'
+  desc: Illustration of LSP from Adventure Time (Oh my glob!)
+
+- original: '/assets/img/design/bmo-illustration.png'
+  thumb: '/assets/img/design/bmo-illustration--thumb.png'
+  title: 'BMO'
+  desc: Illustration of BMO from Adventure Time (Oh my glob!)
+
+- original: '/assets/img/design/mordecai-regular-show-illustration.png'
+  thumb: '/assets/img/design/mordecai-regular-show-illustration--thumb.png'
+  title: 'Mordecai'
+  desc: Illustration of Mordecai from Regular Show
+
+- original: '/assets/img/design/whiskey-illustration.png'
+  thumb: '/assets/img/design/whiskey-illustration--thumb.png'
+  title: 'On the Rocks'
+  desc: Actually, I usually drink my whiskey neat, but for artistic purposes, I threw an ice cube up in there.
