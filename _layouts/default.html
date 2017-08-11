@@ -7,6 +7,7 @@
     <meta name="description" content="{{page.meta}}">
     {% endif %}
     <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
+    <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
@@ -29,7 +30,7 @@
               <a href="{{"/design" | relative_url}}">Design</a>
             </li>
             <li class="subnav-item">
-              <a href="#0">Motion</a>
+              <a href="{{"/motion" | relative_url }}">Motion</a>
             </li>
           </ul>
         </li>
@@ -55,10 +56,10 @@
     {{content}}
     <footer class="footer">
       <div class="content">
-        <div class="j-col j-col-8 copyright">
+        <div class="j-col j-col-6 copyright">
           All content ©<script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script> Jesse Rogers. All rights reserved.
         </div>
-        <div class="j-col j-col-3 push-1 social">
+        <div class="j-col j-col-6 social">
           <a class="social-icon" href="http://twitter.com/jesserogers" target="_blank">Twitter</a>
           <a class="social-icon" href="http://instagram.com/jssrgrs" target="_blank">Instagram</a>
           <a class="social-icon" href="http://dribbble.com/jesserogers" target="_blank">Dribbble</a>

@@ -46,6 +46,7 @@ a {
 }
 
 p {
+  line-height: 1.618em;
   a {
     font-weight: 700;
     border-bottom: 1px solid $yellow;
@@ -58,6 +59,31 @@ p {
   }
 }
 
+li {
+  margin-bottom: 1.618em;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+div,
+li {
+  color: $charcoal;
+  &.white {
+    color: $white;
+  }
+  &.black {
+    color: $black;
+  }
+  &.yellow {
+    color: $yellow;
+  }
+}
+span {
+  color: inherit;;
+}
 .strikethrough {
   position: relative;
   &::before {

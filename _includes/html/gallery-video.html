@@ -1,0 +1,23 @@
+<div class="j-col j-col-{{include.col}} gallery-img">
+  <img class="js-project-img lazy" title="{{video.title}}" data-src="{{video.thumb}}" alt="{{video.desc}}" style="display: none;" />
+  <div class="js-lightbox video-lightbox" style="display: none;">
+    <div class="js-lightbox-close">
+      <span></span>
+      <span></span>
+    </div>
+    <div class="js-lightbox-info-trigger">
+      <input type="button" value="Show Info"></input>
+    </div>
+    <div class="js-lightbox-info" style="display: none;">
+      <h2>{{video.title}}</h2>
+      <p>{{video.desc}}</p>
+    </div>
+    <button class="js-lightbox-prev">&#x279E;</button>
+    <div class="js-lightbox-img-wrap">
+      <div class="responsive-video">
+        <iframe data-src="{{video.src}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="display: none;"></iframe>
+      </div>
+    </div>
+    <button class="js-lightbox-next">&#x279E;</button>
+  </div>
+</div>

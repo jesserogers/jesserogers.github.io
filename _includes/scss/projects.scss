@@ -72,7 +72,8 @@ article.project {
   .content {
     overflow: visible;
     max-width: 800px;
-    p {
+    p,
+    li {
       font-size: 1.125em;
     }
   }

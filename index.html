@@ -8,23 +8,46 @@ layout: default
     </div>
     <div class="intro-txt">
       <h1>Hi, I'm Jesse.</h1>
-      <p>I draw, take photos, make cool videos, and <span style="text-decoration: line-through;">buttonmash</span> build websites</p>
+      <p>I draw, take photos, make cool videos, and <span class="strikethrough">buttonmash</span> build websites</p>
     </div>
 </section>
-<section class="featured-projects">
+<section class="projects">
   <div class="content">
-    {% for project in site.pages %}
-    {% if project.featured == true %}
-    <a href="{{project.url}}" title="{{project.title}}" class="j-row featured-project">
-      <div class="j-col j-col-4 featured-project-img">
-        <img src="{{project.img_ret}}" srcset="{{project.img}} 400w, {{project.img_ret}} 800w" alt="{{project.meta}}" />
-      </div>
-      <div class="j-col j-col-6 push-2 featured-project-txt">
-        <h2>{{project.title}}</h2>
-        <p>{{project.meta}}</p>
-      </div>
-    </a>
-    {% endif %}
+    {% for project in site.data.projects %}
+    <article class="project">
+      <a href="{{site.baseurl}}/projects/{{project.slug}}" class="vertical-center-row" title="{{project.title}}">
+        <div class="project-img j-col j-col-7 wrap">
+          <img src="{{site.baseurl}}/assets/img/projects/{{project.img}}" alt="{{project.title}}">
+        </div>
+        <div class="project-txt j-col j-col-5">
+          <span>{{project.category}}</span>
+          <h2>{{project.title}}</h2>
+          <p>{{project.text}}</p>
+          <div class="btn yellow">Check it out</div>
+        </div>
+      </a>
+    </article>
     {% endfor %}
   </div>
+</section>
+<section class="color-block black">
+  <h2 class="white">Quick Portfolios</h2>
+</section>
+<section class="quick-portfolios">
+  <div class="j-row">
+    <a class="j-col j-col-4 wrap quick-portfolio" id="photography" title="My favorite photos!" href="{{"/photography" | relative_url}}">
+      <span>Photography</span>
+    </a>
+    <a class="j-col j-col-4 wrap quick-portfolio" id="design" title="More illustration than anything else, to be honest" href="{{"/design" | relative_url}}">
+      <span>Design</span>
+    </a>
+    <a class="j-col j-col-4 wrap quick-portfolio" id="motion" title="My favorite motion projects, from video production to animation" href="{{"/motion" | relative_url}}">
+      <span>Motion</span>
+    </a>
+  </div>
+</section>
+<section class="color-block white">
+  <h2>Need to talk to me?</h2>
+  <p>Have some questions? Wanna hire me for something?</p>
+  <a class="btn black" href="{{"/contact" | relative_url}}">Hit me up</a>
 </section>

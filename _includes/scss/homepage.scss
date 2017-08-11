@@ -67,3 +67,52 @@ section.intro {
     max-width: 100%;
   }
 }
+.quick-portfolio {
+  height: 420px; //lmao
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: 300ms $transition-ease-in;
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba($black, .75);
+    opacity: 0;
+    transition: 300ms $transition-ease-in;
+  }
+  span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: $white;
+    font-weight: 700;
+    opacity: 0;
+    transition: 500ms $transition-ease-in;
+  }
+  &#photography {
+    background-image: url('/assets/img/photography/brian-seattle-street-photography.jpg');
+  }
+  &#design {
+    background-image: url('/assets/img/design/shio-illustration.jpg');
+  }
+  &#motion {
+    background-image: url('/assets/img/motion/lighthouse-beginnings.jpg');
+  }
+  &:hover {
+    box-shadow: inset 0 0 0 10px $black;
+    &::before {
+      opacity: 1;
+    }
+    span {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

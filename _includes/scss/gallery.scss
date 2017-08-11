@@ -57,12 +57,24 @@
 }
 
 .js-lightbox-img-wrap {
-  overflow: hidden;
+  overflow: visible;
   img {
     display: block;
     max-width: 88vw;
     max-height: 88vh;
     height: auto;
+    opacity: 1;
+    transition: opacity 1000ms linear 100ms;
+    box-shadow: 0 10px 26px -6px rgba(black, .5);
+  }
+  iframe {
+    opacity: 1;
+    transition: opacity 1000ms linear 100ms;
+    box-shadow: 0 10px 26px -6px rgba(black, .5);
+  }
+  img[data-src],
+  iframe[data-src] {
+    opacity: 0;
   }
 }
 
@@ -201,6 +213,7 @@
   transform: translateY(-50%);
   -webkit-appearance: none !important;
   transition: color 400ms ease-in, background 400ms ease-in, top 600ms ease-in, left 600ms ease-in, transform 600ms ease-in;
+  @include z-index-1;
   &:focus {
     outline: none !important;
   }
@@ -265,5 +278,14 @@
 .project-img:last-child {
   .js-lightbox-next {
     display: none;
+  }
+}
+
+// Video Gallery
+.video-lightbox {
+  .js-lightbox-img-wrap {
+    width: 100%;
+    max-width: 88vw;
+    max-height: 88vh;
   }
 }

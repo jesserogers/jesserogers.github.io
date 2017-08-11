@@ -52,10 +52,16 @@ section.post-nav {
     a {
       background: $black;
       color: $white;
+      * {
+        color: $white;
+      }
       &:hover {
         background: $white;
         box-shadow: 6px 6px 0 0 $black;
         color: $black;
+        * {
+          color: $black;
+        }
       }
       &.previous {
         .post-nav-arrow {
@@ -78,4 +84,9 @@ section.post-nav {
       }
     }
   }
+}
+.post-nav-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
 }

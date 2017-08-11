@@ -49,6 +49,7 @@ nav.main-nav {
 
 li.nav-item {
   display: inline-block;
+  margin: 0;
   a {
     display: block;
     color: $black;
@@ -89,4 +90,7 @@ li.nav-item {
   &.has-subnav {
     position: relative;
   }
+}
+li.subnav-item {
+  margin: 0;
 }

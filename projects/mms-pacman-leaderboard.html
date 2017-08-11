@@ -1,0 +1,86 @@
+---
+layout: default
+title: MMS 2017 Pac-Man Leaderboard
+meta: Custom design and development for web presence at an industry tradeshow
+featured: true
+---
+<section class="page-header">
+  <div class="content">
+    <h1>{{page.title}}</h1>
+    <p>{{page.meta}}</p>
+  </div>
+</section>
+<section class="project-content">
+  <div class="content">
+    <p>Wow, Q2 was been crazy in 2017. In May, my company sponsored an event called the Midwest Management Summit (MMS for short), at which we had a huge, four-player Pac-Man gaming system. We held a formal competition, complete with a trophy and a $100 Amazon gift card. It was expensive, it was crowded, and it was awesome.</p>
+
+    <p>It also presented some needs from my team.</p>
+
+    <h2>The Problem</h2>
+    <p>MMS attendees who wanted to compete for the champion title would want to track their scores and rank. The booths at this tradeshow were small—six-foot tables and a backdrop, so we wanted to avoid having a crowd of people checking their scores at the booth, as the excess traffic could impede actual sales leads from speaking to our staff.</p>
+
+    <p><strong>We needed a solution that could be accessed easily and remotely, and ideally, from any device.</strong></p>
+
+    <h2>The Solution</h2>
+    <p>I proposed that we leverage the Design Lab website's Jekyll-based platform to create an online leaderboard that attendees could access from their phones and laptops.</p>
+
+    <p>The website would store player scores and intelligently display them on the front end in order of rank. Since the Design Lab site is built on Github, it would be easy for Adaptiva employees to input scores into a _data file through Github's online interface.</p>
+
+    <p>In addition to the leaderboard, we realized that this site would also be the best means of distributing documentation on the competition rules and schedule, information on prizes, and any marketing stuff we wanted them to see while they're checking scores.</p>
+
+    <h2>The Product</h2>
+    <p>In a little under three weeks, we designed, coded, and shipped a simple but beautiful, fully responsive, three-page website with a tabbed navigation to show the three main purposes of the site: the Pac-Man leaderboard, information on prizes, and information on rules and scheduling.</p>
+    <div class="callout">
+      <div class="callout-content">
+        <img src="{{site.baseurl}}/assets/img/projects/pacman-homepage.png" alt="Desktop display of MMS 2017 Pac-Man leaderboard" style="display: block; margin: 0 0 1.618em; width: 100%;">
+      </div>
+    </div>
+    <p>The mobile version was designed to resemble a native mobile device app, with the three tabs fixed to the bottom for convenient, ergonomic navigation.</p>
+    <div class="callout">
+      <div class="callout-content">
+        <div class="j-col j-col-6 push-3 wrap">
+          <img src="{{site.baseurl}}/assets/img/projects/pacman-homepage-m.png" alt="Mobile display of MMS 2017 Pac-Man leaderboard" style="display: block; margin: 0 0 1.618em; width: 100%;">
+        </div>
+      </div>
+    </div>
+    <p>Each score entry is interactive. Users can click/tap on their score to expand their row, showing a personalized message and a click-to-tweet button, unique to their current score and rank.</p>
+    <div class="callout">
+      <div class="callout-content">
+        <div class="j-row" style="margin: 2em 0; overflow: hidden;">
+        <div class="j-col j-col-9">
+          <img src="{{site.baseurl}}/assets/img/projects/pacman-tweet.png" style="display: block; width: 100%; margin: 0 0 1.618em;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality">
+        </div>
+        <div class="j-col j-col-3">
+          <img src="{{site.baseurl}}/assets/img/projects/pacman-tweet-m.png" style="display: block; width: 100%; margin: 0 0 1.618em;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality">
+        </div>
+        </div>
+      </div>
+    </div>
+    <p>The next tab showcased information on prizes that attendees could win by competing. We created vector illustrations and exported them as optimized SVGs. Utilizing Jekyll's include function, we were able to put in complex SVGs into the page without cluttering our markup.</p>
+
+    <p>The hero image up top (the isometric Pac-Man maze) is also SVG. We leveraged SVG wherever possible and kept raster images to a minimum, and performance benefits are noticeable.</p>
+
+    <p><strong>This whole site is ridiculously fast. Like usually under 1 second loading time fast.</strong></p>
+    <div class="callout">
+      <div class="callout-content">
+        <div class="j-row" style="margin: 2em 0; overflow: hidden;">
+        <div class="j-col j-col-9"><img src="{{site.baseurl}}/assets/img/projects/pacman-prizes.png" style="display: block; margin: 0 0 1.618em; width: 100%;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality"></div>
+        <div class="j-col j-col-3"><img src="{{site.baseurl}}/assets/img/projects/pacman-prizes-m.png" style="display: block; margin: 0 0 1.618em; width: 100%;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality"></div>
+        </div>
+      </div>
+    </div>
+    <p>The last tab displayed the schedule of gameplay, competition rules, general info on Adaptiva's event presence, and free content from our marketing department. There was a lot of text, so I thought it best we use jQuery's .slideToggle() function to easily create collapsible sections to make the content more manageable for the user.</p>
+    <div class="callout">
+      <div class="callout-content">
+        <div class="j-row" style="margin: 2em 0; overflow: hidden;">
+        <div class="j-col j-col-9"><img src="{{site.baseurl}}/assets/img/projects/pacman-info.png" style="display: block; margin: 0 0 1.618em; width: 100%;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality"></div>
+        <div class="j-col j-col-3"><img src="{{site.baseurl}}/assets/img/projects/pacman-info-m.png" style="display: block; margin: 0 0 1.618em; width: 100%;" alt="Desktop display of MMS 2017 Pac-Man leaderboard tweet functionality"></div>
+        </div>
+      </div>
+    </div>
+    <p>The community at MMS seemed to really enjoy our Pac-Man championship, and it was a good challenge to throw together an online solution that checked all the boxes in such a short amount of time.</p>
+
+    <p>The site will stay up indefinitely, so you can see the live code here: <a href="http://adaptiva.com/pacman" target="_blank" title="MMS 2017 Pac-Man Championship Leaderboard">adaptiva.com/pacman</a></p>
+
+  </div>
+</section>

@@ -28,7 +28,8 @@ section.post-body {
     max-width: 700px;
     overflow: visible;
   }
-  p {
+  p,
+  li {
     font-size: $type-big;
     line-height: $spacing-large;
   }
@@ -36,6 +37,7 @@ section.post-body {
 
 .callout {
   position: relative;
+  margin: $spacing-large 0;
 }
 
 .callout-content {
@@ -46,10 +48,4 @@ section.post-body {
     display: block;
     width: 100%;
   }
-}
-
-.post-nav-arrow {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1rem;
 }
