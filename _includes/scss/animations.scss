@@ -1,0 +1,28 @@
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  from {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link rel="icon" href="/assets/img/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css?v=9a8d051a8089cbd63d301238cd3ad00cbdb51423">
+    <link rel="stylesheet" href="/assets/css/style.css?v=600d312fa3fa7a69e6c7a0db6fbc6f4b274d6566">
   </head>
   <body>
     <nav class="main-nav">
@@ -30,7 +31,11 @@
 </svg>
 
       </a>
-      <ul>
+      <div class="js-nav-trigger">
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-items">
         <li class="nav-item">
           <a href="/projects">Projects</a>
         </li>
@@ -70,11 +75,25 @@
     </div>
     <div class="intro-txt">
       <h1>Hi, I'm Jesse.</h1>
-      <p>I draw, take photos, make cool videos, and <span class="strikethrough">buttonmash</span> build websites</p>
+      <span>I am a</span>&nbsp;
+        <div id="occupations">
+          <span>creative director</span>
+          <span>visual designer</span>
+          <span>UI/UX designer</span>
+          <span>web developer</span>
+          <span>photographer</span>
+          <span>video director</span>
+          <span>tennis player</span>
+          <span>drummer</span>
+          <span>husband</span>
+          <span>Japanese American</span>
+          <span>fan of cartoons</span>
+          <span>cat person</span>
+        </div>
     </div>
 </section>
 <section class="projects">
-  <div class="content">
+  <div class="content overflow">
     
     <article class="project">
       <a href="/projects/mms-pacman-leaderboard" class="vertical-center-row" title="MMS Pac-Man Leaderboard">

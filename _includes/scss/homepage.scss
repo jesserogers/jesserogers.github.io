@@ -13,35 +13,63 @@ section.intro {
   flex-direction: row;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  @media #{$tablet}, #{$mobile} {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 
 .intro-img {
   width: 50%;
   float: left;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
   padding-top: 42px;
   img {
     display: block;
     max-width: 100%;
     margin: 0;
-    opacity: 0.1;
+    opacity: 0.25;
   }
 }
 
 .intro-txt {
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   width: 50%;
   h1 {
     color: $yellow;
     margin: 0;
-    font-size: 1.2rem;
+    font-size: $type-big;
   }
-  p {
+  span {
     color: white;
-    font-size: 1.618em;
-    max-width: 600px;
+    font-size: $type-large;
   }
+  @media #{$tablet}, #{$mobile} {
+    padding: $spacing-normal;
+    h1 {
+      font-size: $type-large;
+    }
+    span {
+      font-size: $type-base;
+    }
+  }
+}
+
+.intro-img,
+.intro-txt {
+  @media #{$tablet}, #{$mobile} {
+    width: 100%;
+  }
+}
+
+#occupations {
+  display: inline;
 }
 
 .featured-projects {
@@ -55,6 +83,7 @@ section.intro {
   border-top: 2px solid $light-gray;
   margin: 2.618em 0;
   color: $black;
+  -webkit-transition: 300ms ease;
   transition: 300ms ease;
   &:hover {
     border-color: $yellow;
@@ -73,7 +102,9 @@ section.intro {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  -webkit-transition: 300ms $transition-ease-in;
   transition: 300ms $transition-ease-in;
+  margin-bottom: 0;
   &::before {
     content: '';
     display: block;
@@ -83,6 +114,7 @@ section.intro {
     left: 0;
     background-color: rgba($black, .75);
     opacity: 0;
+    -webkit-transition: 300ms $transition-ease-in;
     transition: 300ms $transition-ease-in;
   }
   span {
@@ -90,10 +122,12 @@ section.intro {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
     color: $white;
     font-weight: 700;
     opacity: 0;
+    -webkit-transition: 500ms $transition-ease-in;
     transition: 500ms $transition-ease-in;
   }
   &#photography {
@@ -106,13 +140,15 @@ section.intro {
     background-image: url('/assets/img/motion/lighthouse-beginnings.jpg');
   }
   &:hover {
-    box-shadow: inset 0 0 0 10px $black;
+    -webkit-box-shadow: inset 0 0 0 10px $black;
+            box-shadow: inset 0 0 0 10px $black;
     &::before {
       opacity: 1;
     }
     span {
       opacity: 1;
-      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
     }
   }
 }

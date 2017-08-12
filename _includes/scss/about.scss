@@ -26,6 +26,9 @@ section.press {
   p {
     color: lighten($black, 50%);
   }
+  @media #{$mobile} {
+    padding: 0 $spacing-small;
+  }
 }
 
 .press-list {
@@ -36,13 +39,18 @@ section.press {
 
 .press-article {
   border-bottom: 2px solid lighten($black, 75%);
+  -webkit-transition: 300ms ease;
   transition: 300ms ease;
   a {
     color: inherit;
     @include vertical-center;
     padding: $spacing-small 0;
+    @media #{$mobile} {
+      display: block;
+    }
   }
   span {
+    -webkit-transition: 300ms ease;
     transition: 300ms ease;
   }
   &:hover {

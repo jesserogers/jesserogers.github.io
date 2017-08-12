@@ -7,8 +7,20 @@
 .gallery-img {
   padding: 10px;
   overflow: hidden;
-  transition: 300ms ease-in;
+  -webkit-transition: background-color 300ms $transition-ease-in, opacity 500ms linear;transition: background-color 300ms $transition-ease-in, opacity 500ms linear;
   cursor: pointer;
+  opacity: 0;
+  &:nth-child(-n+6) {
+    opacity: 1;
+  }
+  @media #{$desktop-xl} {
+    &:nth-child(-n+9) {
+      opacity: 1;
+    }
+  }
+  &.is-in-viewport {
+    opacity: 1;
+  }
   img {
     display: block;
     max-width: 100%;
@@ -34,6 +46,8 @@
 }
 
 .js-lightbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -53,7 +67,14 @@
   height: 100vh;
   background: rgba(black, 0.9);
   padding-left: 0;
+  -webkit-transition: padding-left 500ms ease;
   transition: padding-left 500ms ease;
+  @media #{$tablet}, #{$mobile} {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-flow: column-reverse;
+            flex-flow: column-reverse;
+  }
 }
 
 .js-lightbox-img-wrap {
@@ -64,13 +85,17 @@
     max-height: 88vh;
     height: auto;
     opacity: 1;
+    -webkit-transition: opacity 1000ms linear 100ms;
     transition: opacity 1000ms linear 100ms;
-    box-shadow: 0 10px 26px -6px rgba(black, .5);
+    -webkit-box-shadow: 0 10px 26px -6px rgba(black, .5);
+            box-shadow: 0 10px 26px -6px rgba(black, .5);
   }
   iframe {
     opacity: 1;
+    -webkit-transition: opacity 1000ms linear 100ms;
     transition: opacity 1000ms linear 100ms;
-    box-shadow: 0 10px 26px -6px rgba(black, .5);
+    -webkit-box-shadow: 0 10px 26px -6px rgba(black, .5);
+            box-shadow: 0 10px 26px -6px rgba(black, .5);
   }
   img[data-src],
   iframe[data-src] {
@@ -92,12 +117,15 @@
     width: 16px;
     background: $yellow;
     opacity: 0;
+    -webkit-transition: 200ms ease-in;
     transition: 200ms ease-in;
     &:first-child {
-      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
     }
     &:last-child {
-      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
     }
   }
 }
@@ -107,6 +135,7 @@
   top: 1em;
   right: 68px;
   text-align: center;
+  @include z-index-8;
   &::before {
     content: '+';
     display: block;
@@ -115,6 +144,7 @@
     left: 0;
     vertical-align: middle;
     color: $yellow;
+    -webkit-transition: 300ms ease-in;
     transition: 300ms ease-in;
     font-size: 12px;
   }
@@ -127,6 +157,7 @@
     left: 0;
     height: 2px;
     width: 0;
+    -webkit-transition: width 300ms ease-in;
     transition: width 300ms ease-in;
   }
   &:hover {
@@ -145,7 +176,25 @@
     padding: 6px 0 0 14px;
     cursor: pointer;
     margin: 0 auto;
+    -webkit-transition: 300ms ease-in;
     transition: 300ms ease-in;
+  }
+  @media #{$tablet}, #{$mobile} {
+    top: auto;
+    bottom: 2.6em;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    &::before,
+    &::after {
+      display: none;
+    }
+    input {
+      font-size: 16px;
+      padding: $spacing-smallest;
+      font-weight: 700;
+    }
   }
 }
 
@@ -153,22 +202,27 @@
   cursor: default;
   .js-lightbox-close {
     span {
+      -webkit-transition: 250ms ease-in;
       transition: 250ms ease-in;
       opacity: 1;
       &:first-child {
-        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
       }
       &:last-child {
-        transform: rotate(315deg);
+        -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
       }
     }
     &:hover {
       span {
         &:first-child {
-          transform: rotate(135deg);
+          -webkit-transform: rotate(135deg);
+                  transform: rotate(135deg);
         }
         &:last-child {
-          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+                  transform: rotate(45deg);
         }
       }
     }
@@ -184,6 +238,7 @@
   background: $yellow;
   overflow: visible;
   padding: 20px;
+  @include z-index-7;
   h2 {
     color: $black;
     margin: 0 0 1.618rem 0;
@@ -193,6 +248,9 @@
   }
   p {
     color: $black;
+  }
+  @media #{$tablet}, #{$mobile} {
+    width: 100%;
   }
 }
 
@@ -210,10 +268,14 @@
   cursor: pointer;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   -webkit-appearance: none !important;
+  -webkit-transition: color 400ms ease-in, background 400ms ease-in, top 600ms ease-in, left 600ms ease-in, -webkit-transform 600ms ease-in;
+  transition: color 400ms ease-in, background 400ms ease-in, top 600ms ease-in, left 600ms ease-in, -webkit-transform 600ms ease-in;
   transition: color 400ms ease-in, background 400ms ease-in, top 600ms ease-in, left 600ms ease-in, transform 600ms ease-in;
-  @include z-index-1;
+  transition: color 400ms ease-in, background 400ms ease-in, top 600ms ease-in, left 600ms ease-in, transform 600ms ease-in, -webkit-transform 600ms ease-in;
+  @include z-index-7;
   &:focus {
     outline: none !important;
   }
@@ -221,11 +283,22 @@
     background: $yellow;
     color: $black;
   }
+  @media #{$tablet}, #{$mobile} {
+    top: auto;
+    bottom: 2.618em;
+    -webkit-transform: none;
+            transform: none;
+  }
 }
 
 .js-lightbox-prev {
   left: 20px;
-  transform: translateY(-50%) rotate(180deg);
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+  @media #{$tablet}, #{$mobile} {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
 }
 
 .js-lightbox-next {
@@ -237,6 +310,7 @@
   -ms-flex-align: center;
   align-items: center;
   padding-left: 300px;
+  -webkit-transition: padding-left 500ms ease;
   transition: padding-left 500ms ease;
   .js-lightbox-img-wrap {
     @include vertical-center;
@@ -252,19 +326,41 @@
       background: $white;
       color: $black;
     }
+    @media #{$tablet}, #{$mobile} {
+      bottom: 2.618em;
+      -webkit-transform: none;
+              transform: none;
+    }
   }
   .js-lightbox-prev {
     top: calc(100% - 68px);
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    @media #{$tablet}, #{$mobile} {
+      top: auto;
+    }
   }
   .js-lightbox-next {
     right: calc(100% - 140px);
     top: calc(100% - 68px);
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
+    @media #{$tablet}, #{$mobile} {
+      top: auto;
+      right: 20px;
+    }
   }
   .js-lightbox-info-trigger {
     &::before {
       content: '-';
+    }
+  }
+  @media #{$tablet}, #{$mobile} {
+    padding-left: 0;
+    .js-lightbox-info-trigger {
+      input {
+        color: $black;
+      }
     }
   }
 }

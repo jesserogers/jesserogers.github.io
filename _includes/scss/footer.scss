@@ -6,11 +6,16 @@ footer.footer {
 
 .social {
   text-align: right;
+  @media #{$mobile} {
+    margin-top: $spacing-normal;
+    text-align: left;
+  }
 }
 .social-icon {
   display: inline-block;
   padding: 0 $spacing-smallest;
   color: $yellow;
+  -webkit-transition: 300ms ease;
   transition: 300ms ease;
   &:hover {
     color: $white;

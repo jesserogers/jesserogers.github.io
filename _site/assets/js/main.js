@@ -18,13 +18,91 @@ $('.lazy').removeAttr('data-src');
     }
   });
 
-  // Subnav
+  // Dropdown on subnav
+  if (matchMedia) { // media query event handler
+    var mq = window.matchMedia("(min-width: 960px)");
+    mq.addListener(WidthChange);
+    WidthChange(mq);
+  }
 
-  $('.has-subnav').hover(function(){
-    $(this).children('.subnav').fadeToggle(300);
+  function WidthChange(mq) { // media query change
+    if (mq.matches) { // if width < 768px
+      $('.has-subnav').hover(function(){
+        $(this).children('.subnav').fadeToggle(300);
+      });
+    } else {
+      $('.has-subnav').click(function(){
+        $(this).children('.subnav').slideToggle();
+      });
+    }
+  }
+
+  $('.js-nav-trigger').click(function(){
+  $(this).toggleClass('is-clicked');
+  $('.nav-items').toggleClass('is-visible');
+});
+
+  $('#occupations > span:gt(0)').hide();
+
+setInterval(function() {
+  $('#occupations > span:first')
+    .fadeOut(1000)
+    .next()
+    .delay(1000)
+    .fadeIn(1000)
+    .end()
+    .appendTo('#occupations');
+},  3500);
+
+  $('.directions-nav-item').click(function(){
+  var id = $(this).attr('id');
+  $('.directions-nav-item').removeClass('is-selected');
+  $(this).addClass('is-selected');
+  $('.directions-nav-content').removeClass('is-visible').hide();
+  $('.directions-nav-content#' + id).addClass('is-visible').show();
+});
+
+  (function($) {
+
+  /**
+   * Copyright 2012, Digital Fusion
+   * Licensed under the MIT license.
+   * http://teamdf.com/jquery-plugins/license/
+   *
+   * @author Sam Sehnert
+   * @desc A small plugin that checks whether elements are within
+   *     the user visible viewport of a web browser.
+   *     only accounts for vertical position, not horizontal.
+   */
+
+  $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+  };
+
+})(jQuery);
+
+  $(window).scroll(function(event) {
+
+  $('.gallery-img').each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass('is-in-viewport');
+    }
   });
 
-  // Lightbox gallery
+});
+
   // Lightbox Gallery ----------
 
 $('.gallery-img').click(function() { //when user clicks on image
@@ -49,10 +127,8 @@ $('.gallery-img').click(function() { //when user clicks on image
 // Previous lightbox ----------
 
 var prevImage = function() {
-  $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
-    // fade lightbox out
-  });
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').prev().children('.js-lightbox').fadeIn("slow", function () { // fade in next lightbox
+  $(this).closest('.gallery-img').children('.js-lightbox').hide();
+  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').prev().children('.js-lightbox').show(0, function() { // fade in next lightbox
     $(this).closest('.gallery-img').addClass('is-visible'); // add modifying class to previous lightbox's parent element
 
     // Lazy Load!
@@ -72,10 +148,8 @@ var prevImage = function() {
 // Next lightbox ----------
 
 var nextImage = function() {
-  $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
-    // fade this one out
-  });
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').next().children('.js-lightbox').fadeIn("slow", function () {
+  $(this).closest('.gallery-img').children('.js-lightbox').hide();
+  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').next().children('.js-lightbox').show(0, function() {
     $(this).closest('.gallery-img').addClass('is-visible');
 
     // Lazy Load!
@@ -116,7 +190,6 @@ $('.js-lightbox-close').click(function(e) { // when user clicks X button
   $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible');
   return false;
 });
-
 
   var $contactForm = $('.contact-form');
 $contactForm.validate({

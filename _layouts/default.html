@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% if page.noindex %}
+      <meta name="robots" content="noindex">
+    {% endif %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if page.meta %}
@@ -16,7 +19,11 @@
       <a class="logo" href="/">
         {% include svg/jesse-rogers.svg %}
       </a>
-      <ul>
+      <div class="js-nav-trigger">
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-items">
         <li class="nav-item">
           <a href="{{"/projects" | relative_url}}">Projects</a>
         </li>

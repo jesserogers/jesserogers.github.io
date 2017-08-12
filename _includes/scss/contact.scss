@@ -20,12 +20,25 @@ section.contact {
     padding: $spacing-smallest;
     font-size: $type-base;
     resize: vertical;
+    -webkit-transition: 300ms ease-in;
     transition: 300ms ease-in;
+    &::-webkit-input-placeholder {
+      color: #ccc;
+    }
+    &:-ms-input-placeholder {
+      color: #ccc;
+    }
     &::placeholder {
       color: #ccc;
     }
     &.error {
       background-color: $yellow;
+      &::-webkit-input-placeholder {
+        color: rgba($black, .5);
+      }
+      &:-ms-input-placeholder {
+        color: rgba($black, .5);
+      }
       &::placeholder {
         color: rgba($black, .5);
       }
@@ -48,6 +61,7 @@ section.contact {
   text-align: center;
   vertical-align: super;
   padding: 0;
+  -webkit-transition: 250ms ease;
   transition: 250ms ease;
   &[name="name"],
   &[name="company"] {
@@ -62,6 +76,12 @@ section.contact {
   &:focus {
     border-color: $yellow;
     outline: none;
+  }
+  &::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc;
   }
   &::placeholder {
     color: #ccc;
@@ -81,6 +101,7 @@ section.contact {
   -webkit-appearance: none !important;
   border: none;
   cursor: pointer;
+  -webkit-transition: 400ms ease;
   transition: 400ms ease;
   &:focus {
     outline: none;
@@ -88,7 +109,8 @@ section.contact {
   &:hover {
     background: $black;
     color: $white;
-    box-shadow: 6px 6px 0 0 $yellow;
+    -webkit-box-shadow: 6px 6px 0 0 $yellow;
+            box-shadow: 6px 6px 0 0 $yellow;
   }
 }
 .submit-success {
@@ -104,7 +126,8 @@ section.contact {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
   p {
     font-size: $type-largest;
@@ -117,10 +140,12 @@ section.contact {
   padding: $spacing-small $spacing-large;
   background-color: $black;
   color: $white;
+  -webkit-transition: 300ms ease-in;
   transition: 300ms ease-in;
   &:hover {
     color: $yellow;
-    box-shadow: 6px 6px 0 0 $white;
+    -webkit-box-shadow: 6px 6px 0 0 $white;
+            box-shadow: 6px 6px 0 0 $white;
   }
 }
 .submit-error {

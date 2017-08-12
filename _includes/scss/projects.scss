@@ -2,13 +2,17 @@ section.projects {
   padding: $spacing-larger $spacing-small;
   background: lighten($black, 90%);
   .content {
-    overflow: hidden;
+    overflow: visible;
   }
 }
 
 article.project {
   background-color: $white;
   margin-bottom: $spacing-larger;
+  -webkit-transition: -webkit-box-shadow 300ms $transition-ease-in;
+  transition: -webkit-box-shadow 300ms $transition-ease-in;
+  transition: box-shadow 300ms $transition-ease-in;
+  transition: box-shadow 300ms $transition-ease-in, -webkit-box-shadow 300ms $transition-ease-in;
   h2 {
     font-size: $type-larger;
     border-bottom: 2px solid $yellow;
@@ -26,6 +30,10 @@ article.project {
     font-size: $type-small;
     color: lighten($black, 68%);
   }
+  &:hover {
+    -webkit-box-shadow: 6px 6px 0 0 rgba($black, .2);
+            box-shadow: 6px 6px 0 0 rgba($black, .2);
+  }
 }
 
 .project-img {
@@ -40,7 +48,8 @@ article.project {
     transition: -webkit-transform 200ms $transition-pop;
     transition: transform 200ms $transition-pop;
     transition: transform 200ms $transition-pop, -webkit-transform 200ms $transition-pop;
-    transform-origin: center;
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
   &::before {
     content: '';
@@ -53,7 +62,8 @@ article.project {
   }
   &:hover {
     &::before {
-      box-shadow: inset 0 0 0 1em $yellow;
+      -webkit-box-shadow: inset 0 0 0 1em $yellow;
+              box-shadow: inset 0 0 0 1em $yellow;
     }
     img {
       -webkit-transform: scale(1.05);

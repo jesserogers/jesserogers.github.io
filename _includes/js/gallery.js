@@ -22,10 +22,8 @@ $('.gallery-img').click(function() { //when user clicks on image
 // Previous lightbox ----------
 
 var prevImage = function() {
-  $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
-    // fade lightbox out
-  });
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').prev().children('.js-lightbox').fadeIn("slow", function () { // fade in next lightbox
+  $(this).closest('.gallery-img').children('.js-lightbox').hide();
+  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').prev().children('.js-lightbox').show(0, function() { // fade in next lightbox
     $(this).closest('.gallery-img').addClass('is-visible'); // add modifying class to previous lightbox's parent element
 
     // Lazy Load!
@@ -45,10 +43,8 @@ var prevImage = function() {
 // Next lightbox ----------
 
 var nextImage = function() {
-  $(this).closest('.gallery-img').children('.js-lightbox').fadeOut("slow", function() {
-    // fade this one out
-  });
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').next().children('.js-lightbox').fadeIn("slow", function () {
+  $(this).closest('.gallery-img').children('.js-lightbox').hide();
+  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').next().children('.js-lightbox').show(0, function() {
     $(this).closest('.gallery-img').addClass('is-visible');
 
     // Lazy Load!

@@ -16,15 +16,31 @@ jQuery(document).ready(function($) { //safety pants!
     }
   });
 
-  // Subnav
+  // Dropdown on subnav
+  if (matchMedia) { // media query event handler
+    var mq = window.matchMedia("(min-width: 960px)");
+    mq.addListener(WidthChange);
+    WidthChange(mq);
+  }
 
-  $('.has-subnav').hover(function(){
-    $(this).children('.subnav').fadeToggle(300);
-  });
+  function WidthChange(mq) { // media query change
+    if (mq.matches) { // if width < 768px
+      $('.has-subnav').hover(function(){
+        $(this).children('.subnav').fadeToggle(300);
+      });
+    } else {
+      $('.has-subnav').click(function(){
+        $(this).children('.subnav').slideToggle();
+      });
+    }
+  }
 
-  // Lightbox gallery
+  {% include js/nav.js %}
+  {% include js/occupations.js %}
+  {% include js/directions.js %}
+  {% include js/visible.js %}
+  {% include js/onscroll.js %}
   {% include js/gallery.js %}
-
   {% include js/contact.js %}
 
 });
