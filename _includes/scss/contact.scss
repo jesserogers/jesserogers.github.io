@@ -105,6 +105,7 @@ section.contact {
   cursor: pointer;
   -webkit-transition: 400ms ease;
   transition: 400ms ease;
+  border-radius: 0 !important;
   &:focus {
     outline: none;
   }
