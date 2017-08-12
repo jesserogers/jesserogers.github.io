@@ -190,10 +190,12 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 
 .gallery { clear: both; margin: 1.618em 0; overflow: hidden; }
 
-.gallery-img { padding: 10px; overflow: hidden; -webkit-transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; cursor: pointer; opacity: 0; }
-.gallery-img:nth-child(-n+6) { opacity: 1; }
-@media screen and (min-width: 1920px) { .gallery-img:nth-child(-n+9) { opacity: 1; } }
-.gallery-img.is-in-viewport { opacity: 1; }
+.gallery-img { padding: 10px; overflow: hidden; -webkit-transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; cursor: pointer; /* opacity: 0;
+&:nth-child(-n+6) { opacity: 1;
+}
+@media screen and (min-width: 1920px) { &:nth-child(-n+9) { opacity: 1; }
+} */ }
+.gallery-img.is-in-viewport, .gallery-img.is-visible { opacity: 1; }
 .gallery-img img { display: block; max-width: 100%; }
 .gallery-img:hover { background-color: #eee; }
 .gallery-img.single-img { width: 100%; max-width: 800px; margin: 1.618em auto; }

@@ -9,7 +9,7 @@
   overflow: hidden;
   -webkit-transition: background-color 300ms $transition-ease-in, opacity 500ms linear;transition: background-color 300ms $transition-ease-in, opacity 500ms linear;
   cursor: pointer;
-  opacity: 0;
+  /* opacity: 0;
   &:nth-child(-n+6) {
     opacity: 1;
   }
@@ -17,8 +17,9 @@
     &:nth-child(-n+9) {
       opacity: 1;
     }
-  }
-  &.is-in-viewport {
+  } */
+  &.is-in-viewport,
+  &.is-visible {
     opacity: 1;
   }
   img {
