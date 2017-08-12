@@ -262,7 +262,7 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .video-lightbox .js-lightbox-img-wrap { width: 100%; max-width: 88vw; max-height: 88vh; }
 
 section.intro { width: 100%; height: calc(100vh - 68px); max-height: 1080px; background-color: #111; overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -ms-flex-wrap: nowrap; flex-wrap: nowrap; }
-@media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { section.intro { -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-direction: column-reverse; flex-direction: column-reverse; -ms-flex-wrap: wrap; flex-wrap: wrap; } }
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { section.intro { min-height: calc(100vh - 68px); height: auto; -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-direction: column-reverse; flex-direction: column-reverse; -ms-flex-wrap: wrap; flex-wrap: wrap; } }
 
 .intro-img { width: 50%; float: left; -ms-flex-item-align: end; align-self: flex-end; padding-top: 42px; }
 .intro-img img { display: block; max-width: 100%; margin: 0; opacity: 0.25; }

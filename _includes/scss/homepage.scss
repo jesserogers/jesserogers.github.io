@@ -14,6 +14,8 @@ section.intro {
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   @media #{$tablet}, #{$mobile} {
+    min-height: calc(100vh - 68px);
+    height: auto;
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
         -ms-flex-direction: column-reverse;
