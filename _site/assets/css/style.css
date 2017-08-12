@@ -387,6 +387,7 @@ section.post-body p, section.post-body li { font-size: 1.25rem; line-height: 2.6
 
 .callout-content { display: inline-block; width: calc(100% + 100px); margin-left: -50px; }
 .callout-content > img { display: block; width: 100%; }
+@media screen screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .callout-content { width: 100%; margin-left: 0; } }
 
 section.contact { padding: 4.283rem 1rem; background: #fff; }
 

@@ -48,4 +48,8 @@ section.post-body {
     display: block;
     width: 100%;
   }
+  @media screen #{$tablet}, #{$mobile} {
+    width: 100%;
+    margin-left: 0;
+  }
 }
