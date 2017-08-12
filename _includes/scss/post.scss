@@ -32,6 +32,10 @@ section.post-body {
   li {
     font-size: $type-big;
     line-height: $spacing-large;
+    @media #{$mobile} {
+      font-size: $type-base;
+      line-height: $spacing-normal;
+    }
   }
 }
 
@@ -49,7 +53,7 @@ section.post-body {
     width: 100%;
   }
   @media screen #{$tablet}, #{$mobile} {
-    width: 100%;
-    margin-left: 0;
+    width: calc(100% + 2em);
+    margin-left: -1em;
   }
 }

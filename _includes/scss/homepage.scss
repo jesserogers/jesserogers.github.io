@@ -52,7 +52,10 @@ section.intro {
     color: white;
     font-size: $type-large;
   }
-  @media #{$tablet}, #{$mobile} {
+  @media #{$tablet} {
+    padding: $spacing-large;
+  }
+  @media #{$mobile} {
     padding: $spacing-normal;
     h1 {
       font-size: $type-large;

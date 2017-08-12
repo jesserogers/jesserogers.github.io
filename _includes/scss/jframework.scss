@@ -274,6 +274,7 @@
 .color-block {
   padding: $spacing-larger 0;
   text-align: center;
+  overflow: hidden;
   &.black {
     background-color: $black;
   }

@@ -106,6 +106,10 @@ section.contact {
   -webkit-transition: 400ms ease;
   transition: 400ms ease;
   border-radius: 0 !important;
+  @media #{$mobile} {
+    margin-bottom: $spacing-normal;
+    width: 100%;
+  }
   &:focus {
     outline: none;
   }
