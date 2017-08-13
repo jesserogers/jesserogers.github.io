@@ -75,6 +75,12 @@ section.intro {
 
 #occupations {
   display: inline;
+  .an {
+    margin-left: -.2em;
+    @media #{$mobile} {
+      margin-left: -.3em;
+    }
+  }
 }
 
 .featured-projects {

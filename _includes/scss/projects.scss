@@ -43,6 +43,7 @@ article.project {
   position: relative;
   @include z-index-1;
   overflow: hidden;
+  margin: 0;
   img {
     display: block;
     width: 100%;
@@ -78,7 +79,7 @@ article.project {
 .project-txt {
   padding: $spacing-large;
   @media #{$mobile} {
-    border-top: 2px solid $gray;
+    border-top: 4px solid lighten($black, 90%);
   }
 }
 

@@ -289,6 +289,8 @@ section.intro { width: 100%; height: calc(100vh - 68px); max-height: 1080px; bac
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .intro-img, .intro-txt { width: 100%; } }
 
 #occupations { display: inline; }
+#occupations .an { margin-left: -.2em; }
+@media screen and (max-width: 767px) { #occupations .an { margin-left: -.3em; } }
 
 .featured-projects { padding: 2.618rem 0; background: #fff; }
 
@@ -318,14 +320,14 @@ article.project h2, article.project p { color: #111; }
 article.project span { text-transform: uppercase; font-weight: 700; letter-spacing: 2px; font-size: 0.618rem; color: #d0d0d0; }
 article.project:hover { -webkit-box-shadow: 6px 6px 0 0 rgba(17, 17, 17, 0.2); box-shadow: 6px 6px 0 0 rgba(17, 17, 17, 0.2); }
 
-.project-img { position: relative; z-index: 100; overflow: hidden; }
+.project-img { position: relative; z-index: 100; overflow: hidden; margin: 0; }
 .project-img img { display: block; width: 100%; height: auto; -webkit-transition: -webkit-transform 200ms cubic-bezier(0.58, 0.68, 1, 1.25); transition: -webkit-transform 200ms cubic-bezier(0.58, 0.68, 1, 1.25); transition: transform 200ms cubic-bezier(0.58, 0.68, 1, 1.25); transition: transform 200ms cubic-bezier(0.58, 0.68, 1, 1.25), -webkit-transform 200ms cubic-bezier(0.58, 0.68, 1, 1.25); -webkit-transform-origin: center; transform-origin: center; }
 .project-img::before { content: ''; display: block; position: absolute; width: 100%; height: 100%; -webkit-transition: -webkit-box-shadow 400ms cubic-bezier(0.13, 0.78, 0.3, 0.99); transition: -webkit-box-shadow 400ms cubic-bezier(0.13, 0.78, 0.3, 0.99); transition: box-shadow 400ms cubic-bezier(0.13, 0.78, 0.3, 0.99); transition: box-shadow 400ms cubic-bezier(0.13, 0.78, 0.3, 0.99), -webkit-box-shadow 400ms cubic-bezier(0.13, 0.78, 0.3, 0.99); z-index: 200; }
 .project-img:hover::before { -webkit-box-shadow: inset 0 0 0 1em #fceb5e; box-shadow: inset 0 0 0 1em #fceb5e; }
 .project-img:hover img { -webkit-transform: scale(1.05); transform: scale(1.05); }
 
 .project-txt { padding: 2.618rem; }
-@media screen and (max-width: 767px) { .project-txt { border-top: 2px solid #ccc; } }
+@media screen and (max-width: 767px) { .project-txt { border-top: 4px solid #f7f7f7; } }
 
 .project-content { background: #fff; padding: 4.283rem 1rem; }
 .project-content .content { overflow: visible; max-width: 800px; }
