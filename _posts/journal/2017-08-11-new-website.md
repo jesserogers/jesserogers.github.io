@@ -15,13 +15,17 @@ And when I say "no time" I mean about three months, apparently? I started puttin
 
 ## So welcome to my new website!
 
-This site is hosted on Github Pages, built with Jekyll/Liquid, and runs on HTML5, SCSS, and jQuery (thanks Google ajax). Every single line of code was lovingly written by yours truly, utilizing an incomplete version of a very, _very_ simple framework/component library I've been putting together at Adaptiva.
-
 I thought it'd be fun to see what goes into coding a portfolio site and what I could do with it. I probably spent the majority of my dev time on the lightbox component, which I'm sure could've been engineered a little more efficiently, but whatever! I think it's a pretty slick experience, and I'll improve on the code over time. Will add support for swipe gestures and arrow keys later on.
 
-This is somewhat of a clean start for me, too. At this point in my life, I feel like I can put up only the work that I _like_, rather than work I think might get me hired. I can write almost whatever and certainly whenever I want in this journal, so I think I'll do just that.
+This site is hosted on Github Pages, built with Jekyll/Liquid, and runs on HTML5, SCSS, and jQuery (thanks Google ajax). Every single line of code was lovingly written by yours truly, utilizing an incomplete version of a very, _very_ simple framework/component library I've been putting together at Adaptiva.
 
-I'll post new work here if I'm particularly stoked about about it, and I'll post random thoughts, sketches, life updates, and whatever else I feel like sharing here, too.
+I prioritized performance and efficiency throughout the codebase. Images are lazy loaded after the DOM loads, and the lightbox images aren't loaded until they're needed, and images are being sized responsibly (surprisingly rare in portfolio sites.) I even made a solid effort at keeping nesting to a reasonable minimum in my style sheet to avoid inefficient compilations to CSS.
+
+Plus, since this a statically generated site, it's inherently fast as hell. Performance-minded dev can only serve to improve on that speed.
+
+This is also somewhat of a clean slate for me. At this point in my life, I feel like I can put up only the work that I _like_, rather than work I think might get me hired. I can write almost whatever and certainly whenever I want in this journal, so I think I'll do just that.
+
+I'll post new work here if I'm particularly stoked about about it, and I'll post random thoughts, sketches, life updates, and whatever else I feel like sharing here, too. I have ideas for some content I'd like to create, and being able to code a custom interface to host it would be nice.
 
 Idk, maybe I'll add a subscription component to this journal if I actually use it enough. Someday.
 
