@@ -162,4 +162,10 @@ section.intro {
               transform: translate(-50%, -50%);
     }
   }
+  @media #{$mobile} {
+    &::before,
+    span {
+      opacity: 1;
+    }
+  }
 }
