@@ -3,9 +3,17 @@ section.about-me {
 }
 
 .about-me-img {
-  img {
-    display: block;
-    width: 100%;
+  background-image: url('/assets/img/jesse-rogers-about-me.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  align-self: stretch;
+  min-height: 33vw;
+  @media #{$tablet} {
+    min-height: 420px; //lmao
+  }
+  @media #{$mobile} {
+    min-height: 300px;
   }
 }
 

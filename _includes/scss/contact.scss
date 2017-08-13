@@ -1,11 +1,10 @@
 section.contact {
   padding: $spacing-larger $spacing-small;
   background: $white;
+  overflow: hidden;
 }
 .contact-form {
   width: 100%;
-  max-width: 800px;
-  margin: auto;
   overflow: visible;
   p {
     line-height: $spacing-large;

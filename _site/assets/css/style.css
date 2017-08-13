@@ -338,7 +338,9 @@ section.photography, section.design, section.motion { background: #fff; padding:
 
 section.about-me { background: #fff; }
 
-.about-me-img img { display: block; width: 100%; }
+.about-me-img { background-image: url("/assets/img/jesse-rogers-about-me.jpg"); background-size: cover; background-repeat: no-repeat; background-position: top; align-self: stretch; min-height: 33vw; }
+@media screen and (min-width: 768px) and (max-width: 959px) { .about-me-img { min-height: 420px; } }
+@media screen and (max-width: 767px) { .about-me-img { min-height: 300px; } }
 
 .about-me-txt { padding: 2.618rem 4.283rem; }
 
@@ -407,9 +409,9 @@ section.post-body p, section.post-body li { font-size: 1.25rem; line-height: 2.6
 .callout-content > img { display: block; width: 100%; }
 @media screen screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .callout-content { width: calc(100% + 2em); margin-left: -1em; } }
 
-section.contact { padding: 4.283rem 1rem; background: #fff; }
+section.contact { padding: 4.283rem 1rem; background: #fff; overflow: hidden; }
 
-.contact-form { width: 100%; max-width: 800px; margin: auto; overflow: visible; }
+.contact-form { width: 100%; overflow: visible; }
 .contact-form p { line-height: 2.618rem; }
 .contact-form textarea { display: block; margin: 1.618rem 0 1rem; width: 100%; -webkit-appearance: none !important; border: 2px solid #111; border-radius: 0 !important; height: 240px; padding: 0.618rem; font-size: 1rem; resize: vertical; -webkit-transition: 300ms ease-in; transition: 300ms ease-in; }
 .contact-form textarea::-webkit-input-placeholder { color: #ccc; }
