@@ -25,8 +25,11 @@ jQuery(document).ready(function($) { //safety pants!
 
   function WidthChange(mq) { // media query change
     if (mq.matches) { // if width < 768px
-      $('.has-subnav').hover(function(){
-        $(this).children('.subnav').fadeToggle(300);
+      $('.has-subnav').mouseenter(function(){
+        $(this).children('.subnav').fadeIn(300);
+      });
+      $('.has-subnav').mouseleave(function(){
+        $(this).children('.subnav').fadeOut(300);
       });
     } else {
       $('.has-subnav').click(function(){
