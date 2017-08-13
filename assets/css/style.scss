@@ -55,6 +55,9 @@ body {
 .overflow {
   overflow: visible;
 }
+.centered {
+  text-align: center;
+}
 
 // Navigation
 {% include scss/navigation.scss %}

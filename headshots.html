@@ -1,0 +1,24 @@
+---
+layout: default
+title: Headshots
+meta: Headshots for actors, entertainers, and professionals by Seattle photographer Jesse Rogers
+---
+<header class="page-header">
+  <div class="content">
+    <h1 class="page-title">{{page.title}}</h1>
+    <p>Headshots for actors, entertainers, professionals, whoever</p>
+  </div>
+</header>
+<section class="color-block white">
+  <div class="content">
+    <div class="gallery">
+      {% for image in site.data.galleries.headshots %}
+        {% include html/gallery.html col="4" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="color-block yellow centered">
+  <h2 class="black">Need headshots?</h2>
+  <a href="{{"/contact" | relative_url}}" class="btn black outline">Book a session</a>
+</section>

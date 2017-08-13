@@ -1,7 +1,8 @@
 // Lightbox Gallery ----------
 
 $('.gallery-img').click(function() { //when user clicks on image
-  $(this).addClass('is-visible').children('.js-lightbox').fadeIn("slow", function() {
+  $('.gallery-img').addClass('is-visible');
+  $(this).children('.js-lightbox').fadeIn("slow", function() {
 
     // Lazy Load!
     var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
@@ -22,13 +23,12 @@ $('.gallery-img').click(function() { //when user clicks on image
 // Previous lightbox ----------
 
 var prevImage = function() {
+  var $previous = $(this).parent('.js-lightbox').parent('.gallery-img').prev();
   $(this).closest('.gallery-img').children('.js-lightbox').hide();
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').prev().children('.js-lightbox').show(0, function() { // fade in next lightbox
-    $(this).closest('.gallery-img').addClass('is-visible'); // add modifying class to previous lightbox's parent element
+  $previous.children('.js-lightbox').show(0, function() { // fade in next lightbox
 
-    // Lazy Load!
     var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
-    if (typeof attr !== typeof undefined && attr !== false) { // Element has this attribute
+    if (typeof attr !== typeof undefined && attr !== false) {
       $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('src', function(){
         return this.getAttribute('data-src');
         $(this).removeAttr('data-src');
@@ -43,13 +43,12 @@ var prevImage = function() {
 // Next lightbox ----------
 
 var nextImage = function() {
+  var $next = $(this).parent('.js-lightbox').parent('.gallery-img').next();
   $(this).closest('.gallery-img').children('.js-lightbox').hide();
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible').next().children('.js-lightbox').show(0, function() {
-    $(this).closest('.gallery-img').addClass('is-visible');
+  $next.children('.js-lightbox').show(0, function() {
 
-    // Lazy Load!
     var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
-    if (typeof attr !== typeof undefined && attr !== false) { // Element has this attribute
+    if (typeof attr !== typeof undefined && attr !== false) {
       $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('src', function(){
         return this.getAttribute('data-src');
         $(this).removeAttr('data-src');
@@ -80,8 +79,8 @@ $('.js-lightbox-info-trigger').click(function() {
 $('.js-lightbox-close').click(function(e) { // when user clicks X button
   e.stopPropagation();
   $(this).parent('.js-lightbox').fadeOut("slow", function() {
-    $(this).css("display", "none");
+    $(this).css('display', 'none');
   });
-  $(this).parent('.js-lightbox').parent('.gallery-img').removeClass('is-visible');
+  $('.gallery-img').removeClass('is-visible');
   return false;
 });
