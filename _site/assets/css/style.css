@@ -458,3 +458,5 @@ section.contact { padding: 4.283rem 1rem; background: #fff; }
 @media screen and (max-width: 767px) { .directions-content-text { padding-left: 20px; } }
 
 .directions-nav-content.is-visible .directions-content-text { -webkit-animation: slideUp 1000ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; animation: slideUp 1000ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; }
+
+section.error { width: 100%; height: calc(100vh - 68px); }

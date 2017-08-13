@@ -100,3 +100,8 @@ body {
 
 // Directions
 {% include scss/directions.scss %}
+
+section.error {
+  width: 100%;
+  height: calc(100vh - 68px);
+}
