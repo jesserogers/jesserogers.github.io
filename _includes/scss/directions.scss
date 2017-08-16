@@ -1,6 +1,9 @@
 .directions-nav {
   overflow: hidden;
   margin-bottom: $spacing-large;
+  @media #{$tablet}, #{$mobile} {
+    text-align: center;
+  }
 }
 .directions-nav-item {
   display: inline-block;
@@ -35,6 +38,13 @@
     .directions-content-text {
       -webkit-animation: slideUp 1000ms $transition-ease-in 1 forwards;
               animation: slideUp 1000ms $transition-ease-in 1 forwards;
+    }
+  }
+}
+section.parking {
+  h2 {
+    @media #{$tablet}, #{$mobile} {
+      text-align: center;
     }
   }
 }

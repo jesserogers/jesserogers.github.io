@@ -80,6 +80,7 @@
 
 .js-lightbox-img-wrap {
   overflow: visible;
+  transition: 300ms $transition-ease-in;
   img {
     display: block;
     max-width: 88vw;
@@ -319,6 +320,12 @@
     padding: $spacing-large;
     img {
       max-width: 100%;
+    }
+    @media #{$tablet}, #{$mobile} {
+      padding: 0;
+      img {
+        max-width: 88vw;
+      }
     }
   }
   .js-lightbox-prev,

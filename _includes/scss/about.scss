@@ -19,6 +19,15 @@ section.about-me {
 
 .about-me-txt {
   padding: $spacing-large $spacing-larger;
+  h2 {
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  @media #{$mobile} {
+    padding: $spacing-large;
+  }
 }
 
 section.press {
