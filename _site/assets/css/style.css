@@ -133,7 +133,7 @@ body { padding: 68px 0 0; margin: 0; font-size: 16px; background: #111; overflow
 .btn.yellow:hover.outline { -webkit-box-shadow: none; box-shadow: none; background-color: #fceb5e; color: #111; }
 .btn.white { background: #fff; color: #111; }
 .btn.white.outline { background: transparent; border: 2px solid #fff; color: #fff; }
-.btn.white:hover { -webkit-box-shadow: 6px 6px 0 0 #fceb5e; box-shadow: 6px 6px 0 0 #fceb5e; }
+.btn.white:hover { -webkit-box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.25); box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.25); }
 .btn.white:hover.outline { -webkit-box-shadow: none; box-shadow: none; background-color: #fceb5e; color: #111; }
 
 .content { width: 100%; max-width: 1200px; margin: auto; }
