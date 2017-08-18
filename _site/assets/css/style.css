@@ -471,4 +471,9 @@ section.contact { padding: 4.283rem 1rem; background: #fff; overflow: hidden; }
 
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { section.parking h2 { text-align: center; } }
 
-section.error { width: 100%; height: calc(100vh - 68px); }
+section.error { width: 100%; height: calc(100vh - 68px); display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; background: #fff; padding: 0; }
+section.error .error-message { -ms-flex-item-align: center; align-self: center; }
+section.error .error-image { -ms-flex-item-align: end; align-self: flex-end; }
+section.error .error-image img { display: block; max-width: 100%; margin-left: 5%; }
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { section.error { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-flow: column; flex-flow: column; min-height: calc(100vh - 68px); height: auto; }
+  section.error .error-message { text-align: center; margin: 0; } }
