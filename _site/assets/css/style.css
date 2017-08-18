@@ -42,6 +42,14 @@ span { color: inherit; }
   to { -webkit-transform: translateY(0); transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; }
   to { opacity: 1; } }
+@-webkit-keyframes lightboxSpan1 { from { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+  to { -webkit-transform: rotate(135deg); transform: rotate(135deg); } }
+@keyframes lightboxSpan1 { from { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+  to { -webkit-transform: rotate(135deg); transform: rotate(135deg); } }
+@-webkit-keyframes lightboxSpan2 { from { -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
+  to { -webkit-transform: rotate(225deg); transform: rotate(225deg); } }
+@keyframes lightboxSpan2 { from { -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
+  to { -webkit-transform: rotate(225deg); transform: rotate(225deg); } }
 html { padding: 0; margin: 0; overflow-x: hidden; }
 
 body { padding: 68px 0 0; margin: 0; font-size: 16px; background: #111; overflow-x: hidden; }
@@ -205,8 +213,6 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .gallery-img img { display: block; max-width: 100%; }
 .gallery-img:hover { background-color: #eee; }
 .gallery-img.single-img { width: 100%; max-width: 800px; margin: 1.618em auto; }
-.gallery-img:first-child .js-lightbox-prev { visibility: hidden; }
-.gallery-img:last-child .js-lightbox-next { visibility: hidden; }
 
 .js-lightbox { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; position: fixed; top: 0; left: 0; z-index: 600; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.9); padding-left: 0; -webkit-transition: padding-left 500ms ease; transition: padding-left 500ms ease; }
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .js-lightbox { -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-flow: column-reverse; flex-flow: column-reverse; } }
@@ -217,9 +223,9 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .js-lightbox-img-wrap img[data-src], .js-lightbox-img-wrap iframe[data-src] { opacity: 0; }
 
 .js-lightbox-close { height: 16px; width: 16px; position: absolute; top: 20px; right: 20px; cursor: pointer; }
-.js-lightbox-close span { position: absolute; top: 7px; height: 2px; width: 16px; background: #fceb5e; opacity: 0; -webkit-transition: 200ms ease-in; transition: 200ms ease-in; }
-.js-lightbox-close span:first-child { -webkit-transform: rotate(-135deg); transform: rotate(-135deg); }
-.js-lightbox-close span:last-child { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.js-lightbox-close span { position: absolute; top: 7px; height: 2px; width: 16px; background: #fceb5e; -webkit-transition: 200ms ease-in; transition: 200ms ease-in; }
+.js-lightbox-close span:first-child { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.js-lightbox-close span:last-child { -webkit-transform: rotate(135deg); transform: rotate(135deg); }
 
 .js-lightbox-info-trigger { position: absolute; top: 1em; right: 68px; text-align: center; z-index: 800; }
 .js-lightbox-info-trigger::before { content: '+'; display: block; position: absolute; top: 0.5em; left: 0; vertical-align: middle; color: #fceb5e; -webkit-transition: 300ms ease-in; transition: 300ms ease-in; font-size: 12px; }
@@ -231,11 +237,8 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
   .js-lightbox-info-trigger input { font-size: 16px; padding: 0.618rem; font-weight: 700; } }
 
 .is-visible { cursor: default; }
-.is-visible .js-lightbox-close span { -webkit-transition: 250ms ease-in; transition: 250ms ease-in; opacity: 1; }
-.is-visible .js-lightbox-close span:first-child { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-.is-visible .js-lightbox-close span:last-child { -webkit-transform: rotate(315deg); transform: rotate(315deg); }
-.is-visible .js-lightbox-close:hover span:first-child { -webkit-transform: rotate(135deg); transform: rotate(135deg); }
-.is-visible .js-lightbox-close:hover span:last-child { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.is-visible.is-current .js-lightbox-close span:first-child { -webkit-animation: lightboxSpan1 500ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; animation: lightboxSpan1 500ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; }
+.is-visible.is-current .js-lightbox-close span:last-child { -webkit-animation: lightboxSpan2 500ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; animation: lightboxSpan2 500ms cubic-bezier(0.13, 0.78, 0.3, 0.99) 1 forwards; }
 
 .js-lightbox-info { position: absolute; top: 0; left: 0; height: 100%; width: 300px; background: #fceb5e; overflow: visible; padding: 20px; z-index: 700; }
 .js-lightbox-info h2 { color: #111; margin: 0 0 1.618rem 0; padding: 0; text-transform: capitalize; font-size: 2em; }
@@ -267,10 +270,6 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .is-showing-info .js-lightbox-info-trigger::before { content: '-'; }
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .is-showing-info { padding-left: 0; }
   .is-showing-info .js-lightbox-info-trigger input { color: #111; } }
-
-.project-img:first-child .js-lightbox-prev { display: none; }
-
-.project-img:last-child .js-lightbox-next { display: none; }
 
 .video-lightbox .js-lightbox-img-wrap { width: 100%; max-width: 88vw; max-height: 88vh; }
 

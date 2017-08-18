@@ -108,60 +108,41 @@ setInterval(function() {
 
   // Lightbox Gallery ----------
 
-var $galleryImg = $('.gallery-img');
+var $galleryImg = $('.gallery-img'),
+    $firstImg   = $('.gallery-img:first-child'),
+    $lastImg    = $('.gallery-img:last-child'),
+    $firstArrow = $firstImg.children('.js-lightbox').children('.js-lightbox-prev'),
+    $lastArrow  = $lastImg.children('.js-lightbox').children('.js-lightbox-next');
 
-$galleryImg.click(function() { //when user clicks on image
-  $galleryImg
-    .addClass('is-visible');
-  $(this).children('.js-lightbox')
-    .fadeIn("slow", function() {
+var loadImage = function() { // Lazy Load!
 
-      // Lazy Load!
-      var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
-      // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
-      if (typeof attr !== typeof undefined && attr !== false) { // Element has this attribute
-        $(this)
-          .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-          .attr('src', function(){
-            return this.getAttribute('data-src');
-            $(this).removeAttr('data-src');
-          }).fadeIn(300);
-        $(this)
-        .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-        .removeAttr('data-src');
-      }
-
-    $('.js-lightbox-prev').on('click', prevImage); // Previous Image
-    $('.js-lightbox-next').on('click', nextImage); // Next Image
-  });
-});
+  var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
+  // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
+  if (typeof attr !== typeof undefined && attr !== false) { // Element has 'data-src'
+    $(this)
+      .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe') // find images or videos in lightbox
+      .attr('src', function(){
+        return this.getAttribute('data-src'); // get value of 'data-src' and put it into a 'src' attr
+      }).fadeIn(300); // fade in image/video
+    $(this)
+    .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
+    .removeAttr('data-src');
+  }
+}
 
 // Previous lightbox ----------
 
 var prevImage = function() {
+
   var $previous = $(this).parent('.js-lightbox').parent('.gallery-img').prev();
 
   $(this).closest('.gallery-img') // Find parent
+    .removeClass('is-current') // remove mod class
     .children('.js-lightbox') // Parent's lightbox
     .hide(); // Hide it
-  $previous.children('.js-lightbox') // select lightbox
-    .show(0, function() { // show it
-
-      var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
-
-      if (typeof attr !== typeof undefined && attr !== false) {
-        $(this)
-          .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-          .attr('src', function(){
-            return this.getAttribute('data-src');
-            $(this).removeAttr('data-src');
-          }).fadeIn(300);
-        $(this)
-        .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-        .removeAttr('data-src');
-      }
-
-    });
+  $previous.addClass('is-current') // add mod class
+    .children('.js-lightbox') // select lightbox
+    .show(0, loadImage); // show lightbox and lazy load if necessary
     return false;
 }
 
@@ -172,31 +153,49 @@ var nextImage = function() {
   var $next = $(this).parent('.js-lightbox').parent('.gallery-img').next();
 
   $(this).closest('.gallery-img') // Find parent
+    .removeClass('is-current') // remove mod class
     .children('.js-lightbox') // Select lightbox
     .hide(); // Hide current lightbox
-  $next.children('.js-lightbox') // lightbox of next gallery image
-    .show(0, function() { // Show next lightbox
-
-      var attr = $(this)
-                  .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-                  .attr('data-src');
-
-      if (typeof attr !== typeof undefined && attr !== false) {
-        $(this)
-          .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-          .attr('src', function(){
-            return this.getAttribute('data-src');
-            $(this).removeAttr('data-src');
-          })
-          .fadeIn(300);
-        $(this)
-          .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-          .removeAttr('data-src');
-      }
-
-  });
+  $next.addClass('is-current')
+  .children('.js-lightbox') // lightbox of next gallery image
+    .show(0, loadImage);
   return false;
 }
+
+$galleryImg.click(function() { // user clicks on image
+  $galleryImg.addClass('is-visible'); // add mod class to all images
+  $(this).addClass('is-current') // add mod class to clicked image
+    .children('.js-lightbox')
+    .fadeIn("slow", loadImage); // fade in lightbox and lazy load image
+});
+
+// Previous Image ----------
+$('.js-lightbox-prev').on('click', prevImage);
+
+// Next Image ----------
+$('.js-lightbox-next').on('click', nextImage);
+
+// First Image ----------
+$firstArrow.click(function(){ // user clicks previous on first image in gallery
+  $(this).closest('.gallery-img')
+    .removeClass('is-current') // remove mod class from first image
+    .children('.js-lightbox')
+    .hide();
+  $lastImg.addClass('is-current') // add mod class to last image in gallery
+    .children('.js-lightbox')
+    .show(0, loadImage); // show and lazy load
+});
+
+// Last Image ----------
+$lastArrow.click(function(){ // user clicks next on last image in gallery
+  $(this).closest('.gallery-img')
+    .removeClass('is-current') // remove mod class from last image
+    .children('.js-lightbox')
+    .hide();
+  $firstImg.addClass('is-current') // add mod class to first image in gallery
+    .children('.js-lightbox')
+    .show(0, loadImage); // show and lazy load
+});
 
 // Image meta button  ----------
 
@@ -231,7 +230,7 @@ $('.js-lightbox-close').click(function(e) { // when user clicks X button
       $(this)
         .css('display', 'none');
     });
-  $galleryImg.removeClass('is-visible'); // remove mod class for all gallery images
+  $galleryImg.removeClass('is-visible is-current'); // remove mod class for all gallery images
   return false;
 });
 

@@ -26,3 +26,43 @@
     opacity: 1;
   }
 }
+@-webkit-keyframes lightboxSpan1 {
+  from {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  to {
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+  }
+}
+@keyframes lightboxSpan1 {
+  from {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  to {
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+  }
+}
+@-webkit-keyframes lightboxSpan2 {
+  from {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  to {
+    -webkit-transform: rotate(225deg);
+            transform: rotate(225deg);
+  }
+}
+@keyframes lightboxSpan2 {
+  from {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  to {
+    -webkit-transform: rotate(225deg);
+            transform: rotate(225deg);
+  }
+}
