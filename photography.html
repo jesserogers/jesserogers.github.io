@@ -11,7 +11,7 @@ meta: Selected images from Seattle photographer Jesse Rogers' portfolio
 <section class="photography">
   <div class="content">
     <div class="gallery">
-      {% for image in site.data.photography %}
+      {% for image in site.data.galleries.photography %}
         {% include html/gallery.html col="4" %}
       {% endfor %}
     </div>
