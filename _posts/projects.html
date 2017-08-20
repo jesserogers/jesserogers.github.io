@@ -1,0 +1,33 @@
+---
+layout: default
+title: Projects
+meta: Selected projects and case studies by Seattle designer and photographer Jesse Rogers
+---
+<section class="page-header">
+  <div class="content">
+    <h1>{{page.title}}</h1>
+    <p>A few of my favorite projects I've worked on recently <span style="color: #fceb5e;">*</span></p>
+    <p style="font-size: 10px; color: #555; margin-top: 1.618rem;"><span style="color: #fceb5e;">*</span> Subject to my ever-changing definition of "recent"</p>
+  </div>
+</section>
+<section class="projects">
+  <div class="content">
+    {% for project in site.posts %}
+    {% if project.category = 'projects' %}
+    <article class="project">
+      <a href="{{site.baseurl}}/projects/{{project.slug}}" class="vertical-center-row" title="{{project.title}}">
+        <div class="project-img j-col j-col-7 wrap">
+          <img src="{{site.baseurl}}/assets/img/projects/{{project.img}}" alt="{{project.title}}">
+        </div>
+        <div class="project-txt j-col j-col-5">
+          <span>{{project.category}}</span>
+          <h2>{{project.title}}</h2>
+          <p>{{project.text}}</p>
+          <div class="btn yellow">Check it out</div>
+        </div>
+      </a>
+    </article>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

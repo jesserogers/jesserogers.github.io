@@ -12,6 +12,7 @@ meta: Sporadic updates on the life, work, and life at work for Seattle, WA based
 <section class="journal-list">
   <div class="content grid-container">
     {% for post in paginator.posts %}
+    {% if post.category == 'journal' %}
     <article class="journal-item j-col j-col-4">
       <a title="{{post.title}}" href="{{post.url | relative_url}}">
         <div class="journal-item-img">
@@ -26,6 +27,7 @@ meta: Sporadic updates on the life, work, and life at work for Seattle, WA based
         </p>
       </a>
     </article>
+    {% endif %}
     {% endfor %}
   </div>
 </section>
