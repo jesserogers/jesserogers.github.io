@@ -52,7 +52,7 @@ nav.main-nav {
     @media #{$tablet}, #{$mobile} {
       position: fixed;
       display: block;
-      overflow: auto;
+      overflow-y: auto;
       width: 200px;
       height: 100vh;
       top: 0;
