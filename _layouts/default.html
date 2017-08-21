@@ -9,6 +9,9 @@
     {% if page.meta %}
     <meta name="description" content="{{page.meta}}">
     {% endif %}
+    {% if page.author %}
+    <meta name="author" content="{{page.author}}">
+    {% endif %}
     <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">

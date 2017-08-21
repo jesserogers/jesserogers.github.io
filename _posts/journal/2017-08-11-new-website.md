@@ -6,6 +6,7 @@ category: journal
 posted: August 11 2017
 image: 2017-08-11-new-site.jpg
 tag: design
+author: Jesse Rogers
 ---
 Well, Squarespace, we had a good run. You're probably the best consumer-oriented CMS on the market. Your ease of use is unquestionable, and you do drag-and-drop better than anyone else I've ever seen.
 
