@@ -46,3 +46,21 @@ permalink: /projects/client-health-video
     <p>So I opted to illustrate relatable people expressing emotions, as well as more "professional" imagery to showcase features and security functions. I kept the two illustration types separated based on the script, and kept the styles cohesive and on-brand.</p>
   </div>
 </section>
+<section class="post-nav">
+  <div class="content">
+  {% if page.previous.url %}
+    {% if page.previous.category == 'projects' %}
+      <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
+      {% else %}
+      <div><!-- Filler div! * does jazz hands * --></div>
+    {% endif %}
+  {% endif %}
+  {% if page.next.url %}
+    {% if page.next.category == 'projects' %}
+      <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+      {% else %}
+      <div><!-- Filler div! * does jazz hands * --></div>
+    {% endif %}
+  {% endif %}
+</div>
+</section>
