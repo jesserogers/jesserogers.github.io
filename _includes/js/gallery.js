@@ -3,6 +3,8 @@
 var $galleryImg = $('.gallery-img'),
     $firstImg   = $('.gallery-img:first-child'),
     $lastImg    = $('.gallery-img:last-child'),
+    $prevArrow  = $('.js-lightbox-prev'),
+    $nextArrow  = $('.js-lightbox-next'),
     $firstArrow = $firstImg.children('.js-lightbox').children('.js-lightbox-prev'),
     $lastArrow  = $lastImg.children('.js-lightbox').children('.js-lightbox-next');
 
@@ -59,13 +61,21 @@ $galleryImg.click(function() { // user clicks on image
   $(this).addClass('is-current') // add mod class to clicked image
     .children('.js-lightbox')
     .fadeIn("slow", loadImage); // fade in lightbox and lazy load image
+    $(document).keydown(function(e){
+      if (e.which == 37) {
+         $('.gallery-img.is-current').find('.js-lightbox-prev').click();
+         return false;
+      } else if (e.which == 39) {
+        $('.gallery-img.is-current').find('.js-lightbox-next').click();
+      }
+  });
 });
 
 // Previous Image ----------
-$('.js-lightbox-prev').on('click', prevImage);
+$prevArrow.click(prevImage);
 
 // Next Image ----------
-$('.js-lightbox-next').on('click', nextImage);
+$nextArrow.click(nextImage);
 
 // First Image ----------
 $firstArrow.click(function(){ // user clicks previous on first image in gallery
