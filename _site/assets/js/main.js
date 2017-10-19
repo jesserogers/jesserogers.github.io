@@ -282,7 +282,7 @@ jQuery(document).ready(function($) {
     swipeDown:function() { // user swipes down
       closeLightbox(); // close lightbox function
     },
-  	threshold:178 // min swipe length of 178px
+  	threshold:68 // min swipe length of 68px
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
@@ -291,7 +291,8 @@ jQuery(document).ready(function($) {
         .slideToggle() // slide up info
         .parent() // select lightbox
           .toggleClass('is-showing-info'); // remove mod class
-    }
+    },
+    threshold:68 // min swipe length of 68px
   });
 
 })();
