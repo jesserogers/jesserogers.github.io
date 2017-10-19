@@ -103,13 +103,19 @@
     });
     $('.gallery-img')
       .removeClass('is-visible is-current'); // remove mod classes from all images
-    $('html,body').removeAttr('style'); // remove style attr to enable scrolling again
+    $('html,body') // remove style attr to enable scrolling again
+      .removeAttr('style')
+      .unbind('touchmove');
     return false;
   }
 
   $galleryImg.click(function() { // user clicks on image
 
-    $('html, body').css({'overflow':'hidden', 'position':'relative'}); // disable scrolling when lightbox is visible
+    $('html, body') // disable scrolling when lightbox is visible
+      .css({'overflow':'hidden'})
+      .bind('touchmove', function(e){
+        e.preventDefault();
+      });
 
     $galleryImg.addClass('is-visible'); // add mod class to all images
     $(this).addClass('is-current') // add mod class to clicked image
