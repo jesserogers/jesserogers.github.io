@@ -243,6 +243,9 @@ jQuery(document).ready(function($) {
           case 39: nextImg(); // RIGHT: trigger next image
           break;
 
+          case 27: closeLightbox(); // ESC: close lightbox
+          break;
+
           default: return; // exit this handler for other keys
       }
       e.preventDefault(); // make sure screen doesn't scroll or anything dumb
