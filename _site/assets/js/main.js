@@ -118,6 +118,7 @@ jQuery(document).ready(function($) {
 });
 
   // Lightbox Gallery ----------
+
 (function(){ // safety pants
 
   var $galleryImg = $('.gallery-img');
@@ -126,21 +127,22 @@ jQuery(document).ready(function($) {
 
   var loadImage = function() {
 
-    var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src'); // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
+    var lightboxContent = '.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe';
+    var attr = $(this).find(lightboxContent).attr('data-src'); // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
 
     if (typeof attr !== typeof undefined && attr !== false) {
 
       $(this)
-        .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe') // find images or videos in lightbox
+        .find(lightboxContent) // find images or videos in lightbox
         .attr('src', function(){ // target src attribute
           return this.getAttribute('data-src'); // get value of 'data-src' and put it into a 'src' attr
         }).fadeIn(300); // fade in image/video
 
-      console.log('Loaded ' + attr + ' into the DOM');
+      console.log('Loaded ' + attr + ' into the DOM'); // log new loaded assets to the console
 
       $(this)
-        .find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe')
-        .removeAttr('data-src');
+        .find(lightboxContent)
+        .removeAttr('data-src'); // remove empty data-src attribute
 
     }
   }
@@ -148,8 +150,11 @@ jQuery(document).ready(function($) {
   // Previous Image
 
   function prevImg() {
-    if ( $('.gallery-img.is-current').is(':first-child') ) { // if current image is first in gallery
-      $('.gallery-img.is-current') // select current
+
+    var $currentImg = $('.gallery-img.is-current');
+
+    if ( $currentImg.is(':first-child') ) { // if current image is first in gallery
+      $currentImg // select current
         .removeClass('is-current') // remove mod class
         .find('.js-lightbox')
           .hide() // hide current lightbox
@@ -158,7 +163,7 @@ jQuery(document).ready(function($) {
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
     } else {
-      $('.gallery-img.is-current') // select current
+      $currentImg // select current
         .removeClass('is-current') // remove mod class
         .find('.js-lightbox')
           .hide() // hide current lightbox
@@ -174,8 +179,11 @@ jQuery(document).ready(function($) {
   // Next Image
 
   function nextImg() {
-    if ( $('.gallery-img.is-current').is(':last-child') ) { // if current image is last in gallery
-      $('.gallery-img.is-current') // select current
+
+    var $currentImg = $('.gallery-img.is-current');
+
+    if ( $currentImg.is(':last-child') ) { // if current image is last in gallery
+      $currentImg // select current
         .removeClass('is-current') // remove mod class
         .children('.js-lightbox')
           .hide() // hide current lightbox
@@ -184,7 +192,7 @@ jQuery(document).ready(function($) {
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
     } else {
-      $('.gallery-img.is-current') // select current
+      $currentImg // select current
         .removeClass('is-current') // remove mod class
         .children('.js-lightbox')
           .hide() // hide current lightbox
@@ -214,13 +222,13 @@ jQuery(document).ready(function($) {
     });
     $('.gallery-img')
       .removeClass('is-visible is-current'); // remove mod classes from all images
-    $('html,body').css('overflow',''); // reset overflow property
+    $('html,body').removeAttr('style'); // remove style attr to enable scrolling again
     return false;
   }
 
   $galleryImg.click(function() { // user clicks on image
 
-    $('html, body').css('overflow','hidden');
+    $('html, body').css({'overflow':'hidden', 'position':'relative'}); // disable scrolling when lightbox is visible
 
     $galleryImg.addClass('is-visible'); // add mod class to all images
     $(this).addClass('is-current') // add mod class to clicked image
@@ -266,7 +274,7 @@ jQuery(document).ready(function($) {
       $trigger.val('Show Info'); // else say 'Show Info'
     }
 
-    toggleInfo();
+    toggleInfo(); // slide in lightbox info
 
   });
 
@@ -284,14 +292,14 @@ jQuery(document).ready(function($) {
   		nextImg(); // run next image function
   	},
     swipeDown:function() { // user swipes down
-      closeLightbox();
+      closeLightbox(); // close lightbox
     },
   	threshold:68 // min swipe length of 68px
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
     swipeUp:function() { // user swipes up
-      toggleInfo();
+      toggleInfo(); // slide info up
     },
     threshold:68 // min swipe length of 68px
   });
