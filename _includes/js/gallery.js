@@ -4,7 +4,7 @@
   var $galleryImg = $('.gallery-img');
 
   // Lazy load
-  
+
   var loadImage = function() {
 
     var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src'); // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
@@ -164,6 +164,15 @@
       closeLightbox(); // close lightbox function
     },
   	threshold:178 // min swipe length of 178px
+  });
+
+  $('.js-lightbox-info').swipe({ // user swipes on info
+    swipeUp:function() { // user swipes up
+      $(this)
+        .slideToggle() // slide up info
+        .parent() // select lightbox
+          .toggleClass('is-showing-info'); // remove mod class
+    }
   });
 
 })();
