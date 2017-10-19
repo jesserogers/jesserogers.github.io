@@ -197,6 +197,15 @@ jQuery(document).ready(function($) {
     return false;
   }
 
+  // Toggle info
+
+  function toggleInfo() {
+    $('.js-lightbox-info') // select info section
+      .slideToggle() // slide in or out
+      .parent('.js-lightbox') // select parent element of all info sections (lightbox)
+        .toggleClass('is-showing-info'); // add mod class to parent lightbox
+  }
+
   // Close Lightbox
 
   function closeLightbox() {
@@ -257,11 +266,7 @@ jQuery(document).ready(function($) {
       $trigger.val('Show Info'); // else say 'Show Info'
     }
 
-    $triggerWrap.next() // next element in markup is info section
-      .slideToggle(); // slide in
-
-    $triggerWrap.parent('.js-lightbox')
-      .toggleClass('is-showing-info'); // add mod class to parent lightbox
+    toggleInfo();
 
   });
 
@@ -286,39 +291,11 @@ jQuery(document).ready(function($) {
 
   $('.js-lightbox-info').swipe({ // user swipes on info
     swipeUp:function() { // user swipes up
-      $(this)
-        .slideToggle() // slide up info
-        .parent() // select lightbox
-          .toggleClass('is-showing-info'); // remove mod class
+      toggleInfo();
     },
     threshold:68 // min swipe length of 68px
   });
 
 })();
-
-  (function(){
-
-  var $contactForm = $('.contact-form');
-  $contactForm.validate({
-    submitHandler: function(form) {
-      $.ajax({
-        url: '//formspree.io/jesse@jesserogers.co',
-        method: 'POST',
-        data: $('.contact-form').serialize(),
-        dataType: "json",
-        success: function(data) {
-          $('.submit-error').fadeOut(300);
-          $('.submit-success').fadeIn(300);
-        }
-      });
-    }
-  });
-
-  $('.submit-close').click(function() {
-    $('.submit-success').fadeOut(300);
-  });
-  
-})();
-
 
 });

@@ -78,6 +78,15 @@
     return false;
   }
 
+  // Toggle info
+
+  function toggleInfo() {
+    $('.js-lightbox-info') // select info section
+      .slideToggle() // slide in or out
+      .parent('.js-lightbox') // select parent element of all info sections (lightbox)
+        .toggleClass('is-showing-info'); // add mod class to parent lightbox
+  }
+
   // Close Lightbox
 
   function closeLightbox() {
@@ -138,11 +147,7 @@
       $trigger.val('Show Info'); // else say 'Show Info'
     }
 
-    $triggerWrap.next() // next element in markup is info section
-      .slideToggle(); // slide in
-
-    $triggerWrap.parent('.js-lightbox')
-      .toggleClass('is-showing-info'); // add mod class to parent lightbox
+    toggleInfo();
 
   });
 
@@ -167,10 +172,7 @@
 
   $('.js-lightbox-info').swipe({ // user swipes on info
     swipeUp:function() { // user swipes up
-      $(this)
-        .slideToggle() // slide up info
-        .parent() // select lightbox
-          .toggleClass('is-showing-info'); // remove mod class
+      toggleInfo();
     },
     threshold:68 // min swipe length of 68px
   });
