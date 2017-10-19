@@ -120,16 +120,9 @@ jQuery(document).ready(function($) {
   // Lightbox Gallery ----------
 (function(){ // safety pants
 
-  // Variables
-  var $galleryImg = $('.gallery-img'),
-      $currentImg = $('.gallery-img.is-current')
-      $firstImg   = $('.gallery-img:first-child'),
-      $lastImg    = $('.gallery-img:last-child'),
-      $firstArrow = $firstImg.children('.js-lightbox').children('.js-lightbox-prev'),
-      $lastArrow  = $lastImg.children('.js-lightbox').children('.js-lightbox-next');
+  var $galleryImg = $('.gallery-img');
 
   // Lazy load
-
   var loadImage = function() {
 
     var attr = $(this).find('.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe').attr('data-src');
@@ -146,35 +139,51 @@ jQuery(document).ready(function($) {
     }
   }
 
-  // Previous lightbox ----------
-
-  var prevImage = function() {
-
-    var $previous = $(this).parent('.js-lightbox').parent('.gallery-img').prev();
-
-    $(this).closest('.gallery-img') // Find parent
-      .removeClass('is-current') // remove mod class
-      .children('.js-lightbox') // Parent's lightbox
-      .hide(); // Hide it
-    $previous.addClass('is-current') // add mod class
-      .children('.js-lightbox') // select lightbox
-      .show(0, loadImage); // show lightbox and lazy load if necessary
-      return false;
+  function prevImg() {
+    if ( $('.gallery-img.is-current').is(':first-child') ) {
+      $('.gallery-img.is-current')
+        .removeClass('is-current')
+        .find('.js-lightbox')
+          .hide()
+      $('.gallery-img:last-child')
+        .addClass('is-current')
+        .find('.js-lightbox')
+          .show();
+    } else {
+      $('.gallery-img.is-current')
+        .removeClass('is-current')
+        .children('.js-lightbox')
+          .hide()
+        .parent()
+        .prev()
+          .addClass('is-current')
+          .children('.js-lightbox')
+            .show(0, loadImage);
+    }
+    return false;
   }
 
-  // Next lightbox ----------
-
-  var nextImage = function() {
-
-    var $next = $(this).parent('.js-lightbox').parent('.gallery-img').next();
-
-    $(this).closest('.gallery-img') // Find parent
-      .removeClass('is-current') // remove mod class
-      .children('.js-lightbox') // Select lightbox
-      .hide(); // Hide current lightbox
-    $next.addClass('is-current')
-    .children('.js-lightbox') // lightbox of next gallery image
-      .show(0, loadImage);
+  function nextImg() {
+    if ( $('.gallery-img.is-current').is(':last-child') ) {
+      $('.gallery-img.is-current')
+        .removeClass('is-current')
+        .children('.js-lightbox')
+          .hide()
+      $('.gallery-img:first-child')
+        .addClass('is-current')
+        .find('.js-lightbox')
+          .show();
+    } else {
+      $('.gallery-img.is-current')
+        .removeClass('is-current')
+        .children('.js-lightbox')
+          .hide()
+        .parent()
+        .next()
+          .addClass('is-current')
+          .find('.js-lightbox')
+            .show(0, loadImage);
+    }
     return false;
   }
 
@@ -183,35 +192,28 @@ jQuery(document).ready(function($) {
     $(this).addClass('is-current') // add mod class to clicked image
       .children('.js-lightbox')
       .fadeIn("slow", loadImage); // fade in lightbox and lazy load image
+
+    $(document).keydown(function(e) { // user hits keys after clicking an image
+      switch(e.which) {
+          case 37: prevImg(); // LEFT: trigger previous image
+          break;
+
+          case 39: nextImg(); // RIGHT: trigger next image
+          break;
+
+          default: return; // exit this handler for other keys
+      }
+      e.preventDefault(); // make sure screen doesn't scroll or anything dumb
+    });
+
   });
 
   // Previous Image ----------
-  $('.js-lightbox-prev').on('click', prevImage);
+  $('.js-lightbox-prev').click(prevImg);
 
   // Next Image ----------
-  $('.js-lightbox-next').on('click', nextImage);
+  $('.js-lightbox-next').click(nextImg);
 
-  // First Image ----------
-  $firstArrow.click(function(){ // user clicks previous on first image in gallery
-    $(this).closest('.gallery-img')
-      .removeClass('is-current') // remove mod class from first image
-      .children('.js-lightbox')
-      .hide();
-    $lastImg.addClass('is-current') // add mod class to last image in gallery
-      .children('.js-lightbox')
-      .show(0, loadImage); // show and lazy load
-  });
-
-  // Last Image ----------
-  $lastArrow.click(function(){ // user clicks next on last image in gallery
-    $(this).closest('.gallery-img')
-      .removeClass('is-current') // remove mod class from last image
-      .children('.js-lightbox')
-      .hide();
-    $firstImg.addClass('is-current') // add mod class to first image in gallery
-      .children('.js-lightbox')
-      .show(0, loadImage); // show and lazy load
-  });
 
   // Image meta button  ----------
 
