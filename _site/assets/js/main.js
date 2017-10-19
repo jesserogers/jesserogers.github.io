@@ -199,14 +199,13 @@ jQuery(document).ready(function($) {
 
   // Close Lightbox
 
-  function closeLightbox(e) {
+  function closeLightbox() {
     $('.js-lightbox').fadeOut('slow', function() { // fade out lightbox
       $(this).css('display', 'none'); // set CSS back to original value so it's not blank
     });
     $('.gallery-img')
       .removeClass('is-visible is-current'); // remove mod classes from all images
     $('html,body').css('overflow',''); // reset overflow property
-    e.stopPropagation();
     return false;
   }
 
@@ -280,7 +279,7 @@ jQuery(document).ready(function($) {
   		nextImg(); // run next image function
   	},
     swipeDown:function() { // user swipes down
-      closeLightbox(); // close lightbox function
+      closeLightbox();
     },
   	threshold:68 // min swipe length of 68px
   });
