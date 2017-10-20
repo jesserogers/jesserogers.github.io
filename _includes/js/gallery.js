@@ -215,7 +215,7 @@
     triggerOnTouchEnd: false,
     triggerOnTouchLeave: false,
     fingers: 1,
-  	threshold: 200,
+    threshold: 200,
     cancelThreshold: 42
   });
 
