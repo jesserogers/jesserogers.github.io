@@ -337,7 +337,8 @@ jQuery(document).ready(function($) {
     },
     triggerOnTouchEnd: true,
     triggerOnTouchLeave: false,
-  	threshold: 200
+  	threshold: 200,
+    cancelThreshold: 42
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
