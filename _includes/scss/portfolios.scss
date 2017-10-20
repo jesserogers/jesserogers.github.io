@@ -3,4 +3,8 @@ section.design,
 section.motion {
   background: $white;
   padding: $spacing-larger 0;
+  overflow: hidden;
+  @media #{$mobile} {
+    padding: 0;
+  }
 }

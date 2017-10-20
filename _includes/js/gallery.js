@@ -196,7 +196,7 @@
         if (phase=="move") { // while swipe is in motion
           $(this)
             .css({
-              'transform': 'scale(calc(1 - 0.' + distance/2 + '))', // scale down lightbox as user swipes
+              'transform': 'scale(calc(1 - 0.' + distance/10 + '))', // scale down lightbox as user swipes
               'opacity': 'calc(1 - 0.' + distance/2 + ')', // fade as user swipes
               'transform-origin': 'center bottom', // scale toward bottom
               'top': distance/2 + '%' // slide downward with swipe
@@ -222,7 +222,6 @@
     },
     triggerOnTouchEnd: false,
     triggerOnTouchLeave: false,
-    maxTimeThreshold: 2000,
   	threshold: 200
   });
 
