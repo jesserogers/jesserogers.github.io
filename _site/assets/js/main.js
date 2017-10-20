@@ -326,19 +326,15 @@ jQuery(document).ready(function($) {
         }
 
         if (phase=="cancel") { // if loser I mean user fails swipe
-          $(this)
-            .css({ // reset CSS values set during move phase
-              'opacity': '',
-              'top': ''
-            });
+          $(this).removeAttr('style').css('display','flex');
         }
 
       }
     },
-    triggerOnTouchEnd: true,
+    triggerOnTouchEnd: false,
     triggerOnTouchLeave: false,
   	threshold: 200,
-    cancelThreshold: 42
+    cancelThreshold:26
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
