@@ -125,7 +125,8 @@
 
     $(this).addClass('is-current') // add mod class to clicked image
       .children('.js-lightbox')
-      .fadeIn("slow", loadImage); // fade in lightbox and lazy load image
+      .fadeIn("slow", loadImage)
+      .css('display', 'flex'); // fade in lightbox and lazy load image
 
     $(document).keydown(function(e) { // user hits keys after clicking an image
       switch(e.which) {
@@ -181,46 +182,41 @@
 
   $('.js-lightbox').swipe({ // user swipes on slide
 
+    swipeLeft: function() { // user swipes left </3
+      prevImg();
+    },
+
+    swipeRight: function() {
+      nextImg();
+    },
+
     swipeStatus:function(event, phase, direction, distance) {
-
-      if (direction=="left") { // user swipes left </3
-        prevImg(); // trigger previous image
-      }
-
-      if (direction=="right") { // user swipes right <3
-        nextImg(); // trigger next image
-      }
 
       if (direction=="down") { // user swipes down
 
         if (phase=="move") { // while swipe is in motion
           $(this)
             .css({
-              'transform': 'scale(calc(1 - 0.' + distance/10 + '))', // scale down lightbox as user swipes
               'opacity': 'calc(1 - 0.' + distance/2 + ')', // fade as user swipes
-              'transform-origin': 'center bottom', // scale toward bottom
               'top': distance/2 + '%' // slide downward with swipe
             });
         }
 
         if (phase=="end") { // if user completes swipe requirements
           closeLightbox(); // close lightbox
-          console.log('duration: ' + duration)
         }
 
         if (phase=="cancel") { // if loser I mean user fails swipe
           $(this)
             .css({ // reset CSS values set during move phase
-              'transform': '',
               'opacity': '',
-              'transform-origin': '',
               'top': ''
             });
         }
 
       }
     },
-    triggerOnTouchEnd: false,
+    triggerOnTouchEnd: true,
     triggerOnTouchLeave: false,
   	threshold: 200
   });
