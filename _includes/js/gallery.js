@@ -99,7 +99,11 @@
 
   function closeLightbox() {
     $('.js-lightbox').fadeOut('slow', function() { // fade out lightbox
-      $(this).css('display', 'none'); // set CSS back to original value so it's not blank
+      $(this)
+        .removeAttr('style') // clear style attribute
+        .css({ // set CSS back to original value so it's not blank
+          'display': 'none'
+        });
     });
     $('.gallery-img')
       .removeClass('is-visible is-current'); // remove mod classes from all images
@@ -118,6 +122,7 @@
       });
 
     $galleryImg.addClass('is-visible'); // add mod class to all images
+
     $(this).addClass('is-current') // add mod class to clicked image
       .children('.js-lightbox')
       .fadeIn("slow", loadImage); // fade in lightbox and lazy load image
@@ -175,16 +180,50 @@
   // Swipe Gestures
 
   $('.js-lightbox').swipe({ // user swipes on slide
-  	swipeRight:function() { // user swipes right <3
-  		prevImg(); // run previous image function
-  	},
-  	swipeLeft:function() { // user swipes left </3
-  		nextImg(); // run next image function
-  	},
-    swipeDown:function() { // user swipes down
-      closeLightbox(); // close lightbox
+
+    swipeStatus:function(event, phase, direction, distance) {
+
+      if (direction=="left") { // user swipes left </3
+        prevImg(); // trigger previous image
+      }
+
+      if (direction=="right") { // user swipes right <3
+        nextImg(); // trigger next image
+      }
+
+      if (direction=="down") { // user swipes down
+
+        if (phase=="move") { // while swipe is in motion
+          $(this)
+            .css({
+              'transform': 'scale(calc(1 - 0.' + distance/2 + '))', // scale down lightbox as user swipes
+              'opacity': 'calc(1 - 0.' + distance/2 + ')', // fade as user swipes
+              'transform-origin': 'center bottom', // scale toward bottom
+              'top': distance/2 + '%' // slide downward with swipe
+            });
+        }
+
+        if (phase=="end") { // if user completes swipe requirements
+          closeLightbox(); // close lightbox
+          console.log('duration: ' + duration)
+        }
+
+        if (phase=="cancel") { // if loser I mean user fails swipe
+          $(this)
+            .css({ // reset CSS values set during move phase
+              'transform': '',
+              'opacity': '',
+              'transform-origin': '',
+              'top': ''
+            });
+        }
+
+      }
     },
-  	threshold:68 // min swipe length of 68px
+    triggerOnTouchEnd: false,
+    triggerOnTouchLeave: false,
+    maxTimeThreshold: 2000,
+  	threshold: 200
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
