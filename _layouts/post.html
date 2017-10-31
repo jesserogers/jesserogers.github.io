@@ -10,29 +10,31 @@ layout: default
 </section>
 <section class="post-body">
   <div class="content">
+    {% if page.feature_image %}
     <div class="callout">
       <div class="callout-content">
-        <img src="/assets/img/journal/{{page.image}}" alt="{{page.title}}">
+        <img src="{{site.url}}/assets/img/journal/{{page.image}}" srcset="{{site.url}}/assets/img/journal/{{page.image}} 1x, {{site.url}}/assets/img/journal/{{page.image2x}} 2x"  alt="{{page.meta}}">
       </div>
     </div>
+    {% endif %}
     {{content}}
   </div>
 </section>
 <section class="post-nav">
   <div class="content">
-  {% if page.previous.url %}
-    {% if page.previous.category == 'journal' %}
-      <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
+    {% if page.previous.url %}
+      {% if page.previous.category == 'journal' %}
+        <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
+      {% endif %}
       {% else %}
       <div><!-- Filler div! * does jazz hands * --></div>
     {% endif %}
-  {% endif %}
-  {% if page.next.url %}
-    {% if page.next.category == 'journal' %}
-      <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+    {% if page.next.url %}
+      {% if page.next.category == 'journal' %}
+        <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+      {% endif %}
       {% else %}
       <div><!-- Filler div! * does jazz hands * --></div>
     {% endif %}
-  {% endif %}
 </div>
 </section>

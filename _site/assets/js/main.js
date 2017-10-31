@@ -117,7 +117,7 @@ jQuery(document).ready(function($) {
 
 });
 
-  // Lightbox Gallery ----------
+  // Lightbox Gallery
 
 (function(){ // safety pants
 
@@ -127,9 +127,10 @@ jQuery(document).ready(function($) {
 
   var loadImage = function() {
 
-    var lightboxContent = '.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe';
-    var attr = $(this).find(lightboxContent).attr('data-src'); // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
-
+    var lightboxContent = '.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe',
+        attr = $(this).find(lightboxContent).attr('data-src');
+        
+    // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
     if (typeof attr !== typeof undefined && attr !== false) {
 
       $(this)
@@ -154,15 +155,19 @@ jQuery(document).ready(function($) {
     var $currentImg = $('.gallery-img.is-current');
 
     if ( $currentImg.is(':first-child') ) { // if current image is first in gallery
+
       $currentImg // select current
         .removeClass('is-current') // remove mod class
         .find('.js-lightbox')
           .hide() // hide current lightbox
+
       $('.gallery-img:last-child') // select last image in gallery
         .addClass('is-current') // add mod class
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
+
     } else {
+
       $currentImg // select current
         .removeClass('is-current') // remove mod class
         .find('.js-lightbox')
@@ -183,15 +188,19 @@ jQuery(document).ready(function($) {
     var $currentImg = $('.gallery-img.is-current');
 
     if ( $currentImg.is(':last-child') ) { // if current image is last in gallery
+
       $currentImg // select current
         .removeClass('is-current') // remove mod class
         .children('.js-lightbox')
           .hide() // hide current lightbox
+
       $('.gallery-img:first-child') // select first image in gallery
         .addClass('is-current') // add mod class
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
+
     } else {
+
       $currentImg // select current
         .removeClass('is-current') // remove mod class
         .children('.js-lightbox')
@@ -201,6 +210,7 @@ jQuery(document).ready(function($) {
           .addClass('is-current') // add mod class
           .find('.js-lightbox')
             .show(0, loadImage); // show lightbox and lazy load if necessary
+
     }
     return false;
   }
@@ -208,15 +218,18 @@ jQuery(document).ready(function($) {
   // Toggle info
 
   function toggleInfo() {
+
     $('.js-lightbox-info') // select info section
       .slideToggle() // slide in or out
       .parent('.js-lightbox') // select parent element of all info sections (lightbox)
         .toggleClass('is-showing-info'); // add mod class to parent lightbox
+
   }
 
   // Close Lightbox
 
   function closeLightbox() {
+
     $('.js-lightbox').fadeOut('slow', function() { // fade out lightbox
       $(this)
         .removeAttr('style') // clear style attribute
@@ -224,12 +237,14 @@ jQuery(document).ready(function($) {
           'display': 'none'
         });
     });
+
     $('.gallery-img')
       .removeClass('is-visible is-current'); // remove mod classes from all images
     $('html,body') // remove style attr to enable scrolling again
       .removeAttr('style')
       .unbind('touchmove');
     return false;
+
   }
 
   $galleryImg.click(function() { // user clicks on image
@@ -244,10 +259,11 @@ jQuery(document).ready(function($) {
 
     $(this).addClass('is-current') // add mod class to clicked image
       .children('.js-lightbox')
-      .fadeIn("slow", loadImage)
+      .fadeIn('slow', loadImage)
       .css('display', 'flex'); // fade in lightbox and lazy load image
 
     $(document).keydown(function(e) { // user hits keys after clicking an image
+
       switch(e.which) {
           case 37: prevImg(); // LEFT: trigger previous image
           break;
@@ -278,8 +294,7 @@ jQuery(document).ready(function($) {
 
   $('.js-lightbox-info-trigger').click(function() { // user clicks on info trigger
 
-    var $trigger = $('.js-lightbox-info-trigger input'),
-    $triggerWrap = $('.js-lightbox-info-trigger');
+    var $trigger = $('.js-lightbox-info-trigger input');
 
     $trigger.toggleClass('hide-it-baby'); // toggle mod class
 
@@ -302,18 +317,18 @@ jQuery(document).ready(function($) {
   $('.js-lightbox').swipe({ // user swipes on slide
 
     swipeLeft: function() { // user swipes left </3
-      prevImg();
+      prevImg(); // previous image
     },
 
-    swipeRight: function() {
-      nextImg();
+    swipeRight: function() { // user swipes right <3
+      nextImg(); // next image
     },
 
-    swipeStatus:function(event, phase, direction, distance) {
+    swipeStatus: function(event, phase, direction, distance) {
 
-      if (direction=="down") { // user swipes down
+      if (direction=='down') { // user swipes down
 
-        if (phase=="move") { // while swipe is in motion
+        if (phase=='move') { // while swipe is in motion
           $(this)
             .css({
               'opacity': 'calc(1 - 0.' + distance/2 + ')', // fade as user swipes
@@ -321,12 +336,15 @@ jQuery(document).ready(function($) {
             });
         }
 
-        if (phase=="end") { // if user completes swipe requirements
+        if (phase=='end') { // if user completes swipe requirements
           closeLightbox(); // close lightbox
         }
 
-        if (phase=="cancel") { // if loser I mean user fails swipe
-          $(this).removeAttr('style').css('display','flex');
+        if (phase=='cancel') { // if loser I mean user fails swipe
+          $(this).removeAttr('style') // reset style attribute
+          .css({
+            'display':'flex' // set css display back to default
+          });
         }
 
       }
@@ -339,6 +357,7 @@ jQuery(document).ready(function($) {
   });
 
   $('.js-lightbox-info').swipe({ // user swipes on info
+
     swipeUp:function() { // user swipes up
       toggleInfo(); // slide info up
     },

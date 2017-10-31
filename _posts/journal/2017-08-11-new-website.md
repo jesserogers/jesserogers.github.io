@@ -5,6 +5,8 @@ meta: Read about my new website and how I built it with Github Pages
 category: journal
 posted: August 11 2017
 image: 2017-08-11-new-site.jpg
+image2x: 2017-08-11-new-site@2x.jpg
+feature_image: true
 tag: design
 author: Jesse Rogers
 ---
