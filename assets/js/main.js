@@ -9,4 +9,5 @@ jQuery(document).ready(function($) {
   {% include js/visible.js %}
   {% include js/onscroll.js %}
   {% include js/gallery.js %}
+  {% include js/journal.js %}
 });

@@ -22,17 +22,30 @@ layout: default
 </section>
 <section class="post-nav">
   <div class="content">
-    {% if page.previous.url %}
-      {% if page.previous.category == 'journal' %}
-        <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
+    {% assign prevPost = "" %}
+    {% assign nextPost = "" %}
+    {% assign stop = false %}
+    {% for post in site.posts%}
+      {% if post.url == page.url %}
+        {% assign stop = true %}
+        {% elsif post.category == page.category %}
+        {% if stop %}
+          {% assign prevPost = post.url %}
+          {% assign pTitle = post.title %}
+          {% break %}
+          {% else %}
+            {% assign nextPost = post.url %}
+            {% assign nTitle = post.title %}
+        {% endif %}
       {% endif %}
+    {% endfor %}
+    {% if prev != "" %}
+        <a class="post-nav-link previous" href="{{prevPost}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{pTitle}}</a>
       {% else %}
       <div><!-- Filler div! * does jazz hands * --></div>
     {% endif %}
-    {% if page.next.url %}
-      {% if page.next.category == 'journal' %}
-        <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
-      {% endif %}
+    {% if next != "" %}
+        <a class="post-nav-link next" href="{{nextPost}}">{{nTitle}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
       {% else %}
       <div><!-- Filler div! * does jazz hands * --></div>
     {% endif %}

@@ -7,6 +7,39 @@ layout: default
     <p>{{page.meta}}</p>
   </div>
 </section>
-<div class="content project-content">
-  {{content}}
+<section class="project-content">
+  <div class="content">
+    {{content}}
+  </div>
+</section>
+<section class="post-nav">
+  <div class="content">
+    {% assign prevPost = "" %}
+    {% assign nextPost = "" %}
+    {% assign stop = false %}
+    {% for post in site.posts%}
+      {% if post.url == page.url %}
+        {% assign stop = true %}
+        {% elsif post.category == page.category %}
+        {% if stop %}
+          {% assign prevPost = post.url %}
+          {% assign pTitle = post.title %}
+          {% break %}
+          {% else %}
+            {% assign nextPost = post.url %}
+            {% assign nTitle = post.title %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if prev != "" %}
+        <a class="post-nav-link previous" href="{{prevPost}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{pTitle}}</a>
+      {% else %}
+      <div><!-- Filler div! * does jazz hands * --></div>
+    {% endif %}
+    {% if next != "" %}
+        <a class="post-nav-link next" href="{{nextPost}}">{{nTitle}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+      {% else %}
+      <div><!-- Filler div! * does jazz hands * --></div>
+    {% endif %}
 </div>
+</section>

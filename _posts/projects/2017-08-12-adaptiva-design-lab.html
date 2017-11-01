@@ -1,18 +1,11 @@
 ---
-layout: default
+layout: projects
 title: Adaptiva Design Lab Website
 meta: Custom design and development to create a website and blog for the Adaptiva Design Lab
 featured: true
 category: projects
 permalink: /projects/adaptiva-design-lab
 ---
-<section class="page-header">
-  <div class="content">
-    <h1>{{page.title}}</h1>
-    <p>{{page.meta}}</p>
-    <p style="margin-top: 1em;"><a href="http://design.adaptiva.com" target="_blank" title="Adaptiva Design Lab" style="color: #fff;">Check out the live site</a></p>
-  </div>
-</section>
 <section class="project-content">
   <div class="content">
     <h2>Prologue</h2>
@@ -99,22 +92,4 @@ permalink: /projects/adaptiva-design-lab
     <p>This isn't really the type of project with quantitative results, but awareness to these resources is on the rise in the company. More and more of our employees are starting to head there for branded assets for their PowerPoint presentations, as well as the <a href="http://design.adaptiva.com" title="Adaptiva color guidelines" target="_blank">color</a> guidelines to keep super weird colors from showing up in company documents.</p>
     <p>Maybe I'll do yearly updates on the design of this site to keep it on the cutting edge. I'm sure this design will look ridiculous to me in two years, but that's the fun of having access to source code, no?</p>
   </div>
-</section>
-<section class="post-nav">
-  <div class="content">
-  {% if page.previous.url %}
-    {% if page.previous.category == 'projects' %}
-      <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
-      {% else %}
-      <div><!-- Filler div! * does jazz hands * --></div>
-    {% endif %}
-  {% endif %}
-  {% if page.next.url %}
-    {% if page.next.category == 'projects' %}
-      <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
-      {% else %}
-      <div><!-- Filler div! * does jazz hands * --></div>
-    {% endif %}
-  {% endif %}
-</div>
 </section>

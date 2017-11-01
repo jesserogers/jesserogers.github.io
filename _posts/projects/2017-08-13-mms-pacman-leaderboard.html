@@ -1,17 +1,11 @@
 ---
-layout: default
+layout: projects
 title: MMS 2017 Pac-Man Leaderboard
 meta: Custom design and development for web presence at an industry tradeshow
 featured: true
 category: projects
 permalink: /projects/mms-pacman-leaderboard
 ---
-<section class="page-header">
-  <div class="content">
-    <h1>{{page.title}}</h1>
-    <p>{{page.meta}}</p>
-  </div>
-</section>
 <section class="project-content">
   <div class="content">
     <p>Wow, Q2 was crazy in 2017. In May, my company sponsored an event called the Midwest Management Summit (MMS for short), at which we had a huge, four-player Pac-Man gaming system. We held a formal competition, complete with a trophy and a $100 Amazon gift card. It was expensive, it was crowded, and it was awesome.</p>
@@ -85,22 +79,4 @@ permalink: /projects/mms-pacman-leaderboard
     <p>The site will stay up indefinitely, so you can see the live code here: <a href="http://adaptiva.com/pacman" target="_blank" title="MMS 2017 Pac-Man Championship Leaderboard">adaptiva.com/pacman</a></p>
 
   </div>
-</section>
-<section class="post-nav">
-  <div class="content">
-  {% if page.previous.url %}
-    {% if page.previous.category == 'projects' %}
-      <a class="previous" href="{{page.previous.url}}"><div class="post-nav-arrow">&#x279E;</div> &nbsp; {{page.previous.title}}</a>
-      {% else %}
-      <div><!-- Filler div! * does jazz hands * --></div>
-    {% endif %}
-  {% endif %}
-  {% if page.next.url %}
-    {% if page.next.category == 'projects' %}
-      <a class="next" href="{{page.next.url}}">{{page.next.title}} &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
-      {% else %}
-      <div><!-- Filler div! * does jazz hands * --></div>
-    {% endif %}
-  {% endif %}
-</div>
 </section>
