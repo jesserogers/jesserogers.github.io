@@ -254,7 +254,7 @@ jQuery(document).ready(function($) {
       .removeClass('is-visible is-current prev next'); // remove mod classes from all images
     $('html,body') // remove style attr to enable scrolling again
       .removeAttr('style')
-      .unbind('touchmove');
+      .off('touchmove');
     return false;
 
   }
@@ -263,7 +263,7 @@ jQuery(document).ready(function($) {
 
     $('html, body') // disable scrolling when lightbox is visible
       .css({'overflow':'hidden'})
-      .bind('touchmove', function(e){
+      .on('touchmove', function(e){
         e.preventDefault();
       });
 
