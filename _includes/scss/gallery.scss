@@ -70,7 +70,7 @@
 
 .js-lightbox-img-wrap {
   overflow: visible;
-  transition: 300ms $transition-ease-in;
+  transition: padding 300ms $transition-ease-in;
   position: relative;
   img {
     display: block;

@@ -1,13 +1,13 @@
 (function() { // journal pants
 
-  $('.post-nav-link').each(function(){
+  $('.post-nav-link').each(function(){ // find each nav link
 
-    if ( $(this).text().length < 5 ) {
+    if ( $(this).text().length < 5 ) { // if inner string is too short
 
-      $(this).css({
+      $(this).css({ // hide it
         'visibility': 'hidden'
       });
-      
+
     }
 
   });
