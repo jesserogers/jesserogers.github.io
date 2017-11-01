@@ -326,63 +326,63 @@ jQuery(document).ready(function($) {
 
   // Swipe Gestures
 
-  if ( isTouch() == true ) {
+  if ( isTouch() == true ) { // if device is touchscreen
 
     $('.js-lightbox').swipe({ // user swipes on slide
 
-      swipeStatus: function(event, phase, direction, distance) {
+      swipeStatus: function(event, phase, direction, distance) { // detect swipe status
 
-        if (direction=="left") {
+        if (direction=="left") { // if user swipes left </3
 
-          if (phase=="move") {
+          if (phase=="move") { // while swipe in motion
 
             $(this).find('.js-lightbox-img-wrap').css({
 
-              'opacity': 1 - ((distance/2)/100),
-              'left': '-' + distance/2 + '%'
+              'opacity': 1 - ((distance/2)/100), // fade with swipe
+              'left': '-' + distance/2 + '%' // move with swipe
 
             });
 
           }
 
-          if (phase=="end") {
+          if (phase=="end") { // user completes swipe
 
-            nextImg();
-            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+            nextImg(); // next image
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style'); // clear styles added during move
 
           }
 
-          if (phase=="cancel") {
+          if (phase=="cancel") { // user fails or cancels swipe
 
-            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style'); // clear styles added during move
 
           }
 
         }
 
-        if (direction=="right") {
+        if (direction=="right") { // user swipes right </3
 
-          if(phase=="move") {
+          if(phase=="move") { // swipe in motion
 
             $(this).find('.js-lightbox-img-wrap').css({
 
-              'opacity': 1 - ((distance/2)/100),
-              'left': distance/2 + '%'
+              'opacity': 1 - ((distance/2)/100), // fade with swipe
+              'left': distance/2 + '%' // move with swipe
 
             });
 
           }
 
-          if (phase=="end") {
+          if (phase=="end") { // user completes swipe
 
-            prevImg();
-            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+            prevImg(); // previous image
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style'); // clear styles added during swipe
 
           }
 
-          if (phase=="cancel") {
+          if (phase=="cancel") { // user fails or cancels swipe
 
-            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style'); // clear styles added during swipe
 
           }
 
