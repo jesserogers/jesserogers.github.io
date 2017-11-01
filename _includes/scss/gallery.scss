@@ -71,6 +71,7 @@
 .js-lightbox-img-wrap {
   overflow: visible;
   transition: 300ms $transition-ease-in;
+  position: relative;
   img {
     display: block;
     max-width: 88vw;
@@ -193,6 +194,13 @@
 .is-visible {
   cursor: default;
   &.is-current {
+    .js-lightbox-img-wrap {
+      -webkit-animation: slideUp 500ms $transition-ease-in 1 forwards, fadeIn 500ms linear 1 forwards;
+      animation: slideUp 500ms $transition-ease-in 1 forwards, fadeIn 500ms linear 1 forwards;
+    }
+  }
+  &.is-current,
+  &.is-current.next {
     .js-lightbox-close {
       span {
         &:first-child {
@@ -204,6 +212,28 @@
                   animation: lightboxSpan2 500ms $transition-ease-in 1 forwards;
         }
       }
+    }
+    .js-lightbox-img-wrap {
+      -webkit-animation: slideRight 500ms $transition-ease-in 1 forwards;
+      animation: slideRight 500ms $transition-ease-in 1 forwards;
+    }
+  }
+  &.is-current.prev {
+    .js-lightbox-close {
+      span {
+        &:first-child {
+          -webkit-animation: lightboxSpan1 300ms ease-in-out 1 forwards reverse;
+                  animation: lightboxSpan1 300ms ease-in-out 1 forwards reverse;
+        }
+        &:last-child {
+          -webkit-animation: lightboxSpan2 300ms ease-in-out 1 forwards reverse;
+                  animation: lightboxSpan2 300ms ease-in-out 1 forwards reverse;
+        }
+      }
+    }
+    .js-lightbox-img-wrap {
+      -webkit-animation: slideLeft 500ms $transition-ease-in 1 forwards;
+      animation: slideLeft 500ms $transition-ease-in 1 forwards;
     }
   }
 }

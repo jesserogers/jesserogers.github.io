@@ -1,3 +1,15 @@
+function isTouch() { // check to see if touch device before DOM ready
+
+  try {
+    document.creatEvent("TouchEvent");
+    return true;
+  }
+  catch(e) {
+    return false;
+  }
+
+}
+
 jQuery(document).ready(function($) {
   // party time
   (function(){
@@ -129,7 +141,7 @@ jQuery(document).ready(function($) {
 
     var lightboxContent = '.js-lightbox-img-wrap img, .js-lightbox-img-wrap iframe',
         attr = $(this).find(lightboxContent).attr('data-src');
-        
+
     // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
     if (typeof attr !== typeof undefined && attr !== false) {
 
@@ -157,24 +169,24 @@ jQuery(document).ready(function($) {
     if ( $currentImg.is(':first-child') ) { // if current image is first in gallery
 
       $currentImg // select current
-        .removeClass('is-current') // remove mod class
+        .removeClass('is-current prev next') // remove mod class
         .find('.js-lightbox')
           .hide() // hide current lightbox
 
       $('.gallery-img:last-child') // select last image in gallery
-        .addClass('is-current') // add mod class
+        .addClass('is-current prev') // add mod class
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
 
     } else {
 
       $currentImg // select current
-        .removeClass('is-current') // remove mod class
+        .removeClass('is-current prev next') // remove mod class
         .find('.js-lightbox')
           .hide() // hide current lightbox
         .parent()
         .prev() // find previous image
-          .addClass('is-current') // add mod class
+          .addClass('is-current prev') // add mod class
           .find('.js-lightbox')
             .show(0, loadImage); // show lightbox and lazy load if necessary
     }
@@ -190,24 +202,24 @@ jQuery(document).ready(function($) {
     if ( $currentImg.is(':last-child') ) { // if current image is last in gallery
 
       $currentImg // select current
-        .removeClass('is-current') // remove mod class
+        .removeClass('is-current prev next') // remove mod class
         .children('.js-lightbox')
           .hide() // hide current lightbox
 
       $('.gallery-img:first-child') // select first image in gallery
-        .addClass('is-current') // add mod class
+        .addClass('is-current next') // add mod class
         .find('.js-lightbox')
           .show(0, loadImage); // show lightbox and lazy load if necessary
 
     } else {
 
       $currentImg // select current
-        .removeClass('is-current') // remove mod class
+        .removeClass('is-current prev next') // remove mod class
         .children('.js-lightbox')
           .hide() // hide current lightbox
         .parent()
         .next() // select next image
-          .addClass('is-current') // add mod class
+          .addClass('is-current next') // add mod class
           .find('.js-lightbox')
             .show(0, loadImage); // show lightbox and lazy load if necessary
 
@@ -239,7 +251,7 @@ jQuery(document).ready(function($) {
     });
 
     $('.gallery-img')
-      .removeClass('is-visible is-current'); // remove mod classes from all images
+      .removeClass('is-visible is-current prev next'); // remove mod classes from all images
     $('html,body') // remove style attr to enable scrolling again
       .removeAttr('style')
       .unbind('touchmove');
@@ -314,55 +326,107 @@ jQuery(document).ready(function($) {
 
   // Swipe Gestures
 
-  $('.js-lightbox').swipe({ // user swipes on slide
+  if ( isTouch() == true ) {
 
-    swipeLeft: function() { // user swipes left </3
-      prevImg(); // previous image
-    },
+    $('.js-lightbox').swipe({ // user swipes on slide
 
-    swipeRight: function() { // user swipes right <3
-      nextImg(); // next image
-    },
+      swipeStatus: function(event, phase, direction, distance) {
 
-    swipeStatus: function(event, phase, direction, distance) {
+        if (direction=="left") {
 
-      if (direction=='down') { // user swipes down
+          if (phase=="move") {
 
-        if (phase=='move') { // while swipe is in motion
-          $(this)
-            .css({
-              'opacity': 'calc(1 - 0.' + distance/2 + ')', // fade as user swipes
-              'top': distance/2 + '%' // slide downward with swipe
+            $(this).find('.js-lightbox-img-wrap').css({
+
+              'opacity': 1 - ((distance/2)/100),
+              'left': '-' + distance/2 + '%'
+
             });
+
+          }
+
+          if (phase=="end") {
+
+            nextImg();
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+
+          }
+
+          if (phase=="cancel") {
+
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+
+          }
+
         }
 
-        if (phase=='end') { // if user completes swipe requirements
-          closeLightbox(); // close lightbox
+        if (direction=="right") {
+
+          if(phase=="move") {
+
+            $(this).find('.js-lightbox-img-wrap').css({
+
+              'opacity': 1 - ((distance/2)/100),
+              'left': distance/2 + '%'
+
+            });
+
+          }
+
+          if (phase=="end") {
+
+            prevImg();
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+
+          }
+
+          if (phase=="cancel") {
+
+            $(this).find('.js-lightbox-img-wrap').removeAttr('style');
+
+          }
+
         }
 
-        if (phase=='cancel') { // if loser I mean user fails swipe
-          $(this).removeAttr('style') // reset style attribute
-          .css({
-            'display':'flex' // set css display back to default
-          });
+        if (direction=='down') { // user swipes down
+
+          if (phase=='move') { // while swipe is in motion
+            $(this)
+              .css({
+                'opacity': 1 - ((distance/2)/100), // fade as user swipes
+                'top': distance/2 + '%' // slide downward with swipe
+              });
+          }
+
+          if (phase=='end') { // if user completes swipe requirements
+            closeLightbox(); // close lightbox
+          }
+
+          if (phase=='cancel') { // if loser I mean user fails swipe
+            $(this).removeAttr('style') // reset style attribute
+            .css({
+              'display':'flex' // set css display back to default
+            });
+          }
+
         }
+      },
+      triggerOnTouchEnd: false,
+      triggerOnTouchLeave: false,
+      fingers: 1,
+      threshold: 200,
+      cancelThreshold: 42
+    });
 
-      }
-    },
-    triggerOnTouchEnd: false,
-    triggerOnTouchLeave: false,
-    fingers: 1,
-    threshold: 200,
-    cancelThreshold: 42
-  });
+    $('.js-lightbox-info').swipe({ // user swipes on info
 
-  $('.js-lightbox-info').swipe({ // user swipes on info
+      swipeUp:function() { // user swipes up
+        toggleInfo(); // slide info up
+      },
+      threshold:68 // min swipe length of 68px
+    });
 
-    swipeUp:function() { // user swipes up
-      toggleInfo(); // slide info up
-    },
-    threshold:68 // min swipe length of 68px
-  });
+  }
 
 })();
 
