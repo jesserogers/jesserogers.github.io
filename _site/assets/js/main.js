@@ -1,7 +1,7 @@
 function isTouch() { // check to see if touch device before DOM ready
 
   try {
-    document.creatEvent("TouchEvent");
+    document.createEvent("TouchEvent");
     return true;
   }
   catch(e) {
