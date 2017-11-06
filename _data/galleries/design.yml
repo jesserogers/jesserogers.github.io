@@ -18,6 +18,11 @@
   title: 'Boku no Kazoku: Shio'
   desc: A human personification of our cat, Shio, who is the devil incarnate, but undeniably lovable.
 
+- original: '/assets/img/design/cloud-software-deployment-illustration.jpg'
+  thumb: '/assets/img/design/cloud-software-deployment-illustration--thumb.jpg'
+  title: 'Cloud Deployment Survey Illustration'
+  desc: Editorial illustration for a company blog post
+
 - original: '/assets/img/design/industry-giant-illustration.jpg'
   thumb: '/assets/img/design/industry-giant-illustration--thumb.jpg'
   title: 'Industry Giant'
@@ -32,6 +37,11 @@
   thumb: '/assets/img/design/back-to-the-future-spot-illustration--thumb.png'
   title: 'DeLorean Illustration'
   desc: Editorial illustration for a company blog post featuring a sweet DeLorean
+
+- original: '/assets/img/design/minneapolis-skyline-illustration.jpg'
+  thumb: '/assets/img/design/minneapolis-skyline-illustration--thumb.jpg'
+  title: 'Minneapolis Illustration'
+  desc: Illustration of Minneapolis skyline for user group event
 
 - original: '/assets/img/design/davinci-russell-brown-illustration.png'
   thumb: '/assets/img/design/davinci-russell-brown-illustration--thumb.png'
@@ -71,7 +81,7 @@
 - original: '/assets/img/design/bmo-illustration.png'
   thumb: '/assets/img/design/bmo-illustration--thumb.png'
   title: 'BMO'
-  desc: Illustration of BMO from Adventure Time (Oh my glob!)
+  desc: Illustration of BMO from Adventure Time
 
 - original: '/assets/img/design/mordecai-regular-show-illustration.png'
   thumb: '/assets/img/design/mordecai-regular-show-illustration--thumb.png'
@@ -82,3 +92,8 @@
   thumb: '/assets/img/design/whiskey-illustration--thumb.png'
   title: 'On the Rocks'
   desc: Actually, I usually drink my whiskey neat, but for artistic purposes, I threw an ice cube up in there.
+
+- original: '/assets/img/design/marching-snare-illustration.png'
+  thumb: '/assets/img/design/marching-snare-illustration--thumb.png'
+  title: 'Marching Snare Illustration'
+  desc: Illustrated this for a social image for Adaptiva. I marched in high school and still play, so this was a fun one.
