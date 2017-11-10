@@ -19,7 +19,7 @@
   </head>
   <body>
     <nav class="main-nav">
-      <a class="logo" href="/">
+      <a class="logo" href="{{site.baseurl}}">
         {% include svg/jesse-rogers.svg %}
       </a>
       <div class="js-nav-trigger">
@@ -28,38 +28,30 @@
       </div>
       <ul class="nav-items">
         <li class="nav-item">
-          <a href="{{"/projects" | relative_url}}"{% if page.url == '/projects/' %} class="is-current"{% endif %} title="Projects">Projects</a>
+          <a href="{{"/projects/" | relative_url}}"{% if page.url == '/projects/' %} class="is-current"{% endif %} title="Projects">Projects</a>
         </li>
         <li class="nav-item has-subnav">
-          <a href="#0">Quick Portfolios</a>
+          <a href="javascript:void(0);">Quick Portfolios</a>
           <ul class="subnav" style="display: none;">
             <li class="subnav-item">
-              <a href="{{"/photography" | relative_url}}" title="Photography">Photography</a>
+              <a href="{{"/photography/" | relative_url}}" title="Photography">Photography</a>
             </li>
             <li class="subnav-item">
-              <a href="{{"/design" | relative_url}}" title="Photography">Design</a>
+              <a href="{{"/design/" | relative_url}}" title="Photography">Design</a>
             </li>
             <li class="subnav-item">
-              <a href="{{"/motion" | relative_url }}" title="Photography">Motion</a>
+              <a href="{{"/motion/" | relative_url }}" title="Photography">Motion</a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          {% if page.url == '/journal/' %}
-          <a href="{{"/journal" | relative_url}}" class="is-current" title="Journal">Journal</a>
-          {% else %}
-          <a href="{{"/journal" | relative_url}}" title="Journal">Journal</a>
-          {% endif %}
+          <a href="{{"/journal/" | relative_url}}"{% if page.url == '/journal/' %} class="is-current"{% endif %} title="Journal">Journal</a>
         </li>
         <li class="nav-item">
-          {% if page.url == '/about/' %}
-          <a href="{{"/about" | relative_url}}" class="is-current" title="About me">About</a>
-          {% else %}
-          <a href="{{site.url}}/about" title="About me">About</a>
-          {% endif %}
+          <a href="{{"/about/" | relative_url}}"{% if page.url == '/about/' %} class="is-current"{% endif %} title="About me">About</a>
         </li>
         <li class="nav-item">
-          <a href="{{"/contact" | relative_url}}"{% if page.url == '/contact/' %} class="is-current"{% endif %} title="Contact">Contact</a>
+          <a href="{{"/contact/" | relative_url}}"{% if page.url == '/contact/' %} class="is-current"{% endif %} title="Contact">Contact</a>
         </li>
       </ul>
     </nav>
