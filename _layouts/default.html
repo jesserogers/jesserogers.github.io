@@ -9,9 +9,7 @@
     {% if page.meta %}
     <meta name="description" content="{{page.meta}}">
     {% endif %}
-    {% if page.author %}
-    <meta name="author" content="{{page.author}}">
-    {% endif %}
+    <meta name="author" content="Jesse Rogers">
     <title>{% if page.title %}{{page.title}} / {% endif %}Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
@@ -19,7 +17,7 @@
   </head>
   <body>
     <nav class="main-nav">
-      <a class="logo" href="{{site.baseurl}}">
+      <a class="logo" href="{{"/" | relative_url}}">
         {% include svg/jesse-rogers.svg %}
       </a>
       <div class="js-nav-trigger">
@@ -59,12 +57,14 @@
     <footer class="footer">
       <div class="content">
         <div class="j-col j-col-6 copyright">
-          All content ©<script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script> Jesse Rogers. All rights reserved.
+            All content ©<script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script> Jesse Rogers. All rights reserved.<br>
+            <span style="color:#999;">This website lovingly designed and developed by hand by yours truly.</span>
         </div>
         <div class="j-col j-col-6 social">
-          <a class="social-icon" href="http://twitter.com/jesserogers" target="_blank">Twitter</a>
-          <a class="social-icon" href="http://instagram.com/jssrgrs" target="_blank">Instagram</a>
-          <a class="social-icon" href="http://dribbble.com/jesserogers" target="_blank">Dribbble</a>
+          <a class="social-icon" href="https://twitter.com/jesserogers" target="_blank" rel="noopener">Twitter</a>
+          <a class="social-icon" href="https://instagram.com/jssrgrs" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-icon" href="https://dribbble.com/jesserogers" target="_blank" rel="noopener">Dribbble</a>
+          <a class="social-icon" href="https://youtube.com/JesseRogersTV" target="_blank" rel="noopener">YouTube</a>
         </div>
       </div>
     </footer>

@@ -31,7 +31,7 @@ meta: Jesse Rogers is a creative professional in Seattle, WA. Jesse specializes 
   <div class="content overflow">
     {% for project in site.data.projects %}
     <article class="project">
-      <a href="{{site.baseurl}}/projects/{{project.slug}}" class="vertical-center-row" title="{{project.title}}">
+      <a {% if project.ext %}href="{{project.ext}}" target="_blank" rel="noopener"{% else %}href="{{site.baseurl}}/projects/{{project.slug}}" {% endif %}class="vertical-center-row" title="{{project.title}}">
         <div class="project-img j-col j-col-7 wrap">
           <img src="{{site.baseurl}}/assets/img/projects/{{project.img}}" alt="{{project.title}}">
         </div>

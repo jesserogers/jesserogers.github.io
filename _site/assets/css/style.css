@@ -220,7 +220,8 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .arrow { transition: 300ms ease; }
 .arrow.black .lil-arrow { fill: #111; }
 
-.gallery { clear: both; margin: 1.618em 0; overflow: hidden; }
+.gallery { clear: both; margin: 1.618em 0; overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; }
+@media screen and (max-width: 767px) { .gallery { display: block; } }
 
 .gallery-img { padding: 10px; overflow: hidden; -webkit-transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; transition: background-color 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99), opacity 500ms linear; cursor: pointer; opacity: 0; }
 .gallery-img:nth-child(-n+6) { opacity: 1; }
@@ -233,7 +234,7 @@ footer.footer { background: #111; padding: 6.854rem 0; color: #fff; }
 .js-lightbox { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; position: fixed; top: 0; left: 0; z-index: 600; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.9); padding-left: 0; -webkit-transition: padding-left 500ms ease; transition: padding-left 500ms ease; }
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { .js-lightbox { -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-flow: column-reverse; flex-flow: column-reverse; } }
 
-.js-lightbox-img-wrap { overflow: visible; transition: 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99); position: relative; }
+.js-lightbox-img-wrap { overflow: visible; transition: padding 300ms cubic-bezier(0.13, 0.78, 0.3, 0.99); position: relative; }
 .js-lightbox-img-wrap img { display: block; max-width: 88vw; max-height: 88vh; height: auto; opacity: 1; -webkit-transition: opacity 1000ms linear 100ms; transition: opacity 1000ms linear 100ms; -webkit-box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.5); box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.5); }
 .js-lightbox-img-wrap iframe { opacity: 1; -webkit-transition: opacity 1000ms linear 100ms; transition: opacity 1000ms linear 100ms; -webkit-box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.5); box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.5); }
 .js-lightbox-img-wrap img[data-src], .js-lightbox-img-wrap iframe[data-src] { opacity: 0; }
