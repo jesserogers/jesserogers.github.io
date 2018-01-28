@@ -1,3 +1,9 @@
+- title: Adaptiva Support Upload Interface
+  category: 'UI / UX, Development'
+  text: Created a front end, drag/drop interface for customer uploads
+  slug: 'adaptiva-support-file-upload'
+  img: 'adaptiva-support--thumb.png'
+
 - title: Adaptiva Website Redesign
   category: 'UI / UX, Development'
   text: Redesigned Adaptiva's marketing and rebuilt it from scratch.
