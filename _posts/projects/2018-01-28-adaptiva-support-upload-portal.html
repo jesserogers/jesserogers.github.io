@@ -38,7 +38,7 @@ permalink: /projects/adaptiva-support-file-upload
   <div class="callout-content">
     <img src="/assets/img/projects/adaptiva-support-dragover.png" alt="The form reacts visually to the user dragging files over it" style="display: block; margin: 0 0 1.618em; width: 100%; border: 2px solid #eee;">
   </div>
-  <p style="color:#ccc">The UI reacts to a file section and shows the file name and associated actions on selection.</p>
+  <p style="color:#ccc">The draggable file area makes a smooth animation to encourage the user to drop.</p>
 </div>
 <p>First, the JavaScript file checks to see if the user's browser even supports drag/drop. If so, it displays the icon and the drag/drop text prompt. Otherwise, it only shows the "choose file" button.</p>
 <p>The form reacts with slick visual cues when the user drags over. On drop/selection, a new UI element slides below the form, displaying the file name they selected and giving the user the option to submit or cancel (clear file).</p>
@@ -46,7 +46,7 @@ permalink: /projects/adaptiva-support-file-upload
   <div class="callout-content">
     <img src="/assets/img/projects/adaptiva-support-file-name.png" alt="After selecting a file, the UI slides out a section with the file name and associated actions" style="display: block; margin: 0 0 1.618em; width: 100%; border: 2px solid #eee;">
   </div>
-  <p style="color:#ccc">The UI reacts to a file section and shows the file name and associated actions on selection.</p>
+  <p style="color:#ccc">The UI reacts to a file selection and shows the file name and associated actions on selection.</p>
 </div>
 <p>When the user selects or drops a file, it checks for illegal characters (no spaces or special characters allowed). If the file name string contains any of these characters, it replaces them with a "_" and alerts the user that their filename had been altered.</p>
 <p>The script will also shorten files with a name length of more than a certain amount. It cuts off the filename after so many characters, then appends "_tldr", then the file extension at the very end.</p>
