@@ -6,6 +6,7 @@ category: journal
 posted: October 31 2017
 image: 2017-10-31-michael-jackson-thriller.png
 image2x: 2017-10-31-michael-jackson-thriller@2x.png
+feature_image: 2017-10-31-michael-jackson-thriller@2x.png
 tag: animation
 author: Jesse Rogers
 ---
