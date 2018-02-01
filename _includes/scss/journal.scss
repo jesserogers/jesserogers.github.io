@@ -131,7 +131,7 @@ pre.highlight {
   background: $charcoal;
   margin: $spacing-large 0;
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: $spacing-small;
   white-space: pre-wrap;
   code {

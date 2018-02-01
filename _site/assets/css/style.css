@@ -421,7 +421,7 @@ section.pagination .content span, section.post-nav .content span { color: rgba(1
 
 code { background: #eee; padding: 4px; font-family: 'Consolas', monospace !important; }
 
-pre.highlight { background: #333; margin: 2.618rem 0; overflow-y: hidden; overflow-x: scroll; padding: 1rem; white-space: pre-wrap; }
+pre.highlight { background: #333; margin: 2.618rem 0; overflow-y: hidden; overflow-x: auto; padding: 1rem; white-space: pre-wrap; }
 pre.highlight code { background: transparent; }
 pre.highlight * { font-family: 'Consolas', monospace !important; }
 
