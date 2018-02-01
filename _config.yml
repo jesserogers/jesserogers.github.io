@@ -4,5 +4,6 @@ exclude: ['README.md']
 permalink: pretty
 paginate: 6
 paginate_path: "/journal/:num/"
+highlighter: rouge
 sass:
     sass_dir: ./assets/css

@@ -1,3 +1,9 @@
+- title: Adaptiva Academy Search Feature
+  category: 'Development, UI/UX'
+  text: Designed and developed a custom coded JavaScript search feature for Adaptiva
+  slug: 'adaptiva-academy-search'
+  img: 'adaptiva-academy-search--thumb.png'
+
 - title: Adaptiva Support Upload Interface
   category: 'UI / UX, Development'
   text: Created a front end, drag/drop interface for customer uploads
@@ -6,7 +12,7 @@
 
 - title: Adaptiva Website Redesign
   category: 'UI / UX, Development'
-  text: Redesigned Adaptiva's marketing and rebuilt it from scratch.
+  text: Redesigned Adaptiva's marketing website and rebuilt it from scratch
   ext: 'https://design.adaptiva.com/blog/2017/11/07/new-adaptiva-website/'
   img: 'adaptiva-website-redesign.png'
 
@@ -18,7 +24,7 @@
 
 - title: Adaptiva Design Lab
   category: 'UI / UX, Development'
-  text: I designed and coded a website and blog for my design team at Adaptiva, the Design Lab.
+  text: Designed and developed a website and blog for my design team at Adaptiva, the Design Lab
   slug: 'adaptiva-design-lab'
   img: 'adaptiva-design-lab--thumb.png'
 
