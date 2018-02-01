@@ -121,7 +121,7 @@ section.post-nav {
   width: 1rem;
 }
 
-ode {
+code {
   background: #eee;
   padding: 4px;
   font-family: 'Consolas', monospace !important;
@@ -129,8 +129,10 @@ ode {
 
 pre.highlight {
   background: $charcoal;
-  padding: $spacing-small;
   margin: $spacing-large 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: $spacing-small;
   white-space: pre-wrap;
   code {
     background: transparent;

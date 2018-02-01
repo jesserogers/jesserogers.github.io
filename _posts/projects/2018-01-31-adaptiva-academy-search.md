@@ -40,7 +40,7 @@ search.submit(function(e){
 
   var results = [],
       scope = $('.asset.is-showing'),
-      query = $('#academySearch').val().toLowerCase();
+      query = searchBar.val().toLowerCase();
 
 });
 ```

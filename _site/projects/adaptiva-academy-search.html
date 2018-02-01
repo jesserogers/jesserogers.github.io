@@ -104,7 +104,7 @@
 
   <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[],</span>
       <span class="nx">scope</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">),</span>
-      <span class="nx">query</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#academySearch'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">();</span>
+      <span class="nx">query</span> <span class="o">=</span> <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">();</span>
 
 <span class="p">});</span>
 </code></pre>
@@ -414,7 +414,7 @@
         <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
         <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[]</span>
           <span class="p">,</span> <span class="nx">scope</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">)</span>
-          <span class="p">,</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#academySearch'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">()</span>
+          <span class="p">,</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">searchBar</span><span class="nx">.val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">()</span>
           <span class="p">,</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
           <span class="p">,</span> <span class="nx">tags</span> <span class="o">=</span> <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'span.search-tags-tag'</span><span class="p">);</span>
         <span class="nx">$asset</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">);</span>
