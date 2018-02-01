@@ -448,11 +448,7 @@ jQuery(document).ready(function($) {
 
     e.preventDefault();
     var expandable = $(this).parent();
-    if (expandable.hasClass('is-expanded')) {
-      expandable.removeClass('is-expanded').css('max-height', '420'); //lmao
-    } else {
-      expandable.addClass('is-expanded');
-    }
+    expandable.toggleClass('is-expanded');
 
     $(this).text(function(i, text){
       return text === "Expand" ? "Collapse" : "Expand";

@@ -144,7 +144,7 @@ pre.highlight {
 
 .expandable-section {
   margin: $spacing-large 0;
-  max-height: 420px; //lmao
+  height: 420px; //lmao
   overflow: hidden;
   position: relative;
   pre {
@@ -161,7 +161,7 @@ pre.highlight {
     width: 100%;
   }
   &.is-expanded {
-    max-height: 420000px;
+    height: auto;
     pre {
       padding-bottom: $spacing-larger;
     }
