@@ -188,11 +188,11 @@ The idea was that every time a user entered a search, their query would show up,
 It started out well enough. I created a new variable called `tagContainer` to append the `tags`, which were `span` elements. I didn't want the DOM freaking out if the user clicked the most recent tag, so I gave it a differentiating class `is-active`.
 ```javascript
 if (tagContainer.text().length == 0) {
-  tagContainer.append('<span class=\"search-tags-tag is-active\">' + query + '</span>');
+  tagContainer.append('<span class="search-tags-tag is-active">' + query + '</span>');
 } else {
   $('.search-tags-tag').removeClass('is-active');
   // add subsequent tag
-  tagContainer.append('<span class=\"search-tags-tag is-active is-sub\">' + query + '</span>');
+  tagContainer.append('<span class="search-tags-tag is-active is-sub">' + query + '</span>');
 }
 ```
 Now, the click functionality.
