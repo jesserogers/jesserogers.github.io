@@ -136,7 +136,7 @@ Next up, `.sort()` the results by score. I created a variable `container` set to
 ```javascript
 container.find('.asset.is-match').sort(function(a, b) {
   return ($(b).data('score')) > ($(a).data('score')) ? 1 : -1;
-});
+}).appendTo(container);
 ```
 I knew that rearranging objects would create a need to put them back in order, so I created a loop immediately upon document ready to add another DOM attribute called `data-original-index` to retain the original order.
 ```javascript
@@ -150,7 +150,7 @@ I knew that would be coming up a lot, so I put the code to reorder assets based 
 var resetAcademy = function() {
   container.find('.asset.is-showing').sort(function(a, b) {
     return ($(b).data('original-index')) < ($(a).data('original-index')) ? 1 : -1;
-  });
+  }).appendTo(container);
 }
 ```
 よっしゃ! It worked. Results showed up in order of score, and word order in the query affected result order, and I had a function to put them back in their original order whenever I needed to.
@@ -282,7 +282,7 @@ The last thing I had to do was make a couple alterations to the `.change()` func
 ```javascript
 dropdown.change(function() {
   //...
-  resetAcademy(null, hide = true);
+  resetAcademy(sort = true, null, hide = true);
   $('.search-info').hide();
   tagContainer.empty();
   searchBar.val('');

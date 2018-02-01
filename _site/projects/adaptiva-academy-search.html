@@ -200,7 +200,7 @@
 <p>Next up, <code class="highlighter-rouge">.sort()</code> the results by score. I created a variable <code class="highlighter-rouge">container</code> set to the HTML element that contained the grid of assets and sorted it based on the <code class="highlighter-rouge">data-score</code> attribute.</p>
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="p">});</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>I knew that rearranging objects would create a need to put them back in order, so I created a loop immediately upon document ready to add another DOM attribute called <code class="highlighter-rouge">data-original-index</code> to retain the original order.</p>
@@ -214,7 +214,7 @@
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="p">});</span>
+  <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -346,7 +346,7 @@
 <p>The last thing I had to do was make a couple alterations to the <code class="highlighter-rouge">.change()</code> function on the dropdown. I wanted the dropdown to take precedence over the search bar, so whenever the user selected a new category, I ran <code class="highlighter-rouge">resetAcademy()</code>, hid the search area, emptied out the search tags, reset the search bar, and ran <code class="highlighter-rouge">showScope()</code> to set the placeholder text.</p>
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">dropdown</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//...</span>
-  <span class="nx">resetAcademy</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">sort</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
   <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
   <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
