@@ -295,6 +295,10 @@ The `.is-active` tags have `pointer-events: none;` so they don't show the same c
 
 It's beautiful. * kisses fingertips *
 
+Here's the full script with all the optimizations, variables, etc.
+
+{% include html/academy-search.html %}
+
 ## Epilogue
 
 When I rolled this out, everyone I told about it was surprisingly psyched about it. I mean, as a computer nerd who wrote all this code, it's pretty exciting because it was a challenge, but I mean it's a search form for a bunch of tiles, not the next Google.

@@ -419,6 +419,21 @@ section.pagination .content span, section.post-nav .content span { color: rgba(1
 
 .post-nav-arrow { display: inline-block; vertical-align: middle; width: 1rem; }
 
+ode { background: #eee; padding: 4px; font-family: 'Consolas', monospace !important; }
+
+pre.highlight { background: #333; padding: 1rem; margin: 2.618rem 0; white-space: pre-wrap; }
+pre.highlight code { background: transparent; }
+pre.highlight * { font-family: 'Consolas', monospace !important; }
+
+.expandable-section { margin: 2.618rem 0; max-height: 420px; overflow: hidden; position: relative; transition: max-height 600ms cubic-bezier(0.13, 0.78, 0.3, 0.99); }
+.expandable-section pre { margin: 0; }
+.expandable-section::before { background: linear-gradient(to bottom, rgba(51, 51, 51, 0) 0%, #333333 100%); bottom: 0; content: ''; display: block; height: 6.854rem; left: 0; position: absolute; width: 100%; }
+.expandable-section.is-expanded { max-height: 420000px; }
+.expandable-section.is-expanded pre { padding-bottom: 4.283rem; }
+.expandable-section.is-expanded::before { display: none; }
+
+.expandable-section-trigger { background: #fff; bottom: 1rem; cursor: pointer; color: #333; display: inline-block; font-size: 0.618rem; left: 50%; padding: 0.618rem 1rem; position: absolute; transform: translateX(-50%); }
+
 section.post-title { padding: 4.283rem 1rem 0; background-color: #fff; }
 section.post-title .content { max-width: 800px; }
 section.post-title h1 { font-size: 2.618rem; margin: 0 0 1rem; }
@@ -626,9 +641,3 @@ section.error .error-image { -ms-flex-item-align: end; align-self: flex-end; }
 section.error .error-image img { display: block; max-width: 100%; margin-left: 5%; }
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { section.error { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-flow: column; flex-flow: column; min-height: calc(100vh - 68px); height: auto; }
   section.error .error-message { text-align: center; margin: 0; } }
-
-code { background: #eee; padding: 4px; font-family: 'Consolas', monospace !important; }
-
-pre.highlight { background: #333; padding: 1rem; margin: 2.618rem 0; white-space: pre-wrap; }
-pre.highlight code { background: transparent; }
-pre.highlight * { font-family: 'Consolas', monospace !important; }

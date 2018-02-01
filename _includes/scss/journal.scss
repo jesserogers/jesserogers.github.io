@@ -120,3 +120,65 @@ section.post-nav {
   vertical-align: middle;
   width: 1rem;
 }
+
+ode {
+  background: #eee;
+  padding: 4px;
+  font-family: 'Consolas', monospace !important;
+}
+
+pre.highlight {
+  background: $charcoal;
+  padding: $spacing-small;
+  margin: $spacing-large 0;
+  white-space: pre-wrap;
+  code {
+    background: transparent;
+  }
+  * {
+    font-family: 'Consolas', monospace !important;
+  }
+}
+
+.expandable-section {
+  margin: $spacing-large 0;
+  max-height: 420px; //lmao
+  overflow: hidden;
+  position: relative;
+  transition: max-height 600ms $transition-ease-in;
+  pre {
+    margin: 0;
+  }
+  &::before {
+    background: linear-gradient(to bottom, rgba($charcoal, 0) 0%, rgba($charcoal, 1) 100%);
+    bottom: 0;
+    content: '';
+    display: block;
+    height: $spacing-largest;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+  &.is-expanded {
+    max-height: 420000px;
+    pre {
+      padding-bottom: $spacing-larger;
+    }
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.expandable-section-trigger {
+  background: $white;
+  bottom: $spacing-small;
+  cursor: pointer;
+  color: $charcoal;
+  display: inline-block;
+  font-size: $type-small;
+  left: 50%;
+  padding: $spacing-smallest $spacing-small;
+  position: absolute;
+  transform: translateX(-50%);
+}

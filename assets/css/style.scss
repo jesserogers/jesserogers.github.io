@@ -142,22 +142,3 @@ section.error {
     }
   }
 }
-
-code {
-  background: #eee;
-  padding: 4px;
-  font-family: 'Consolas', monospace !important;
-}
-
-pre.highlight {
-  background: $charcoal;
-  padding: $spacing-small;
-  margin: $spacing-large 0;
-  white-space: pre-wrap;
-  code {
-    background: transparent;
-  }
-  * {
-    font-family: 'Consolas', monospace !important;
-  }
-}
