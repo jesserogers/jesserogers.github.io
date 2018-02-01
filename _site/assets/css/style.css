@@ -175,7 +175,7 @@ nav.main-nav .logo:hover { background: #fceb5e; }
 nav.main-nav .logo:hover .jesse-rogers-1 { fill: rgba(17, 17, 17, 0.5); }
 nav.main-nav .logo:hover .jesse-rogers-2 { fill: #111; }
 nav.main-nav ul.nav-items { list-style-type: none; padding: 0; margin: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
-@media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { nav.main-nav ul.nav-items { position: fixed; display: block; overflow-y: auto; width: 200px; height: 100vh; top: 0; right: -200px; padding-top: 68px; -webkit-transition: right 600ms cubic-bezier(0.13, 0.78, 0.3, 0.99); transition: right 600ms cubic-bezier(0.13, 0.78, 0.3, 0.99); background: #111; z-index: 300; }
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (max-width: 767px) { nav.main-nav ul.nav-items { position: fixed; display: block; overflow-y: auto; overflow-x: hidden; width: 200px; height: 100vh; top: 0; right: -200px; padding-top: 68px; -webkit-transition: right 600ms cubic-bezier(0.13, 0.78, 0.3, 0.99); transition: right 600ms cubic-bezier(0.13, 0.78, 0.3, 0.99); background: #111; z-index: 300; }
   nav.main-nav ul.nav-items.is-visible { right: 0; -webkit-box-shadow: -4px 0 0 0 rgba(17, 17, 17, 0.1); box-shadow: -4px 0 0 0 rgba(17, 17, 17, 0.1); } }
 nav.main-nav.is-scrolled { -webkit-box-shadow: 0 4px 0 0 rgba(17, 17, 17, 0.1); box-shadow: 0 4px 0 0 rgba(17, 17, 17, 0.1); }
 
