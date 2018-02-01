@@ -147,7 +147,6 @@ pre.highlight {
   max-height: 420px; //lmao
   overflow: hidden;
   position: relative;
-  transition: max-height 600ms $transition-ease-in;
   pre {
     margin: 0;
   }
@@ -183,4 +182,9 @@ pre.highlight {
   padding: $spacing-smallest $spacing-small;
   position: absolute;
   transform: translateX(-50%);
+  transition: 300ms $transition-ease-in;
+  &:hover {
+    background: $black;
+    color: $yellow;
+  }
 }
