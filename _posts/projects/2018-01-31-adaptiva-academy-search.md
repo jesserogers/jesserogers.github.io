@@ -136,7 +136,7 @@ Next up, `.sort()` the results by score. I created a variable `container` set to
 ```javascript
 container.find('.asset.is-match').sort(function(a, b) {
   return ($(b).data('score')) > ($(a).data('score')) ? 1 : -1;
-}).appendTo(container);
+});
 ```
 I knew that rearranging objects would create a need to put them back in order, so I created a loop immediately upon document ready to add another DOM attribute called `data-original-index` to retain the original order.
 ```javascript
