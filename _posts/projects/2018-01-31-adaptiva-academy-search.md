@@ -12,9 +12,9 @@ tag: development
 ---
 One thing that encourages me in my journey as a designer and builder of interfaces and digital experiences is seeing noticeable growth in my abilities over time. Even better when it's a relatively short period of time.
 
-Someone at Adaptiva recently asked me about the possibility of adding a search feature to the <a href="https://adaptiva.com/academy/" target="_blank" rel="noopener" title="Adaptiva Academy">Adaptiva Academy</a>. It had come up before, but the last time was when we were defining requirements for the page, and I had to say, "Honestly, I don't know how to do that."
+Someone at Adaptiva recently asked me about the possibility of adding a search feature to the <a href="https://adaptiva.com/academy/" target="\_blank" rel="noopener" title="Adaptiva Academy">Adaptiva Academy</a>. It had come up before, but the last time was when we were defining requirements for the page, and I had to say, "Honestly, I don't know how to do that."
 
-The cool part is that was six months ago, and this time around, my answer was a _lot_ different. More like, "Oh yeah, I forgot about that. Lemme knock that out real quick."
+The cool part is that was six months ago, and this time around, my answer was a lot different. More like, "Oh yeah, I forgot about that. Lemme knock that out real quick."
 
 ## The Plan
 
@@ -159,9 +159,13 @@ var resetAcademy = function() {
 
 Scope was the big issue for me here. Inherently, the search only queried the assets that were showing on the page. This meant that if a user ran a search, then ran another search, they would be searching within a search. No _Inception_ jokes, please.
 
-This wasn't really being made clear. Also, the dropdown at the top of the page displayed assets by category, thus affecting the scope as well.
+Also, the dropdown at the top of the page hides and displays assets by category, thus affecting the scope if the dropdown's `.change()` function runs before the search.
 
-After some discussion with my Associate Art Director Adam Haney, we decided that the design should include **"breadcrumbs"** of the user's search path and **dynamic placeholder** text in the search bar to indicate scope, the **number of results** found, and a **"clear search"** button.
+This is the intended design, but none of it was being made clear to the user.
+
+After some discussion with my associate art director <a href="https://adamhaney.co" target="\_blank" rel="noopener" title="Check out Adam Haney's website">Adam Haney</a>, we decided that the design should include **"breadcrumbs"** of the user's search path and **dynamic placeholder** text in the search bar to indicate scope, the **number of results** found, and a **"clear search"** button.
+
+The intended functionality of the breadcrumbs was so every time a user entered a search, their query would show up on the front end, and they could see their path to a narrower scope from left to right. Additionally, the user should be able to click on previous breadcrumbs (or **'tags'** as Adam and I called them) to revert their search scope to a previous state.
 
 All of these elements should appear only after the user submitted a query, and should be removed whenever no searches are active.
 
@@ -182,8 +186,6 @@ $('#resultCount').text(results.length + ' results found for "' + query + '"');
 
 ### Breadcrumbs
 Okay this part was a little more intensive to implement and required a little bit of bashing my head against my keyboard to figure out.
-
-The idea was that every time a user entered a search, their query would show up, and they could see their path to a narrower scope from left to right. Additionally, the user should be able to click on previous breadcrumbs (or 'tags' as Adam and I called them) to revert their search scope to a previous state.
 
 It started out well enough. I created a new variable called `tagContainer` to append the `tags`, which were `span` elements. I didn't want the DOM freaking out if the user clicked the most recent tag, so I gave it a differentiating class `is-active`.
 ```javascript
