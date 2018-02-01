@@ -28,7 +28,7 @@ Then, I would loop through `results` and add a modifying class on each object in
 
 The one thing I knew would be tricky was the dropdown menu that was already on the page that controlled which asset categories were displayed. What if the user selects a category before searching? Or after? D:
 
-## The First Draft
+## Alpha
 It didn't take long to get some basic functionality up and running.
 
 Inside a `.submit()` function on the search form, I first created an array called `results` and a variable `query` equal to the value of the search input on submission.
@@ -101,7 +101,7 @@ If the user typed in "[product name or something] webinar", it would essentially
 
 But it was late Friday afternoon and I had to go to my wife's company's holiday party that night, so further improvements would have to wait until Monday.
 
-## The Second Draft
+## Beta
 At this point, the goal was to build a scoring system and display the results in order of highest to lowest score.
 
 A <span class="strikethrough">slightly</span> buzzed conversation with one of the engineers at the holiday party gave me ideas on how to weight the score based on word order as well.
@@ -302,6 +302,8 @@ I added `title` attributes to the `tags` that say `"Revert search scope back to.
 The `.is-active` tags have `pointer-events: none;` so they don't show the same cue.
 
 It's beautiful. * kisses fingertips *
+
+## v1.0
 
 Here's the full script with all the optimizations, variables, etc.
 
