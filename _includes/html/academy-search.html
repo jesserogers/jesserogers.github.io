@@ -1,126 +1,230 @@
-<div class="language-javascript highlighter-rouge expandable-section academy-search-code">
-  <pre class="highlight"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">$asset</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">dropdown</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'select#academy'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.academy'</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.grid-container'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">session</span> <span class="o">=</span> <span class="p">[]</span>
-      <span class="p">,</span> <span class="nx">search</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'form.academy-search'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">searchBar</span> <span class="o">=</span> <span class="nx">search</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'input'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">tagContainer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#searchTags'</span><span class="p">)</span>
-      <span class="p">,</span> <span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">show</span><span class="o">=</span><span class="kc">false</span><span class="p">,</span> <span class="nx">hide</span><span class="o">=</span><span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="p">});</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">show</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">hide</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-showing is-match'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-      <span class="p">,</span> <span class="nx">showScope</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">searchScope</span> <span class="o">=</span> <span class="nx">dropdown</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'option:selected'</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
-        <span class="nx">searchBar</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'Search '</span> <span class="o">+</span> <span class="nx">searchScope</span><span class="p">);</span>
-    <span class="p">}</span>
-      <span class="p">,</span> <span class="nx">showMatched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+<div class="language-javascript highlighter-rouge expandable-section"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// academy ready pants</span>
+  <span class="c1">// variables</span>
+  <span class="kd">var</span> <span class="nx">$asset</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">),</span>
+      <span class="nx">dropdown</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'select#academy'</span><span class="p">),</span>
+      <span class="nx">container</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.academy'</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.grid-container'</span><span class="p">),</span>
+      <span class="nx">session</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1">// store user search path</span>
+      <span class="nx">search</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'form.academy-search'</span><span class="p">),</span>
+      <span class="nx">searchBar</span> <span class="o">=</span> <span class="nx">search</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'input'</span><span class="p">),</span>
+      <span class="nx">tagContainer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#searchTags'</span><span class="p">),</span>
+      <span class="c1">// function expressions</span>
+      <span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// reorder by og index and allow DOM resets too</span>
+        <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// sort by original index</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+      <span class="p">});</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">show</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">hide</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-showing is-match'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+      <span class="p">}</span>
+
+    <span class="p">},</span>
+    <span class="nx">showScope</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="kd">var</span> <span class="nx">searchScope</span> <span class="o">=</span> <span class="nx">dropdown</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'option:selected'</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+      <span class="nx">searchBar</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'Search '</span> <span class="o">+</span> <span class="nx">searchScope</span><span class="p">);</span>
+
+    <span class="p">},</span>
+    <span class="nx">showMatched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+
     <span class="p">};</span>
-    <span class="nx">$asset</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-original-index'</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">dropdown</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
-          <span class="p">,</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'option:selected'</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
-        <span class="nx">resetAcademy</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-        <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
-        <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.'</span> <span class="o">+</span> <span class="nx">category</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">category</span> <span class="o">==</span> <span class="s1">'all'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">$asset</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">);</span>
+
+  <span class="c1">// immediately loop through all assets</span>
+  <span class="nx">$asset</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-original-index'</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span> <span class="c1">// create data attr with original index</span>
+
+  <span class="p">});</span>
+
+  <span class="c1">// CATEGORY SELECTION</span>
+
+  <span class="nx">dropdown</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// user selects category from dropdown</span>
+
+    <span class="kd">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="c1">// store category selection</span>
+        <span class="nx">selection</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'option:selected'</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span> <span class="c1">// text value for selection</span>
+
+    <span class="c1">// if prior search reorder and hide search stuff</span>
+    <span class="nx">resetAcademy</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+    <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+
+    <span class="c1">// find assets in selected category and show</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.'</span> <span class="o">+</span> <span class="nx">category</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">category</span> <span class="o">==</span> <span class="s1">'all'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if user selects all resources</span>
+
+      <span class="nx">$asset</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">);</span> <span class="c1">// show all</span>
+
+    <span class="p">}</span>
+
+    <span class="c1">// specify scope in searchbar</span>
+    <span class="nx">showScope</span><span class="p">();</span>
+
+  <span class="p">});</span>
+
+  <span class="c1">// TILE SIZING</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">resize</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">$assetTitle</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing .asset-title'</span><span class="p">),</span>
+        <span class="nx">assetWidth</span> <span class="o">=</span> <span class="nx">$assetTitle</span><span class="p">.</span><span class="nx">width</span><span class="p">();</span>
+
+    <span class="nx">$assetTitle</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'height'</span><span class="p">,</span> <span class="nx">assetWidth</span> <span class="o">+</span> <span class="mi">32</span><span class="p">);</span> <span class="c1">// keep tiles square at all times</span>
+
+  <span class="p">}).</span><span class="nx">resize</span><span class="p">();</span>
+
+  <span class="c1">// ACADEMY SEARCH</span>
+
+  <span class="nx">search</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// user submits query :O</span>
+
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">// stop page from reloading</span>
+
+    <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1">// results go here obvs</span>
+        <span class="nx">scope</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">),</span> <span class="c1">// set scope to only assets currently on page</span>
+        <span class="nx">query</span> <span class="o">=</span> <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">(),</span> <span class="c1">// user query (case insensitive)</span>
+        <span class="nx">q</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">),</span> <span class="c1">// split query up by word and add to array</span>
+        <span class="nx">tags</span> <span class="o">=</span> <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'span.search-tags-tag'</span><span class="p">);</span>
+
+    <span class="nx">$asset</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">);</span> <span class="c1">// reset search scores</span>
+
+    <span class="nx">scope</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// loop through all assets on page</span>
+
+      <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">(),</span> <span class="c1">// title of current asset</span>
+          <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// no matches by default</span>
+          <span class="nx">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// score for result ordering</span>
+          <span class="nx">bonus</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// bonus score based on number of available results</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// loop through query word array</span>
+
+        <span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="s1">'g'</span><span class="p">);</span> <span class="c1">// match each word in query</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// if current word in query matches anything in title</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Matched word "'</span> <span class="o">+</span> <span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+          <span class="nx">match</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// we got a match!</span>
+          <span class="nx">score</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">bonus</span> <span class="o">-</span> <span class="nx">i</span><span class="p">);</span> <span class="c1">// give each match a bonus depending on word order</span>
+          <span class="nx">score</span><span class="o">++</span><span class="p">;</span> <span class="c1">// increment score for each match</span>
         <span class="p">}</span>
-        <span class="nx">showScope</span><span class="p">();</span>
+
+      <span class="p">}</span> <span class="c1">// end q loop</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="nx">score</span><span class="p">);</span> <span class="c1">// add score to DOM attribute</span>
+        <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">));</span> <span class="c1">// add current asset to results</span>
+
+      <span class="p">}</span>
+
+      <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// reset match</span>
+
+    <span class="p">});</span> <span class="c1">// end scope loop</span>
+
+    <span class="c1">// DISPLAY RESULTS</span>
+
+    <span class="nx">session</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span> <span class="c1">// add search to session</span>
+
+    <span class="c1">// log results and session history</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
+
+    <span class="nx">resetAcademy</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// reorder by original index just in case prior search reordered already</span>
+
+    <span class="c1">// loop through results</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span> <span class="c1">// add mod class for matched assets</span>
+
+    <span class="p">});</span> <span class="c1">// end loop</span>
+
+    <span class="c1">// sort container based on data-score attr</span>
+    <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span> <span class="c1">// add to container</span>
+
+    <span class="nx">showMatched</span><span class="p">();</span> <span class="c1">// show results</span>
+
+    <span class="c1">// SEARCH INFO</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// show result count and 'clear' button</span>
+
+    <span class="c1">// display number of results</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+
+    <span class="c1">// add breadcrumbs to container</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">tagContainer</span><span class="p">.</span><span class="nx">text</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if target container is empty</span>
+
+      <span class="c1">// add first tag</span>
+      <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class=\"search-tags-tag is-active\"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// other tags already exist</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-tags-tag'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
+      <span class="c1">// add subsequent tag</span>
+      <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class=\"search-tags-tag is-active is-sub\"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="c1">// add title attributes for hover cues</span>
+    <span class="nx">tags</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Revert search scope back to "'</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+
     <span class="p">});</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">resize</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">$assetTitle</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing .asset-title'</span><span class="p">)</span>
-          <span class="p">,</span> <span class="nx">assetWidth</span> <span class="o">=</span> <span class="nx">$assetTitle</span><span class="p">.</span><span class="nx">width</span><span class="p">();</span>
-        <span class="nx">$assetTitle</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'height'</span><span class="p">,</span> <span class="nx">assetWidth</span> <span class="o">+</span> <span class="mi">32</span><span class="p">);</span>
-    <span class="p">}).</span><span class="nx">resize</span><span class="p">();</span>
-    <span class="nx">search</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[]</span>
-          <span class="p">,</span> <span class="nx">scope</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">)</span>
-          <span class="p">,</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">searchBar</span><span class="nx">.val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">()</span>
-          <span class="p">,</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
-          <span class="p">,</span> <span class="nx">tags</span> <span class="o">=</span> <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'span.search-tags-tag'</span><span class="p">);</span>
-        <span class="nx">$asset</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">);</span>
-        <span class="nx">scope</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span>
-              <span class="p">,</span> <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span>
-              <span class="p">,</span> <span class="nx">score</span> <span class="o">=</span> <span class="mi">0</span>
-              <span class="p">,</span> <span class="nx">bonus</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="s1">'g'</span><span class="p">);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Matched word "'</span> <span class="o">+</span> <span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
-                    <span class="nx">match</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-                    <span class="nx">score</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">bonus</span> <span class="o">-</span> <span class="nx">i</span><span class="p">);</span>
-                    <span class="nx">score</span><span class="o">++</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="nx">score</span><span class="p">);</span>
-                <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
-            <span class="p">}</span>
-            <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="p">});</span>
-        <span class="nx">session</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
-        <span class="nx">resetAcademy</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span>
-        <span class="p">});</span>
-        <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
-        <span class="nx">showMatched</span><span class="p">();</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">tagContainer</span><span class="p">.</span><span class="nx">text</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class=\"search-tags-tag is-active\"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-tags-tag'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
-            <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class=\"search-tags-tag is-active is-sub\"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">tags</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Revert search scope back to "'</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
-        <span class="p">});</span>
-        <span class="nx">tags</span><span class="p">.</span><span class="nx">not</span><span class="p">(</span><span class="s1">'.is-active'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">tags</span><span class="p">.</span><span class="nx">index</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">))</span>
-              <span class="p">,</span> <span class="nx">queryTxt</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
-            <span class="nx">tags</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
-            <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-            <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">queryTxt</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">nextAll</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-            <span class="nx">session</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span>
-            <span class="p">});</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
-            <span class="nx">showMatched</span><span class="p">();</span>
-        <span class="p">});</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">'.js-clear-search'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">session</span> <span class="o">=</span> <span class="p">[];</span>
-            <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-            <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
-            <span class="nx">dropdown</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">'all'</span><span class="p">);</span>
-            <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
-            <span class="nx">showScope</span><span class="p">();</span>
-            <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-        <span class="p">});</span>
+
+    <span class="c1">// breadcrumb clicks</span>
+    <span class="nx">tags</span><span class="p">.</span><span class="nx">not</span><span class="p">(</span><span class="s1">'.is-active'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">tags</span><span class="p">.</span><span class="nx">index</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)),</span>
+          <span class="nx">queryTxt</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+
+      <span class="c1">// set only clicked tag to active</span>
+      <span class="nx">tags</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
+
+      <span class="c1">// reset everything</span>
+      <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+
+      <span class="c1">// display updated number of results</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">queryTxt</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">nextAll</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">// remove everything after clicked tag</span>
+      <span class="nx">session</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// revert session history</span>
+
+      <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// loop through session array at same index as tag clicked</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span> <span class="c1">// add mod classes</span>
+
+      <span class="p">});</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span> <span class="c1">// log new session history</span>
+      <span class="nx">showMatched</span><span class="p">();</span> <span class="c1">// show results for current query</span>
+
     <span class="p">});</span>
+
+    <span class="c1">// clear form button</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.js-clear-search'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// user clicks "clear search" button</span>
+
+      <span class="nx">session</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// empty search history</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span> <span class="c1">// hide search info bar</span>
+
+      <span class="c1">// reset dropdown and search bar</span>
+      <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span> <span class="c1">// remove all search tags</span>
+      <span class="nx">dropdown</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">'all'</span><span class="p">);</span>
+      <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+      <span class="nx">showScope</span><span class="p">();</span>
+      <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// reorder everything</span>
+
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+
 <span class="p">});</span>
 </code></pre>
 <a href="javascript:void(0);" class="expandable-section-trigger">Expand</a>
