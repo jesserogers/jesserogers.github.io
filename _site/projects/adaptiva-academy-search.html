@@ -171,7 +171,7 @@
 
 <p>A <span class="strikethrough">slightly</span> buzzed conversation with one of the engineers at the holiday party gave me ideas on how to weight the score based on word order as well.</p>
 
-<p>Inside the first loop, I added a couple variables, <code class="highlighter-rouge">score</code> and <code class="highlighter-rouge">bonus</code>. <code class="highlighter-rouge">bonus</code> is set to the amount of assets currently showing on the page.</p>
+<p>Inside the first loop, I added a couple variables, <code class="highlighter-rouge">score</code> and <code class="highlighter-rouge">bonus</code>. <code class="highlighter-rouge">bonus</code> is set to the amount of assets currently showing on the page. I also created a new variable in the <code class="highlighter-rouge">.submit()</code> function called <code class="highlighter-rouge">scope</code>, set to <code class="highlighter-rouge">$('.asset.is-showing')</code>.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// ...</span>
 <span class="nx">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -274,7 +274,7 @@
 </div>
 <p>Then, I wrote a click function for <code class="highlighter-rouge">tags</code> (that weren’t the last/only one) to make them actually do something.</p>
 
-<p>The variable <code class="highlighter-rouge">index</code> figures out which index the clicked tag holds in the list of <code class="highlighter-rouge">tags</code> and finds the <code class="highlighter-rouge">results</code> instance at the corresponding index of <code class="highlighter-rouge">session</code>, loops through it, and marks them all as matches again.</p>
+<p>The variable <code class="highlighter-rouge">index</code> figures out which index the clicked tag holds in the list of <code class="highlighter-rouge">tags</code>. The function then finds the <code class="highlighter-rouge">results</code> instance at the corresponding index of <code class="highlighter-rouge">session</code>, loops through it, and marks them all as matches again.</p>
 
 <p>Here I removed all the <code class="highlighter-rouge">tags</code> after the one that was clicked and clipped off the <code class="highlighter-rouge">session</code> array at the value of <code class="highlighter-rouge">index</code>. I also consolidated the code to show all matched results into a function expression called <code class="highlighter-rouge">showMatched()</code>.</p>
 
@@ -288,7 +288,7 @@
 
   <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span>
-	<span class="p">});</span>
+  <span class="p">});</span>
 
   <span class="c1">// display updated number of results</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">queryTxt</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>

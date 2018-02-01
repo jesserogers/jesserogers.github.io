@@ -106,7 +106,7 @@ At this point, the goal was to build a scoring system and display the results in
 
 A <span class="strikethrough">slightly</span> buzzed conversation with one of the engineers at the holiday party gave me ideas on how to weight the score based on word order as well.
 
-Inside the first loop, I added a couple variables, `score` and `bonus`. `bonus` is set to the amount of assets currently showing on the page.
+Inside the first loop, I added a couple variables, `score` and `bonus`. `bonus` is set to the amount of assets currently showing on the page. I also created a new variable in the `.submit()` function called `scope`, set to `$('.asset.is-showing')`.
 
 ```javascript
 // ...
@@ -209,7 +209,7 @@ search.submit(function(e) {
 ```
 Then, I wrote a click function for `tags` (that weren't the last/only one) to make them actually do something.
 
-The variable `index` figures out which index the clicked tag holds in the list of `tags` and finds the `results` instance at the corresponding index of `session`, loops through it, and marks them all as matches again.
+The variable `index` figures out which index the clicked tag holds in the list of `tags`. The function then finds the `results` instance at the corresponding index of `session`, loops through it, and marks them all as matches again.
 
 Here I removed all the `tags` after the one that was clicked and clipped off the `session` array at the value of `index`. I also consolidated the code to show all matched results into a function expression called `showMatched()`.
 
@@ -224,7 +224,7 @@ tags.not('.is-active').click(function() {
 
   $.each(session[index], function() {
     $(this).addClass('is-match');
-	});
+  });
 
   // display updated number of results
   $('#resultCount').text(session[index].length + ' results found for "' + queryTxt + '"');
