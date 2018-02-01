@@ -240,17 +240,25 @@ I did some tests by logging `session` to the console every time a new search was
 This one was pretty easy compared to the breadcrumbs. While writing this part, I ended up modifying `resetAcademy()` to handle hiding and showing all the assets.
 
 ```javascript
-resetAcademy = function(show = false, hide = false) {
-  // ...
+resetAcademy = function(sort = true, show = false, hide = false) {
+
+  if (sort) {
+    container.find('.asset').sort(function(a, b) { // sort by original index
+      return ($(b).data('original-index')) < ($(a).data('original-index')) ? 1 : -1;
+    }).appendTo(container);
+  }
+
   if (show) {
-    $('.asset').removeClass('is-match').addClass('is-showing').show();
+    $asset.removeClass('is-match').addClass('is-showing').show();
   }
+
   if (hide) {
-    $('.asset').removeClass('is-showing is-match').hide();
+    $asset.removeClass('is-showing is-match').hide();
   }
+
 }
 ```
-The function expression takes in parameters `show` and `hide`. I had noticed that every time I called `resetAcademy()`, I was finding those snippets of code in the same scope, so why not build them in dynamically?
+The function expression now takes in parameters `sort` `show` and `hide`. I had noticed that every time I called `resetAcademy()`, I was finding the same snippets of code in the same scope, so why not build them in dynamically? I made all the actions inside the function optionally accessible through the parameters, including the original `.sort()` block, allowing me to call only the functionaly needed at the time.
 
 And finally, the `click` function on the 'clear' button.
 
