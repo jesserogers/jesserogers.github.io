@@ -369,7 +369,7 @@ searchBtn.click(function(e) {
 </div>
 </div>
 
-I thought it would be cool if users could sort results by date or relevance after submitting their query, so we created some new UI elements to allow for that.
+I thought it would be cool if users could sort results by date or relevance after submitting their query, so I created some new UI elements to allow for that.
 
 <div class="callout">
 <div class="callout-content">
@@ -435,7 +435,7 @@ if (session.length > 0) {
 ```
 Ah, much better. Now users have to see the UI cue before running subsequent queries.
 
-Check out the latest version of this script on GitHub:
+Check out the full version of the latest iteration on GitHub:
 
 <a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a>
 
