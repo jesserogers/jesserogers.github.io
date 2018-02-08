@@ -365,17 +365,11 @@ searchBtn.click(function(e) {
 ```
 <div class="callout">
 <div class="callout-content">
-<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-button.gif" title="Interaction design and development for Adaptiva Academy search button">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-button.gif" alt="Interaction design and development for Adaptiva Academy search button">
 </div>
 </div>
 
 I thought it would be cool if users could sort results by date or relevance after submitting their query, so I created some new UI elements to allow for that.
-
-<div class="callout">
-<div class="callout-content">
-<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-v2.jpg" title="UI design for Adaptiva Academy search feature">
-</div>
-</div>
 
 To simplify the sorting, I added function expressions to module's global scope called `sortDate()` and `sortRel()` and replaced any instances of duplicate code with calls to these expressions.
 
@@ -438,6 +432,14 @@ Ah, much better. Now users have to see the UI cue before running subsequent quer
 Check out the full version of the latest iteration on GitHub:
 
 <a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a>
+
+And here's the updated UI:
+
+<div class="callout">
+<div class="callout-content">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-v2.jpg" alt="UI design for Adaptiva Academy search feature">
+</div>
+</div>
 
 ## Epilogue
 
