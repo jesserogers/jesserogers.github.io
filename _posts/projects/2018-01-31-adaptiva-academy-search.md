@@ -14,7 +14,7 @@ One thing that encourages me in my journey as a designer and builder of interfac
 
 Someone at Adaptiva recently asked me about the possibility of adding a search feature to the <a href="https://adaptiva.com/academy/" target="\_blank" rel="noopener" title="Adaptiva Academy">Adaptiva Academy</a>. It had come up before, but the last time was when we were defining requirements for the page, and I had to say, "Honestly, I don't know how to do that."
 
-The cool part is that was six months ago, and this time around, my answer was a lot different. More like, "Oh yeah, I forgot about that. Lemme knock that out real quick."
+The cool part is that was six months ago, and this time around, my answer was a _lot_ different. More like, "Oh yeah, I forgot about that. Lemme knock that out real quick."
 
 ## The Plan
 
@@ -307,9 +307,137 @@ It's beautiful. * kisses fingertips *
 
 ## v1.0
 
-Here's the full script with all the optimizations, variables, etc.
+Here's the full script with all the optimizations, variables, etc. I continued to ship new iterations after this, which I'll talk about below, but if you want to skip straight to the live code, that's currently available to see here:
+
+<a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a>
 
 {% include html/academy-search.html %}
+
+## v2.0
+
+After the initial launch, I continued to tweak the algorithm and make UI/UX improvements.
+
+### Algorithm Improvements
+
+First, I made adjustments to the scoring system. I realized in my original code, `score++` doesn't actually do anything to the value returned from the loop. Even if it did, adding `1` to the score wouldn't really doing much anyway, so I decided to double the score for each matched word, using the `*=` operator to actually _do_ something to `score`.
+
+I also added a line in case the user types in an exact asset name, to ensure it gets the highest score.
+```javascript
+if (title.match(reg)) {
+	//...
+	score += (bonus - i);
+	if (title === query) {
+		// if exact match, give 2x full bonus
+		score += bonus * 2;
+	}
+	// double score for each matched word
+	score *= 2;
+}
+```
+### UX Improvements
+
+The interaction design of the search form needed some work, starting with the "search" button.
+
+When v1.0 shipped, the button was a constant blue and was clickable at all times, allowing the user to submit empty queries. Empty searches essentially reset the results within the current scope, so no harm done, but they also generate empty breadcrumbs, which are _ugly_.
+
+To combat this, I wanted to make the button only clickable when the search bar had contents, and grayed out otherwise.
+
+I set the button to the modifying class `is-active`, only when the user had typed in the search bar and entered a string with a `length` greater than `0`.
+
+Next, a `click` function to prevent default behavior (in this case, form submission) when the search bar was empty.
+
+```JavaScript
+searchBar.focus(function() {
+	searchBar.on('input', function() {
+		if (searchBar.val().length > 0) {
+			searchBtn.addClass('is-active');
+		} else {
+			searchBtn.removeClass('is-active');
+		}
+	});
+});
+
+searchBtn.click(function(e) {
+	if (searchBar.val().length === 0) {
+		e.preventDefault();
+	}
+});
+```
+<div class="callout">
+<div class="callout-content">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-button.gif" title="Interaction design and development for Adaptiva Academy search button">
+</div>
+</div>
+
+I thought it would be cool if users could sort results by date or relevance after submitting their query, so we created some new UI elements to allow for that.
+
+<div class="callout">
+<div class="callout-content">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-v2.jpg" title="UI design for Adaptiva Academy search feature">
+</div>
+</div>
+
+To simplify the sorting, I added function expressions to module's global scope called `sortDate()` and `sortRel()` and replaced any instances of duplicate code with calls to these expressions.
+
+Since the page loads with everything sorted by date by default, the `data-original-index` attribute already serves as a great benchmark for chronological sorting, so I used that in `sortDate()`.
+
+`sortRel()` simply sorts results by score, or 'relevance' in user-friendly terms.
+
+```JavaScript
+sortDate = function() {
+	container.find('.asset').sort(function(a, b) {
+		return ($(b).data('original-index')) < ($(a).data('original-index')) ? 1 : -1;
+	}).appendTo(container);
+},
+sortRel = function() {
+	container.find('.asset').sort(function(a, b) {
+		return ($(b).data('score')) > ($(a).data('score')) ? 1 : -1;
+	}).appendTo(container);
+}
+```
+Both sort by buttons have unique `id` attributes and the same CSS classes which I targeted in the variable `sortBy`. I wrote a `click` function that covered both of them and figured out which function to run.
+
+```JavaScript
+sortBy.click(function(e) {
+	e.preventDefault();
+	var clicked = $(this);
+
+	if (clicked.hasClass('is-selected')) {
+		// do nothing if already selected
+		return false;
+	} else {
+		// set only clicked button to selected state
+		sortBy.removeClass('is-selected');
+		clicked.addClass('is-selected');
+		// run desired sort function
+		if (clicked.is('#sortDate')) {
+			sortDate();
+		} else if (clicked.is('#sortRel')) {
+			sortRel();
+		}
+	}
+});
+```
+Finally, after collecting some feedback from users and colleagues, it was clear that the narrowing scope was still not crystal clear to users. They were acting in "Google mode" and assuming every search would query all assets.
+
+Though it would be easy to just set the scope to everything and give everyone what they _expected_, I firmly believed a narrowed scope would be more useful, since users would be searching to find something specific in a finite list of assets.
+
+Instead of leaving the user's last query submission in the search bar, I cleared it out after every submission and specified the narrowed scope in the placeholder text.
+
+```JavaScript
+if (session.length > 0) {
+	// give generic scope message after second query
+	searchBar.val('').attr('placeholder', 'Search within previous results');
+} else {
+	// give specific scope message after first query
+	searchBar.val('').attr('placeholder', 'Search within results for "' + query + '"');
+}
+```
+Ah, much better. Now users have to see the UI cue before running subsequent queries.
+
+Check out the latest version of this script on GitHub:
+
+<a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a>
 
 ## Epilogue
 
