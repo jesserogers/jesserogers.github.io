@@ -346,7 +346,7 @@ I set the button to the modifying class `is-active`, only when the user had type
 
 Next, a `click` function to prevent default behavior (in this case, form submission) when the search bar was empty.
 
-```JavaScript
+```javascript
 searchBar.focus(function() {
 	searchBar.on('input', function() {
 		if (searchBar.val().length > 0) {
@@ -383,7 +383,7 @@ Since the page loads with everything sorted by date by default, the `data-origin
 
 `sortRel()` simply sorts results by score, or 'relevance' in user-friendly terms.
 
-```JavaScript
+```javascript
 sortDate = function() {
 	container.find('.asset').sort(function(a, b) {
 		return ($(b).data('original-index')) < ($(a).data('original-index')) ? 1 : -1;
@@ -397,7 +397,7 @@ sortRel = function() {
 ```
 Both sort by buttons have unique `id` attributes and the same CSS classes which I targeted in the variable `sortBy`. I wrote a `click` function that covered both of them and figured out which function to run.
 
-```JavaScript
+```javascript
 sortBy.click(function(e) {
 	e.preventDefault();
 	var clicked = $(this);
@@ -424,7 +424,7 @@ Though it would be easy to just set the scope to everything and give everyone wh
 
 Instead of leaving the user's last query submission in the search bar, I cleared it out after every submission and specified the narrowed scope in the placeholder text.
 
-```JavaScript
+```javascript
 if (session.length > 0) {
 	// give generic scope message after second query
 	searchBar.val('').attr('placeholder', 'Search within previous results');
