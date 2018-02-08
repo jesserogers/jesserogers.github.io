@@ -272,7 +272,6 @@ $('.js-clear-search').click(function() {
   tagContainer.empty();
   session = [];
   resetAcademy(show = true);
-
 	// reset dropdown and search bar
   dropdown.val('all');
   searchBar.val('');
