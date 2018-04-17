@@ -11,7 +11,7 @@
     <title>Adaptiva Academy Search / Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
     <link rel="icon" href="/assets/img/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css?v=15b37154f45d052cd2557ea7498d96c13d5598ed">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5f27364eaaa4ebe954e8fa077a5af9adaeb7f687">
   </head>
   <body>
     <nav class="main-nav">
@@ -98,7 +98,7 @@
 
 <p>Inside a <code class="highlighter-rouge">.submit()</code> function on the search form, I first created an array called <code class="highlighter-rouge">results</code> and a variable <code class="highlighter-rouge">query</code> equal to the value of the search input on submission.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">search</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">search</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
 
   <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
 
@@ -107,20 +107,17 @@
       <span class="nx">query</span> <span class="o">=</span> <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">();</span>
 
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Then I split up the query by word into a new array called <code class="highlighter-rouge">q</code>.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">q</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">q</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
+</code></pre></div></div>
 <p>Then, I looped through the assets on the page, and found their <code class="highlighter-rouge">title</code> attribute.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'title'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Nice. Inside that loop, I wrote a regular JavaScript loop for the <code class="highlighter-rouge">q</code> array. This loop contains a boolean variable <code class="highlighter-rouge">match</code> that determines whether the current object gets pushed to <code class="highlighter-rouge">results</code> or not.</p>
 
 <p>Also stored in the variable section is <code class="highlighter-rouge">reg</code>, a regex rule for the current word in the <code class="highlighter-rouge">for</code> loop.</p>
@@ -129,7 +126,7 @@
 
 <p>Then, if <code class="highlighter-rouge">match</code> is true, push <code class="highlighter-rouge">$(this)</code>, or the current jQuery object in the <code class="highlighter-rouge">.each()</code> loop, to the <code class="highlighter-rouge">results</code> array.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">q</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="s1">'g'</span><span class="p">),</span>
       <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
@@ -144,20 +141,18 @@
 <span class="p">}</span>
 
 <span class="nx">match</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// reset match</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>At the end, I set <code class="highlighter-rouge">match</code> back to false because otherwise it would add everything after the first <code class="highlighter-rouge">asset</code> returned true.</p>
 
 <p>Then, the easy jQuery DOM manipulation jazz. Removing mod classes and hiding everything first, then adding the mod class for objects in <code class="highlighter-rouge">results</code>, and showing only those.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-showing is-match'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$asset</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-showing is-match'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
   <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-match'</span><span class="p">);</span>
 <span class="p">});</span>
 
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-showing'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Voila. At this point, I had a working product. I could type in “webinar” and it would return everything with “webinar” in the title. And damn, it’s lightweight and … <em>nimble</em> if I do say so myself.</p>
 
 <p><em>But</em>, it still totally sucked because if the user typed in multiple words, the whole experience kinda fell apart.</p>
@@ -173,17 +168,16 @@
 
 <p>Inside the first loop, I added a couple variables, <code class="highlighter-rouge">score</code> and <code class="highlighter-rouge">bonus</code>. <code class="highlighter-rouge">bonus</code> is set to the amount of assets currently showing on the page. I also created a new variable in the <code class="highlighter-rouge">.submit()</code> function called <code class="highlighter-rouge">scope</code>, set to <code class="highlighter-rouge">$('.asset.is-showing')</code>.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// ...</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ...</span>
 <span class="nx">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 <span class="nx">bonus</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Then inside the loop through the <code class="highlighter-rouge">q</code> array, I scored the assets that met the <code class="highlighter-rouge">match</code> criteria. I subtracted the numeric value of the matched word’s index in the query from the bonus, so that word order would affect scores for multi-word entries.</p>
 
 <p>Basically, if an asset matches the first word in the query, it gets the full bonus minus <em>zero</em>, since the word is the first in the array. Words with an index of greater than zero will subsequently receive less than the full bonus. All matched assets are given a DOM attribute <code class="highlighter-rouge">data-score</code> with the value of <code class="highlighter-rouge">score</code>.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">))</span> <span class="p">{</span>
     <span class="c1">// ...</span>
     <span class="nx">score</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">bonus</span> <span class="o">-</span> <span class="nx">i</span><span class="p">);</span>
@@ -195,29 +189,25 @@
   <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-score'</span><span class="p">,</span> <span class="nx">score</span><span class="p">);</span>
   <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Next up, <code class="highlighter-rouge">.sort()</code> the results by score. I created a variable <code class="highlighter-rouge">container</code> set to the HTML element that contained the grid of assets and sorted it based on the <code class="highlighter-rouge">data-score</code> attribute.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-match'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>I knew that rearranging objects would create a need to put them back in order, so I created a loop immediately upon document ready to add another DOM attribute called <code class="highlighter-rouge">data-original-index</code> to retain the original order.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// immediately loop through all assets</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// immediately loop through all assets</span>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-original-index'</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>I knew that would be coming up a lot, so I put the code to reorder assets based on original index in a function expression.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset.is-showing'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>よっしゃ! It worked. Results showed up in order of score, and word order in the query affected result order, and I had a function to put them back in their original order whenever I needed to.</p>
 
 <h2 id="ux-time">UX time</h2>
@@ -236,44 +226,40 @@
 
 <h3 id="dynamic-placeholder-text">Dynamic placeholder text</h3>
 <p>This was pretty easy, so I did that first by creating another function expression called <code class="highlighter-rouge">showScope()</code>. This gets called in the <code class="highlighter-rouge">.change()</code> function that I already had on the dropdown.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">showScope</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">showScope</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">searchScope</span> <span class="o">=</span> <span class="nx">dropdown</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'option:selected'</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
   <span class="nx">searchBar</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'Search '</span> <span class="o">+</span> <span class="nx">searchScope</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="number-of-results-found">Number of results found</h3>
 <p>Also easy! Inside the <code class="highlighter-rouge">.submit()</code> function on the search form, I added one line to display the number of results inside a span with the <code class="highlighter-rouge">id='resultCount'</code>.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <h3 id="breadcrumbs">Breadcrumbs</h3>
 <p>Okay this part was a little more intensive to implement and required a little bit of bashing my head against my keyboard to figure out.</p>
 
 <p>It started out well enough. I created a new variable called <code class="highlighter-rouge">tagContainer</code> to append the <code class="highlighter-rouge">tags</code>, which were <code class="highlighter-rouge">span</code> elements. I didn’t want the DOM freaking out if the user clicked the most recent tag, so I gave it a differentiating class <code class="highlighter-rouge">is-active</code>.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">tagContainer</span><span class="p">.</span><span class="nx">text</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">tagContainer</span><span class="p">.</span><span class="nx">text</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class="search-tags-tag is-active"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-tags-tag'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
   <span class="c1">// add subsequent tag</span>
   <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;span class="search-tags-tag is-active is-sub"&gt;'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Now, the click functionality.</p>
 
 <p>In order to keep track of the previous search results, I created a new global array called <code class="highlighter-rouge">session</code> and pushed <code class="highlighter-rouge">results</code> to it on each form submission.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="p">[];</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="nx">search</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="nx">session</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Then, I wrote a click function for <code class="highlighter-rouge">tags</code> (that weren’t the last/only one) to make them actually do something.</p>
 
 <p>The variable <code class="highlighter-rouge">index</code> figures out which index the clicked tag holds in the list of <code class="highlighter-rouge">tags</code>. The function then finds the <code class="highlighter-rouge">results</code> instance at the corresponding index of <code class="highlighter-rouge">session</code>, loops through it, and marks them all as matches again.</p>
@@ -281,7 +267,7 @@
 <p>Here I removed all the <code class="highlighter-rouge">tags</code> after the one that was clicked and clipped off the <code class="highlighter-rouge">session</code> array at the value of <code class="highlighter-rouge">index</code>. I also consolidated the code to show all matched results into a function expression called <code class="highlighter-rouge">showMatched()</code>.</p>
 
 <p>Then of course, update the text showing the number of results displayed for the reversion of scope.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">tags</span><span class="p">.</span><span class="nx">not</span><span class="p">(</span><span class="s1">'.is-active'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">tags</span><span class="p">.</span><span class="nx">not</span><span class="p">(</span><span class="s1">'.is-active'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">tags</span><span class="p">.</span><span class="nx">index</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)),</span>
       <span class="nx">queryTxt</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
 
@@ -296,8 +282,7 @@
   <span class="nx">$</span><span class="p">(</span><span class="s1">'#resultCount'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">session</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' results found for "'</span> <span class="o">+</span> <span class="nx">queryTxt</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
   <span class="nx">showMatched</span><span class="p">();</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Whoo! This was actually one of those moments where I couldn’t believe how quickly I got that to work and how little code it actually took.</p>
 
 <p>I did some tests by logging <code class="highlighter-rouge">session</code> to the console every time a new search was performed, as well as when the scope was reverted. Sure enough, the <code class="highlighter-rouge">session</code> showed a length that matched the number of tags showing, and the corresponding <code class="highlighter-rouge">results</code> array(s) inside matched up with what the <code class="highlighter-rouge">click</code> function displayed on the page.</p>
@@ -306,7 +291,7 @@
 
 <p>This one was pretty easy compared to the breadcrumbs. While writing this part, I ended up modifying <code class="highlighter-rouge">resetAcademy()</code> to handle hiding and showing all the assets.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sort</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">show</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">resetAcademy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sort</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">show</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">sort</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// sort by original index</span>
@@ -323,30 +308,27 @@
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>The function expression now takes in parameters <code class="highlighter-rouge">sort</code> <code class="highlighter-rouge">show</code> and <code class="highlighter-rouge">hide</code>. I had noticed that every time I called <code class="highlighter-rouge">resetAcademy()</code>, I was finding the same snippets of code in the same scope, so why not build them in dynamically? I made all the actions inside the function optionally accessible through the parameters, including the original <code class="highlighter-rouge">.sort()</code> block, allowing me to call only the functionaly needed at the time.</p>
 
 <p>And finally, the <code class="highlighter-rouge">click</code> function on the ‘clear’ button.</p>
 
 <p>It hides the <code class="highlighter-rouge">div.search-info</code> that shows the tags, number of results, and the button, then empties out the <code class="highlighter-rouge">tagContainer</code> and the <code class="highlighter-rouge">session</code> array. Then it resets the dropdown and the searchbar and runs <code class="highlighter-rouge">showScope()</code> to reset the placeholder text.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.js-clear-search'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.js-clear-search'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
   <span class="nx">tagContainer</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
   <span class="nx">session</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-
 	<span class="c1">// reset dropdown and search bar</span>
   <span class="nx">dropdown</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">'all'</span><span class="p">);</span>
   <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
   <span class="nx">showScope</span><span class="p">();</span>
 
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>The last thing I had to do was make a couple alterations to the <code class="highlighter-rouge">.change()</code> function on the dropdown. I wanted the dropdown to take precedence over the search bar, so whenever the user selected a new category, I ran <code class="highlighter-rouge">resetAcademy()</code>, hid the search area, emptied out the search tags, reset the search bar, and ran <code class="highlighter-rouge">showScope()</code> to set the placeholder text.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">dropdown</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dropdown</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">//...</span>
   <span class="nx">resetAcademy</span><span class="p">(</span><span class="nx">sort</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">hide</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">'.search-info'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
@@ -354,8 +336,7 @@
   <span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
   <span class="nx">showScope</span><span class="p">();</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Here’s how the UI ended up looking:</p>
 <div class="callout">
@@ -372,7 +353,9 @@
 
 <h2 id="v10">v1.0</h2>
 
-<p>Here’s the full script with all the optimizations, variables, etc.</p>
+<p>Here’s the full script with all the optimizations, variables, etc. I continued to ship new iterations after this, which I’ll talk about below, but if you want to skip straight to the live code, that’s currently available to see here:</p>
+
+<p><a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a></p>
 
 <div class="language-javascript highlighter-rouge expandable-section"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// academy ready pants</span>
 
@@ -613,6 +596,129 @@
 <a href="javascript:void(0);" class="expandable-section-trigger">Expand</a>
 </div>
 
+<h2 id="v20">v2.0</h2>
+
+<p>After the initial launch, I continued to tweak the algorithm and make UI/UX improvements.</p>
+
+<h3 id="algorithm-improvements">Algorithm Improvements</h3>
+
+<p>First, I made adjustments to the scoring system. I realized in my original code, <code class="highlighter-rouge">score++</code> doesn’t actually do anything to the value returned from the loop. Even if it did, adding <code class="highlighter-rouge">1</code> to the score wouldn’t really doing much anyway, so I decided to double the score for each matched word, using the <code class="highlighter-rouge">*=</code> operator to actually <em>do</em> something to <code class="highlighter-rouge">score</code>.</p>
+
+<p>I also added a line in case the user types in an exact asset name, to ensure it gets the highest score.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">))</span> <span class="p">{</span>
+	<span class="c1">//...</span>
+	<span class="nx">score</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">bonus</span> <span class="o">-</span> <span class="nx">i</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">title</span> <span class="o">===</span> <span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// if exact match, give 2x full bonus</span>
+		<span class="nx">score</span> <span class="o">+=</span> <span class="nx">bonus</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">// double score for each matched word</span>
+	<span class="nx">score</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="ux-improvements">UX Improvements</h3>
+
+<p>The interaction design of the search form needed some work, starting with the “search” button.</p>
+
+<p>When v1.0 shipped, the button was a constant blue and was clickable at all times, allowing the user to submit empty queries. Empty searches essentially reset the results within the current scope, so no harm done, but they also generate empty breadcrumbs, which are <em>ugly</em>.</p>
+
+<p>To combat this, I wanted to make the button only clickable when the search bar had contents, and grayed out otherwise.</p>
+
+<p>I set the button to the modifying class <code class="highlighter-rouge">is-active</code>, only when the user had typed in the search bar and entered a string with a <code class="highlighter-rouge">length</code> greater than <code class="highlighter-rouge">0</code>.</p>
+
+<p>Next, a <code class="highlighter-rouge">click</code> function to prevent default behavior (in this case, form submission) when the search bar was empty.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">searchBar</span><span class="p">.</span><span class="nx">focus</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">searchBar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">searchBtn</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">searchBtn</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-active'</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">searchBtn</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<div class="callout">
+<div class="callout-content">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-button.gif" alt="Interaction design and development for Adaptiva Academy search button" />
+</div>
+</div>
+
+<p>I thought it would be cool if users could sort results by date or relevance after submitting their query, so I created some new UI elements to allow for that.</p>
+
+<p>To simplify the sorting, I added function expressions to module’s global scope called <code class="highlighter-rouge">sortDate()</code> and <code class="highlighter-rouge">sortRel()</code> and replaced any instances of duplicate code with calls to these expressions.</p>
+
+<p>Since the page loads with everything sorted by date by default, the <code class="highlighter-rouge">data-original-index</code> attribute already serves as a great benchmark for chronological sorting, so I used that in <code class="highlighter-rouge">sortDate()</code>.</p>
+
+<p><code class="highlighter-rouge">sortRel()</code> simply sorts results by score, or ‘relevance’ in user-friendly terms.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sortDate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'original-index'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
+<span class="p">},</span>
+<span class="nx">sortRel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.asset'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'score'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Both sort by buttons have unique <code class="highlighter-rouge">id</code> attributes and the same CSS classes which I targeted in the variable <code class="highlighter-rouge">sortBy</code>. I wrote a <code class="highlighter-rouge">click</code> function that covered both of them and figured out which function to run.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sortBy</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+	<span class="kd">var</span> <span class="nx">clicked</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">clicked</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">'is-selected'</span><span class="p">))</span> <span class="p">{</span>
+		<span class="c1">// do nothing if already selected</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="c1">// set only clicked button to selected state</span>
+		<span class="nx">sortBy</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'is-selected'</span><span class="p">);</span>
+		<span class="nx">clicked</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'is-selected'</span><span class="p">);</span>
+		<span class="c1">// run desired sort function</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">clicked</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s1">'#sortDate'</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">sortDate</span><span class="p">();</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">clicked</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s1">'#sortRel'</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">sortRel</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Finally, after collecting some feedback from users and colleagues, it was clear that the narrowing scope was still not crystal clear to users. They were acting in “Google mode” and assuming every search would query all assets.</p>
+
+<p>Though it would be easy to just set the scope to everything and give everyone what they <em>expected</em>, I firmly believed a narrowed scope would be more useful, since users would be searching to find something specific in a finite list of assets.</p>
+
+<p>Instead of leaving the user’s last query submission in the search bar, I cleared it out after every submission and specified the narrowed scope in the placeholder text.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">session</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// give generic scope message after second query</span>
+	<span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'Search within previous results'</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	<span class="c1">// give specific scope message after first query</span>
+	<span class="nx">searchBar</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'Search within results for "'</span> <span class="o">+</span> <span class="nx">query</span> <span class="o">+</span> <span class="s1">'"'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Ah, much better. Now users have to see the UI cue before running subsequent queries.</p>
+
+<p>Check out the full version of the latest iteration on GitHub:</p>
+
+<p><a class="btn black" href="https://github.com/adaptiveprotocols/adaptiveprotocols.github.io/blob/master/assets/js/academy.js" target="\_blank" rel="noopener" title="Check out the live script">See the Code</a></p>
+
+<p>And here’s the updated UI:</p>
+
+<div class="callout">
+<div class="callout-content">
+<img style="border: 2px solid #eee;" src="/assets/img/projects/adaptiva-academy-search-v2.jpg" alt="UI design for Adaptiva Academy search feature" />
+</div>
+</div>
+
 <h2 id="epilogue">Epilogue</h2>
 
 <p>When I rolled this out, everyone I told about it was surprisingly psyched about it. I mean, as a computer nerd who wrote all this code, it’s pretty exciting because it was a challenge, but I mean it’s a search form for a bunch of tiles, not the next Google.</p>
@@ -641,6 +747,13 @@
     
       
         
+            
+            
+        
+      
+    
+      
+        
         
     
       
@@ -654,7 +767,7 @@
         <a class="post-nav-link previous" href="/projects/adaptiva-support-file-upload"><div class="post-nav-arrow">&#x279E;</div> &nbsp; Adaptiva Support Upload Interface</a>
       
     
-        <a class="post-nav-link next" href=""> &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+        <a class="post-nav-link next" href="/projects/destiny-2-clan-website">Destiny 2 Clan Website &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
       
 </div>
 </section>

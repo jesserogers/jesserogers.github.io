@@ -38,10 +38,40 @@
   title: 'DeLorean Illustration'
   desc: Editorial illustration for a company blog post featuring a sweet DeLorean
 
+- original: '/assets/img/design/windows-10-user.jpg'
+  thumb: '/assets/img/design/windows-10-user--thumb.jpg'
+  title: 'Windows 10 User'
+  desc: Illustration of Windows 10 user for advertising purposes
+
 - original: '/assets/img/design/minneapolis-skyline-illustration.jpg'
   thumb: '/assets/img/design/minneapolis-skyline-illustration--thumb.jpg'
   title: 'Minneapolis Illustration'
   desc: Illustration of Minneapolis skyline for user group event
+
+- original: '/assets/img/design/atlsmug-sticker.jpg'
+  thumb: '/assets/img/design/atlsmug-sticker--thumb.jpg'
+  title: 'ATLSMUG Sticker'
+  desc: Illustration of Atlanta skyline for sticker for user group event
+
+- original: '/assets/img/design/azsmug-sticker.jpg'
+  thumb: '/assets/img/design/azsmug-sticker--thumb.jpg'
+  title: 'AZSMUG Sticker'
+  desc: Illustration of Phoenix skyline for sticker for user group event
+
+- original: '/assets/img/design/msft-dallas-sticker.jpg'
+  thumb: '/assets/img/design/msft-dallas-sticker--thumb.jpg'
+  title: 'Microsoft Dallas Sticker'
+  desc: Illustration of Dallas landmarks for sticker for Microsoft event
+
+- original: '/assets/img/design/denver-sticker.jpg'
+  thumb: '/assets/img/design/denver-sticker--thumb.jpg'
+  title: 'Denver Sticker'
+  desc: Illustration of Denver skyline for sticker for user group event
+
+- original: '/assets/img/design/mms-sticker.jpg'
+  thumb: '/assets/img/design/mms-sticker--thumb.jpg'
+  title: 'MMS 2018 Sticker'
+  desc: Illustration of Minneapolis skyline for sticker for user group event
 
 - original: '/assets/img/design/davinci-russell-brown-illustration.png'
   thumb: '/assets/img/design/davinci-russell-brown-illustration--thumb.png'

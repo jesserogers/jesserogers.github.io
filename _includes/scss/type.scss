@@ -58,8 +58,9 @@ p {
       color: inherit;
       box-shadow: none;
       border-bottom: 2px solid $black;
-    }&:hover {
+    } &:hover {
 			box-shadow: inset 0 -1.618em 0 0 $yellow;
+			color: $black;
 			&.plain-underline {
 				box-shadow: none;
 			}

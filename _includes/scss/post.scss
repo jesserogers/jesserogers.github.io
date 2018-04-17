@@ -48,7 +48,8 @@ section.post-body {
   display: inline-block;
   width: calc(100% + 100px);
   margin-left: -50px;
-  > img {
+  img {
+		border: 1px solid #eee;
     display: block;
     width: 100%;
   }

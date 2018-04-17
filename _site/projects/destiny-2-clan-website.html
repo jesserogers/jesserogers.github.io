@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="A custom coded website built on Jekyll and the Bungie API for my Destiny 2 PC Clan, Reign of Iron.">
+    
+    <meta name="author" content="Jesse Rogers">
+    <title>Destiny 2 Clan Website / Jesse Rogers - Seattle Designer, Photographer, Web Developer</title>
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5f27364eaaa4ebe954e8fa077a5af9adaeb7f687">
+  </head>
+  <body>
+    <nav class="main-nav">
+      <a class="logo" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
+    <defs>
+        <style>
+            .jesse-rogers-1 {
+                fill: #fceb5e;
+            }
+            .jesse-rogers-2 {
+                fill: #222;
+            }
+        </style>
+    </defs>
+    <title>Jesse Rogers - Seattle based designer, photographer, web developer, animator, illustrator, and videographer</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1"><polygon class="jesse-rogers-1" points="216 216 144 144 72 144 72 216 216 216"/><path class="jesse-rogers-1" d="M72,0h72a72,72,0,0,1,72,72v0a72,72,0,0,1-72,72H72a0,0,0,0,1,0,0V0A0,0,0,0,1,72,0Z"/><path class="jesse-rogers-2" d="M72,0V144H0a72,72,0,0,0,72,72h0a72,72,0,0,0,72-72V0Z"/></g>
+    </g>
+</svg>
+
+      </a>
+      <div class="js-nav-trigger">
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-items">
+        <li class="nav-item">
+          <a href="/projects/" title="Projects">Projects</a>
+        </li>
+        <li class="nav-item has-subnav">
+          <a href="javascript:void(0);">Quick Portfolios</a>
+          <ul class="subnav" style="display: none;">
+            <li class="subnav-item">
+              <a href="/photography/" title="Photography">Photography</a>
+            </li>
+            <li class="subnav-item">
+              <a href="/design/" title="Photography">Design</a>
+            </li>
+            <li class="subnav-item">
+              <a href="/motion/" title="Photography">Motion</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/journal/" title="Journal">Journal</a>
+        </li>
+        <li class="nav-item">
+          <a href="/about/" title="About me">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="/contact/" title="Contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <section class="page-header">
+  <div class="content">
+    <h1>Destiny 2 Clan Website</h1>
+    <p>A custom coded website built on Jekyll and the Bungie API for my Destiny 2 PC Clan, Reign of Iron.</p>
+  </div>
+</section>
+<section class="project-content">
+  <div class="content">
+    <p>As I mentioned earlier, I’ve been playing quite a bit of video games on my PC lately (still need to write about that machine—it’s beautiful), and I play with a great group of people in the Destiny 2 clan Reign of Iron.</p>
+
+<p>This clan is a big positive in my life lately, and I thought that building a website that served real use cases for members would help make Reign of Iron the clan to be in, and help us grow our active roster with more cool people.</p>
+
+<p>As of now, I’ve got a really solid build of this site in production at <a href="https://reignofiron.org/">reignofiron.org</a>, and I will continue to iterate and build new features. But here’s what I’ve got so far!</p>
+
+<h2 id="the-plan">The Plan</h2>
+<p>I decided the requirements were as follows:</p>
+<ul>
+  <li>The site should hook into the Bungie API to get and display the current clan roster</li>
+  <li>The site should display individual profiles for each member with his/her Crucible (PvP) stats</li>
+  <li>The site should store a library of PvP maps for reference during competitive play</li>
+  <li>The site should allow members to submit a form to sign up for raids and see who else is signed up</li>
+</ul>
+
+<p>To keep the cost of maintaining this website as close to $0 as possible, I again went with Github Pages and Jekyll, routed through Cloudflare for that nice SSL.</p>
+
+<h2 id="the-clan-roster">The Clan Roster</h2>
+
+<p>First on the list was getting the clan roster from the Bungie API. Lucky for me, Bungie’s API is well documented and super easy to work with. I guess AAA devs are pretty good or something.</p>
+
+<p>So, with a simple <code class="highlighter-rouge">ajax</code> request, I got the roster up and running. Bungie sends me back a nice object with a ton of data in it for me to do with as I please.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// get list of members and populate roster table</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://www.bungie.net/platform/GroupV2/"</span> <span class="o">+</span> <span class="nx">groupID</span> <span class="o">+</span> <span class="s2">"/Members/"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"X-API-Key"</span><span class="p">:</span> <span class="nx">apiKey</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">results</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Member list:'</span><span class="p">,</span> <span class="nx">members</span><span class="p">);</span>
+  <span class="nx">listMembers</span><span class="p">(</span><span class="nx">members</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>I really need to add something that handles an erroneous server response, like when Bungie is doing maintenance or big updates. Next version!</p>
+
+<p>Once we get the roster, we run a function called <code class="highlighter-rouge">listMembers()</code> on the section of the returned object I want to access.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">listMembers</span><span class="p">(</span><span class="nx">rsp</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span>
+  <span class="nx">list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.memberList-list'</span><span class="p">),</span>
+  <span class="nx">sortMembers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// sort by date joined</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">method</span> <span class="o">=</span> <span class="nx">joined</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">list</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.member'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'joined'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'joined'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+      <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">method</span> <span class="o">=</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">list</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.member'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'username'</span><span class="p">))</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'username'</span><span class="p">))</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+      <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">list</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.member.online'</span><span class="p">).</span><span class="nx">prependTo</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span>
+    <span class="nx">profile</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">bungieNetUserInfo</span><span class="p">,</span>
+    <span class="nx">member</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;a&gt;&lt;/a&gt;'</span><span class="p">);</span>
+    <span class="c1">// check for valid profile</span>
+    <span class="c1">// some users don't have Bungie profiles somehow and it breaks function</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">profile</span> <span class="o">!=</span> <span class="s1">'undefined'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// store response data in semantic variables</span>
+      <span class="kd">var</span>
+      <span class="nx">name</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">destinyUserInfo</span><span class="p">.</span><span class="nx">displayName</span><span class="p">,</span>
+      <span class="nx">joinDate</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">joinDate</span><span class="p">,</span>
+      <span class="nx">joined</span> <span class="o">=</span> <span class="nx">joinDate</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">joinDate</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'T'</span><span class="p">)),</span>
+      <span class="nx">online</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">isOnline</span><span class="p">,</span>
+      <span class="nx">icon</span> <span class="o">=</span> <span class="nx">profile</span><span class="p">.</span><span class="nx">iconPath</span><span class="p">,</span>
+      <span class="nx">memberId</span> <span class="o">=</span> <span class="nx">profile</span><span class="p">.</span><span class="nx">membershipId</span><span class="p">,</span>
+      <span class="nx">memberType</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">destinyUserInfo</span><span class="p">.</span><span class="nx">membershipType</span><span class="p">,</span>
+      <span class="nx">destinyId</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">destinyUserInfo</span><span class="p">.</span><span class="nx">membershipId</span><span class="p">,</span>
+      <span class="nx">rank</span> <span class="o">=</span> <span class="nx">rsp</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">memberType</span><span class="p">;</span>
+      <span class="c1">// configure DOM node and add to page</span>
+      <span class="nx">member</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">({</span>
+        <span class="s1">'class'</span><span class="p">:</span> <span class="s1">'j-row vertical-center-row member'</span><span class="p">,</span>
+        <span class="s1">'href'</span><span class="p">:</span> <span class="s1">'/player/?bungieId='</span> <span class="o">+</span> <span class="nx">memberId</span> <span class="o">+</span> <span class="s1">'&amp;destinyId='</span> <span class="o">+</span> <span class="nx">destinyId</span> <span class="o">+</span> <span class="s1">'&amp;joined='</span> <span class="o">+</span> <span class="nx">joined</span> <span class="o">+</span> <span class="s1">'&amp;rank='</span> <span class="o">+</span> <span class="nx">rank</span><span class="p">,</span>
+        <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'See player profile for '</span> <span class="o">+</span> <span class="nx">name</span><span class="p">,</span>
+        <span class="s1">'data-joined'</span> <span class="p">:</span> <span class="nx">joined</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'data-username'</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
+        <span class="s1">'data-online'</span> <span class="p">:</span> <span class="s1">'false'</span><span class="p">,</span>
+        <span class="s1">'data-searchable'</span> <span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">html</span><span class="p">(</span>
+        <span class="s1">'&lt;div class="j-col j-col-1 member-icon"&gt;&lt;img src="https://bungie.net/'</span> <span class="o">+</span> <span class="nx">icon</span> <span class="o">+</span> <span class="s1">'"&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+        <span class="s1">'&lt;div class="j-col j-col-3 member-name"&gt;&lt;h3&gt;'</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">'&lt;/h3&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+        <span class="s1">'&lt;div class="j-col j-col-3 member-joined" data-label="Joined"&gt;'</span> <span class="o">+</span> <span class="nx">joined</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span> <span class="o">+</span>
+        <span class="s1">'&lt;div class="j-col j-col-3 member-status" data-label="Status"&gt;&lt;span class="member-online" id="status-'</span> <span class="o">+</span> <span class="nx">memberId</span> <span class="o">+</span> <span class="s1">'"&gt;'</span> <span class="o">+</span> <span class="nx">online</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+        <span class="s1">'&lt;div class="j-col j-col-3 member-button"&gt;&lt;a class="button outline gold full-width"&gt;'</span> <span class="o">+</span> <span class="s1">'View Stats'</span> <span class="o">+</span> <span class="s1">'&lt;/a&gt;&lt;/div&gt;'</span>
+      <span class="p">)</span>
+      <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="c1">// indicate online/offline status</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nx">online</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'true'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status-'</span> <span class="o">+</span> <span class="nx">memberId</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Online'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'online'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">'.member'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-online'</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'online'</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status-'</span> <span class="o">+</span> <span class="nx">memberId</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Offline'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'online'</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">sortMembers</span><span class="p">(</span><span class="nx">joined</span><span class="p">);</span> <span class="c1">// sort members by join date</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This function takes in an array of objects provided by Bungie as a parameter, loops through it, and creates a list that includes each player’s Bungie profile icon, their username, the date they joined the clan, their real-time online/offline status, and a button to view their profile/statistic.</p>
+
+<p>The variable <code class="highlighter-rouge">member</code> is an <code class="highlighter-rouge">&lt;a&gt;</code> element that gets a <code class="highlighter-rouge">href</code> attribute with some URL parameters that provide the information needed to populate that player’s profile. Since I’m not using a server and the roster is always updating, I needed to create these pages entirely on the front end.</p>
+
+<p>I created a function expression within <code class="highlighter-rouge">listMembers()</code> called <code class="highlighter-rouge">sortMembers()</code> that can take in different sorting “methods” as a parameter. The idea is that later on, I can add controls to the list to allow users to sort the roster based on whatever table column they want. For now, it sorts by join date, with online members automatically added to the front of the list.</p>
+
+<div class="callout">
+<div class="callout-content">
+<div class="j-row">
+<div class="j-col j-col-9">
+<img src="/assets/img/projects/destiny-2-clan-website-roster.png" alt="Destiny 2 Clan Reign of Iron Roster from Bungie API" />
+</div>
+<div class="j-col j-col-3">
+<img src="/assets/img/projects/destiny-2-clan-website-roster-mobile.png" alt="Destiny 2 Clan Reign of Iron Roster on mobile device" />
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="the-player-profiles">The Player Profiles</h2>
+<p>Cool, so I have a list of people who are in my clan on the website. Now to make it more useful.</p>
+
+<p>Bungie’s API provides a plethora of data on each player’s performance, like their Kill/Death Ratio, Kill + Assist/Death Ratio, total number of kills, total time played, etc.</p>
+
+<p>Most of my clanmates are pretty into PvP gameplay, and some of us are pretty strong players who like to track how we’re doing out there.</p>
+
+<p>I started off with a pretty blank template for the player page, <code class="highlighter-rouge">player.html</code>, which would be populated by JavaScript based on the URL parameters included in each member’s row on the roster.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"color-block lighter-gray"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-3 playerProfile-meta"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">""</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"player-icon"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h4</span> <span class="na">id=</span><span class="s">"player-rank"</span><span class="nt">&gt;&lt;/h4&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"gray"</span><span class="nt">&gt;</span>Joined clan <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"gray"</span> <span class="na">id=</span><span class="s">"player-join-date"</span><span class="nt">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Total time played:<span class="nt">&lt;br&gt;&lt;span</span> <span class="na">class=</span><span class="s">"type-large"</span> <span class="na">id=</span><span class="s">"player-clock"</span><span class="nt">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-9"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>Averages<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"playerProfile-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-row grid-container"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>KDA<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-kda"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>KD<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-kd"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Efficiency<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-efficiency"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>Totals<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"playerProfile-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-row grid-container"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Kills<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-kills"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Assists<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-assists"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Precision Kills<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-precision-kills"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>Bests<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"playerProfile-content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-row grid-container"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Best Single Game Kills<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-most-kills"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Longest Kill Spree<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-kill-spree"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Most Precision Kills<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-most-precision"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-6"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h4&gt;</span>Best Weapon Type<span class="nt">&lt;/h4&gt;</span>
+            <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"type-larger"</span> <span class="na">id=</span><span class="s">"player-weapon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+<p>Next, I created a function called <code class="highlighter-rouge">checkParams()</code> to parse the URL parameters and store their values as variables in my script.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">checkParams</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span>
+  <span class="nx">pageURL</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+  <span class="nx">urlParams</span> <span class="o">=</span> <span class="nx">pageURL</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'&amp;'</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">urlParams</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">urlParams</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">pair</span> <span class="o">=</span> <span class="nx">urlParams</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">'='</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Then to store them in variables:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span>
+<span class="c1">// ...</span>
+<span class="nx">bungieId</span> <span class="o">=</span> <span class="nx">checkParams</span><span class="p">(</span><span class="s1">'bungieId'</span><span class="p">),</span>
+<span class="nx">destinyId</span> <span class="o">=</span> <span class="nx">checkParams</span><span class="p">(</span><span class="s1">'destinyId'</span><span class="p">),</span>
+<span class="nx">joined</span> <span class="o">=</span> <span class="nx">checkParams</span><span class="p">(</span><span class="s1">'joined'</span><span class="p">),</span>
+<span class="nx">rank</span> <span class="o">=</span> <span class="nx">checkParams</span><span class="p">(</span><span class="s1">'rank'</span><span class="p">);</span>
+</code></pre></div></div>
+<p>I nested the bulk of the <code class="highlighter-rouge">player.js</code> code in an <code class="highlighter-rouge">if</code> statement that required values for <code class="highlighter-rouge">bungieId</code>, <code class="highlighter-rouge">destinyId</code>, <code class="highlighter-rouge">joined</code>, and <code class="highlighter-rouge">rank</code> to proceed. If those parameters aren’t present in the URL, I don’t even want to fire the <code class="highlighter-rouge">ajax</code> request and waste resources.</p>
+
+<p>But, as long as the URL parameters are there, it’ll proceed to get both the member’s player stats and their profile info from the Bungie API.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">bungieId</span> <span class="o">&amp;&amp;</span> <span class="nx">destinyId</span> <span class="o">&amp;&amp;</span> <span class="nx">joined</span> <span class="o">&amp;&amp;</span> <span class="nx">rank</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s2">"https://www.bungie.net/Platform/Destiny2/4/Account/"</span> <span class="o">+</span> <span class="nx">destinyId</span> <span class="o">+</span> <span class="s2">"/Character/0/Stats/"</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"X-API-Key"</span><span class="p">:</span> <span class="nx">apiKey</span>
+      <span class="p">},</span>
+      <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span>
+        <span class="nx">stats</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">allPvP</span><span class="p">.</span><span class="nx">allTime</span><span class="p">,</span>
+        <span class="nx">efficiency</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">efficiency</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">kd</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">killsDeathsRatio</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">kda</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">killsDeathsAssists</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">kills</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">kills</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">deaths</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">deaths</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">assists</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">assists</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">precisionKills</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">precisionKills</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">combatRating</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">combatRating</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">mostKills</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">bestSingleGameKills</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">killSpree</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">longestKillSpree</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">mostPrecision</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">mostPrecisionKills</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">weapon</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">weaponBestType</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">clock</span> <span class="o">=</span> <span class="nx">stats</span><span class="p">.</span><span class="nx">allParticipantsTimePlayed</span><span class="p">.</span><span class="nx">basic</span><span class="p">.</span><span class="nx">displayValue</span><span class="p">,</span>
+        <span class="nx">hours</span> <span class="o">=</span> <span class="nx">clock</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/</span><span class="se">\d</span><span class="sr">+/g</span><span class="p">);</span>
+
+        <span class="nx">totalHours</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">hours</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">hours</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Player stats:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+
+        <span class="c1">// Populate stats</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-clock'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">totalHours</span> <span class="o">+</span> <span class="s1">'h'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-efficiency'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">efficiency</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-kd'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">kd</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-kda'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">kda</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-kills'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">kills</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-assists'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">assists</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-precision-kills'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">precisionKills</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-weapon'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">weapon</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-kill-spree'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">killSpree</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-most-kills'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">mostKills</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-most-precision'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">mostPrecision</span><span class="p">);</span>
+      <span class="p">},</span>
+      <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error loading player stats:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span> <span class="c1">// get Bungie Profile</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s2">"https://www.bungie.net/Platform/User/GetBungieNetUserById/"</span> <span class="o">+</span> <span class="nx">bungieId</span> <span class="o">+</span> <span class="s2">"/"</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"X-API-Key"</span><span class="p">:</span> <span class="nx">apiKey</span>
+      <span class="p">},</span>
+      <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Player profile:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+        <span class="kd">var</span>
+        <span class="nx">response</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span>
+        <span class="nx">about</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">about</span><span class="p">,</span>
+        <span class="nx">banner</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">profileThemeName</span><span class="p">,</span>
+        <span class="nx">blizzard</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">blizzardDisplayName</span><span class="p">,</span>
+        <span class="nx">icon</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">profilePicturePath</span><span class="p">,</span>
+        <span class="nx">name</span> <span class="o">=</span> <span class="nx">blizzard</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">blizzard</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'#'</span><span class="p">));</span>
+
+        <span class="c1">// Populate profile</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'.hero#player-hero'</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
+          <span class="s1">'background-image'</span><span class="p">:</span> <span class="s1">'url("https://bungie.net/img/UserThemes/'</span> <span class="o">+</span> <span class="nx">banner</span> <span class="o">+</span> <span class="s1">'/header.jpg")'</span>
+        <span class="p">})</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-title'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'.player-icon'</span><span class="p">).</span><span class="nx">attr</span><span class="p">({</span>
+          <span class="s1">'src'</span><span class="p">:</span> <span class="s1">'https://www.bungie.net'</span> <span class="o">+</span> <span class="nx">icon</span>
+        <span class="p">});</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-join-date'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">joined</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">));</span>
+        <span class="k">switch</span><span class="p">(</span><span class="nx">rank</span><span class="p">)</span> <span class="p">{</span>
+
+          <span class="k">case</span> <span class="s1">'3'</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-rank'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Iron Officer'</span><span class="p">)</span>
+          <span class="k">break</span><span class="p">;</span>
+
+          <span class="k">case</span> <span class="s1">'5'</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-rank'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Iron General'</span><span class="p">);</span>
+          <span class="k">break</span><span class="p">;</span>
+
+          <span class="nl">default</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#player-rank'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Iron Brigaider'</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error loading player profile:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<p>Originally, I stored a lot more data in URL parameters to avoid making a second ajax request, but I learned that I could use the Bungie Profile endpoint in the API to customize each profile to match the theme in the corresponding Bungie account. Pretty cool.</p>
+
+<div class="callout">
+<div class="callout-content">
+<div class="j-row">
+<div class="j-col j-col-9">
+<img src="/assets/img/projects/destiny-2-clan-website-player-profile.png" alt="Destiny 2 Clan Reign of Iron player profile and statistics from Bungie API" />
+</div>
+<div class="j-col j-col-3">
+<img src="/assets/img/projects/destiny-2-clan-website-player-profile-mobile.png" alt="Destiny 2 Clan Reign of Iron player profile and statistics on mobile device" />
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="pvp-maps">PvP Maps</h2>
+<p>This part was easy.</p>
+
+<p>I downloaded all of <a href="https://twitter.com/r3likt">r3likt</a>’s maps and made a simple <code class="highlighter-rouge">_data</code> file in Jekyll for each one with a title and image path.</p>
+
+<p>Then on <code class="highlighter-rouge">maps.html</code>, I made a <code class="highlighter-rouge">for</code> loop in Jekyll.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% for map in site.data.maps %}
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"roiMap"</span> <span class="na">data-searchable=</span><span class="s">"{{map.title}}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>{{map.title}}<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/assets/img/maps/{{map.img}}-destiny-2-map.jpg"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/assets/img/maps/original/{{map.img}}-destiny-2-map.jpg"</span> <span class="na">class=</span><span class="s">"button gold"</span> <span class="na">target=</span><span class="s">"_blank"</span> <span class="na">rel=</span><span class="s">"noopener"</span> <span class="na">title=</span><span class="s">"View full size, original image"</span><span class="nt">&gt;</span>View Large<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+{% endfor %}
+</code></pre></div></div>
+<p>Jekyll generates markup with a title, an optimized image, and a button that links to the huge, original image file for each map.</p>
+
+<div class="callout">
+<div class="callout-content">
+<div class="j-row">
+<div class="j-col j-col-9">
+<img src="/assets/img/projects/destiny-2-clan-website-pvp-maps.png" alt="Destiny 2 Clan Reign of Iron PvP Maps" />
+</div>
+<div class="j-col j-col-3">
+<img src="/assets/img/projects/destiny-2-clan-website-pvp-maps-mobile.png" alt="Destiny 2 Clan Reign of Iron PvP Maps" />
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="searchfilter-function">Search/Filter Function</h2>
+<p>You might’ve noticed that both the roster and the map list have search bars. I created a little reusable search component for this site that I think is pretty slick.</p>
+
+<p>The HTML is extremely simple. The <code class="highlighter-rouge">input</code> element the user types in has <code class="highlighter-rouge">data</code> attributes that define the scope: what the function is searching, and where to search for it.</p>
+
+<p>So for example, the PvP map search <code class="highlighter-rouge">input</code> looks like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-scope=</span><span class="s">"roiMap"</span> <span class="na">data-container=</span><span class="s">"roiMap-container"</span> <span class="na">class=</span><span class="s">"search"</span> <span class="na">placeholder=</span><span class="s">"Search maps"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">data-scope</code> declares the class name(s) of the DOM node to be evaluated for the search query, and <code class="highlighter-rouge">data-container</code> tells the search function where to look for that class.</p>
+
+<p>The specified class name’s DOM nodes will always have a <code class="highlighter-rouge">data</code> attribute called <code class="highlighter-rouge">searchable</code> that stores the string to be matched against the query.</p>
+
+<p>As the user types, the JavaScript stores these values in variables <code class="highlighter-rouge">container</code> and <code class="highlighter-rouge">scope</code>. Then, we loop through the class name for <code class="highlighter-rouge">scope</code> and evaluate whether or not the <code class="highlighter-rouge">searchable</code> string matches what the user has typed in so far.</p>
+
+<p>As soon as the <code class="highlighter-rouge">searchable</code> attribute no longer matches what’s in the search bar, it’s hidden.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'input.search'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span>
+  <span class="nx">filter</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">(),</span>
+  <span class="nx">container</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'container'</span><span class="p">),</span>
+  <span class="nx">scope</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'scope'</span><span class="p">);</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'.'</span> <span class="o">+</span> <span class="nx">scope</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// loop through current scope</span>
+    <span class="kd">var</span>
+    <span class="nx">$this</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+    <span class="nx">name</span> <span class="o">=</span> <span class="nx">$this</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">'searchable'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+    <span class="c1">// loop through query words</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// hide as soon as name != filter</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">filter</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$this</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$this</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span> <span class="c1">// end scope loop</span>
+
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Pretty simple, lightweight, highly functional, and easily reusable. That’s the kind of code I like to write.</p>
+
+<h2 id="raid-signups">Raid Signups</h2>
+
+<p>Okay, this section could probably be its own entire post, so I’m gonna try to keep this short.</p>
+
+<p>Raid signups required <em>storing data</em> somewhere and <em>keeping it</em>, which is kinda antithetical to the whole static site/front-end only thing I’ve been doing here. I don’t have a server, so how can I record these signups without sending the user away from the site to a third party application?</p>
+
+<p>Enter Google Sheets.</p>
+
+<p>Basically, I created a bunch of Google Sheets docs, one for each day of the week. Google Sheets allows me to read and write to and from the same sheet using <code class="highlighter-rouge">ajax</code> and a little bit of Google Apps Scripts.</p>
+
+<h3 id="displaying-signups">Displaying Signups</h3>
+<p>This was probably one of the easier parts to get working. After making my Google Sheet publicly accessible to anyone with the link and publishing it to the web, I wrote some <code class="highlighter-rouge">ajax</code> stuff to display the contents of the sheet.</p>
+
+<p>Again, I stored the data needed to make the <code class="highlighter-rouge">ajax</code> request in <code class="highlighter-rouge">data</code> attributes on the DOM node for each signup sheet.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"signupSheet"</span> <span class="na">id=</span><span class="s">"{{include.day}}"</span> <span class="na">data-sheet=</span><span class="s">"{{include.sheet}}"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+<p>Then for each signup sheet, I made an <code class="highlighter-rouge">ajax</code> request to Google Sheets, using the data from the <code class="highlighter-rouge">data</code> attributes.</p>
+
+<p>Once we get the data back from Google, I parsed it into an object with a format that was easier to work with.</p>
+
+<p>Then, so long as the parsed data actually had contents, I created a table-esque row for each signed up member, showing their username and when they’re available to play.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.signupSheet'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span>
+  <span class="nx">day</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">),</span>
+  <span class="nx">sheet</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'sheet'</span><span class="p">),</span>
+  <span class="nx">$this</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+  <span class="nx">url</span> <span class="o">=</span> <span class="s1">'https://spreadsheets.google.com/feeds/list/'</span> <span class="o">+</span> <span class="nx">sheet</span> <span class="o">+</span> <span class="s1">'/od6/public/basic?alt=json'</span><span class="p">;</span>
+
+  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span>
+    <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span>
+      <span class="nx">data</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">feed</span><span class="p">.</span><span class="nx">entry</span><span class="p">,</span>
+      <span class="nx">parsedData</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="c1">// parse Google sheets data into more manageable format</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">parsedData</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+          <span class="na">name</span><span class="p">:</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">.</span><span class="nx">$t</span><span class="p">,</span>
+          <span class="na">available</span><span class="p">:</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">content</span><span class="p">.</span><span class="nx">$t</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'timeframe: '</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+      <span class="c1">// if anyone is signed up</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// hide the "no one signed up" thing</span>
+        <span class="nx">$this</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.signupSheet-empty'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="c1">// populate data for signup</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">parsedData</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Player signed up for '</span> <span class="o">+</span> <span class="nx">day</span> <span class="o">+</span> <span class="s1">':'</span><span class="p">,</span> <span class="nx">parsedData</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+          <span class="nx">$this</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.signupSheet-content'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+            <span class="s1">'&lt;div class="j-row signupSheet-entry"&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;div class="j-col j-col-6" data-th="Player"&gt;&lt;span class="signupSheet-player"&gt;'</span> <span class="o">+</span> <span class="nx">parsedData</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;div class="j-col j-col-6" data-th="Available"&gt;&lt;span class="signupSheet-availability"&gt;'</span> <span class="o">+</span> <span class="nx">parsedData</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">available</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;/div&gt;'</span>
+          <span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Next, I wrote a little somethin’ somethin’ to make sure the signup sheets showed up with the current day first. To do that, I made some variables to evaluate the day of the week.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span>
+<span class="c1">// ...</span>
+<span class="nx">days</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Sunday'</span><span class="p">,</span> <span class="s1">'Monday'</span><span class="p">,</span> <span class="s1">'Tuesday'</span><span class="p">,</span> <span class="s1">'Wednesday'</span><span class="p">,</span> <span class="s1">'Thursday'</span><span class="p">,</span> <span class="s1">'Friday'</span><span class="p">,</span> <span class="s1">'Saturday'</span><span class="p">],</span>
+<span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDay</span><span class="p">(),</span>
+<span class="nx">sortedDays</span> <span class="o">=</span> <span class="nx">days</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">today</span><span class="p">).</span><span class="nx">concat</span><span class="p">(</span><span class="nx">days</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">today</span><span class="p">)),</span>
+<span class="c1">// ...</span>
+</code></pre></div></div>
+<p>Next, sort the signup sheets based on the <code class="highlighter-rouge">sortedDays</code> array.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'.signupSheet'</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">sortedDays</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nx">sortedDays</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">b</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">));</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">'#raid-signup'</span><span class="p">);</span>
+</code></pre></div></div>
+<p>Awesome. If there’s data in the Google Sheet, it shows up in a nice fashion. Now to make it so members can actually post data to the sheet directly from the website.</p>
+
+<h3 id="posting-signups-to-google-sheets">Posting Signups to Google Sheets</h3>
+
+<p>Okay, so each signup sheet has a form at the bottom of it where the player enters their username and selects any of the three time slots we schedule raids for: 8:00 AM, 1:00 PM, and 6:00 PM Pacific Time.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"signupForm"</span> <span class="na">data-postto=</span><span class="s">"{{include.postto}}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-row vertical-center-row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-4"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"player_name"</span> <span class="na">title=</span><span class="s">"Your Battletag"</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"player_name"</span> <span class="na">placeholder=</span><span class="s">"xROI_fanGurl69x"</span> <span class="na">required</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;fieldset</span> <span class="na">class=</span><span class="s">"signupForm-checkboxes j-col j-col-6"</span> <span class="na">style=</span><span class="s">"border: 0; padding: 0;"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-3"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;legend&gt;</span>Raid Times<span class="nt">&lt;/legend&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-3"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"8am"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"signupForm-checkbox"</span> <span class="na">name=</span><span class="s">"8am"</span> <span class="na">id=</span><span class="s">"8am-raid"</span> <span class="na">value=</span><span class="s">"8:00 PM"</span><span class="nt">&gt;</span>
+          8:00 AM
+        <span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-3"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"1pm"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"signupForm-checkbox"</span> <span class="na">name=</span><span class="s">"1pm"</span> <span class="na">id=</span><span class="s">"1pm-raid"</span> <span class="na">value=</span><span class="s">"1:00 PM"</span><span class="nt">&gt;</span>
+          1:00 PM
+        <span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-3"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"6pm"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"signupForm-checkbox"</span> <span class="na">name=</span><span class="s">"6pm"</span> <span class="na">id=</span><span class="s">"6pm-raid"</span> <span class="na">value=</span><span class="s">"6:00 PM"</span><span class="nt">&gt;</span>
+            6:00 PM
+        <span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/fieldset&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"j-col j-col-2 push-1"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"button full-width"</span><span class="nt">&gt;</span>Sign Up<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"time_frame"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+<p>I decided that users needed to enter a valid username that belongs to a clan member in order to sign up. Otherwise, I’m sure these weirdos would’ve started making up funny meme names that would’ve been amusing, yes, but more confusing than anything else.</p>
+
+<p>So, I immediately get the clan roster on this page, then I wrote a function expression called <code class="highlighter-rouge">checkName()</code> to loop through the roster and make sure there’s a match, returning a boolean value.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">checkName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// flag</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Checking to see if '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">' is a Reign of Iron Member...'</span><span class="p">);</span>
+  <span class="c1">// loop through clan usernames and check for a match</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">userNames</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// make case insensitve</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="nx">userNames</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Confirmed, '</span> <span class="o">+</span> <span class="nx">userNames</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">' is in Reign of Iron'</span><span class="p">);</span>
+      <span class="nx">m</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="c1">// Store member list immediately so we only make one AJAX request to Bungie API</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://www.bungie.net/platform/GroupV2/"</span> <span class="o">+</span> <span class="nx">groupID</span> <span class="o">+</span> <span class="s2">"/Members/"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"X-API-Key"</span><span class="p">:</span> <span class="nx">apiKey</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">members</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">results</span><span class="p">;</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">members</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">userNames</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">members</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">destinyUserInfo</span><span class="p">.</span><span class="nx">displayName</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Pretty self explanatory. Then I wrapped basically everything inside the submit function on the signup sheet forms in an <code class="highlighter-rouge">if</code> statement based on what gets returned by <code class="highlighter-rouge">checkName()</code>.</p>
+
+<p>So on submit, we <code class="highlighter-rouge">.preventDefault()</code> to stop page reloading. I stored the values of form’s inputs in variables immediately inside the <code class="highlighter-rouge">submit</code> function.</p>
+
+<p>Then, so long as the name entered belongs to a real clan member, the magic happens. I take the values of the checked time slots, push them to an array called <code class="highlighter-rouge">available</code>, then turn that array into a nice string that lists the available times separated by comma if there are multiple.</p>
+
+<p>Then, we push the form’s data as an object to Google Sheets with <code class="highlighter-rouge">ajax</code>. Then a loading screen comes up while the process works so users don’t try to double click, and it disappears on success or error.</p>
+
+<p>If the name is valid and we get a successful response from Google, we alert the user of success, then immediately add a row with their entered data to the signup sheet for which they submitted.</p>
+
+<p>The data goes to Google, and if they reload the page, their name and time is still there, but this time coming from the script above that displays Google’s data.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'form.signupForm'</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// stop form from reloading the page</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="c1">// Show loading screen</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#loading'</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span>
+
+  <span class="kd">var</span>
+  <span class="nx">available</span> <span class="o">=</span> <span class="p">[],</span>
+  <span class="nx">name</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'input[name="player_name"]'</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+  <span class="nx">postTo</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'postto'</span><span class="p">),</span>
+  <span class="nx">timeFrame</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'input[name="time_frame"]'</span><span class="p">),</span>
+  <span class="nx">$form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">checkName</span><span class="p">(</span><span class="nx">name</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// if entered name exists in current roster</span>
+    <span class="c1">// find the raid time(s) the user has selected and push their values to an array</span>
+    <span class="nx">$form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'input[type="checkbox"]'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s1">':checked'</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">available</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="c1">// turn the array into a string to and put it in the input that goes to Google</span>
+    <span class="nx">available</span> <span class="o">=</span> <span class="nx">available</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">);</span>
+    <span class="nx">timeFrame</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">available</span><span class="p">);</span>
+    <span class="c1">// Turn form into object and send to Google</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s1">'https://script.google.com/macros/s/'</span> <span class="o">+</span> <span class="nx">postTo</span> <span class="o">+</span> <span class="s1">'/exec'</span><span class="p">,</span>
+      <span class="na">method</span><span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+      <span class="na">dataType</span><span class="p">:</span> <span class="s2">"json"</span><span class="p">,</span>
+      <span class="c1">// .serializeObject() requires some prerequisite code, FYI</span>
+      <span class="na">data</span><span class="p">:</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">serializeObject</span><span class="p">(),</span>
+      <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span class="c1">// get rid of loading animation</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#loading'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">();</span>
+        <span class="c1">// alert user of successful registration</span>
+        <span class="nx">alert</span><span class="p">(</span>
+          <span class="s1">'Nice, you</span><span class="se">\'</span><span class="s1">ve been added to the list for '</span>
+          <span class="o">+</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">'.signupSheet'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span> <span class="o">+</span>
+          <span class="s1">', '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span>
+        <span class="p">);</span>
+        <span class="c1">// add to signup sheet immediately</span>
+        <span class="nx">$form</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">'.signupSheet'</span><span class="p">)</span>
+          <span class="c1">// first get rid of "no one signed up" message if user is first to register</span>
+          <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.signupSheet-empty'</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
+          <span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+          <span class="c1">// create new row in table and append entered data</span>
+          <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.signupSheet-content'</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+            <span class="s1">'&lt;div class="j-row signupSheet-entry"&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;div class="j-col j-col-6" data-th="Player"&gt;&lt;span class="signupSheet-player"&gt;'</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/div&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;div class="j-col j-col-6" data-th="Available"&gt;&lt;span class="signupSheet-availability"&gt;'</span> <span class="o">+</span> <span class="nx">timeFrame</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/div&gt;'</span>
+          <span class="p">);</span>
+      <span class="p">},</span>
+      <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">'Sorry, looks like there was an error signing you up. Please try again, and if the issue persists, get a hold of kuro.'</span><span class="p">);</span>
+        <span class="c1">// get rid of loading animation</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#loading'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// if user entered an invalid name</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error: no record of '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">' in Reign of Iron roster.'</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Sorry, no record of '</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">' in the Reign of Iron roster. Please make sure you</span><span class="se">\'</span><span class="s1">re using your Battletag and that you</span><span class="se">\'</span><span class="s1">ve spelled it correctly.'</span><span class="p">);</span>
+    <span class="c1">// get rid of loading animation</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#loading'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Cool! Oh, yeah, on the back end, I basically pasted together some code I found on Stack Overflow to make Google Apps Scripts handle external write requests and reset the sheets every week.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">doGet</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">SHEET_ID</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span> <span class="c1">// whatever the sheet ID was for this signup sheet</span>
+<span class="kd">var</span> <span class="nx">SHEET_NAME</span> <span class="o">=</span> <span class="s2">"Sheet1"</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">SCRIPT_PROP</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">lock</span> <span class="o">=</span> <span class="nx">LockService</span><span class="p">.</span><span class="nx">getPublicLock</span><span class="p">();</span>
+  <span class="nx">lock</span><span class="p">.</span><span class="nx">waitLock</span><span class="p">(</span><span class="mi">30000</span><span class="p">);</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">openById</span><span class="p">(</span><span class="nx">SCRIPT_PROP</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s2">"key"</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">sheet</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">getSheetByName</span><span class="p">(</span><span class="nx">SHEET_NAME</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">headRow</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">parameter</span><span class="p">.</span><span class="nx">header_row</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getLastColumn</span><span class="p">()).</span><span class="nx">getValues</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">nextRow</span> <span class="o">=</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getLastRow</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// get next row</span>
+    <span class="kd">var</span> <span class="nx">row</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="c1">// loop through the header columns</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">headers</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">headers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Timestamp"</span><span class="p">){</span> <span class="c1">// special case if you include a 'Timestamp' column</span>
+        <span class="nx">row</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// else use header name to get data</span>
+        <span class="nx">row</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">parameter</span><span class="p">[</span><span class="nx">headers</span><span class="p">[</span><span class="nx">i</span><span class="p">]]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">sheet</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="nx">nextRow</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">row</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">setValues</span><span class="p">([</span><span class="nx">row</span><span class="p">]);</span>
+    <span class="c1">// return json success results</span>
+    <span class="k">return</span> <span class="nx">ContentService</span>
+          <span class="p">.</span><span class="nx">createTextOutput</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span> <span class="s2">"row"</span><span class="p">:</span> <span class="nx">nextRow</span><span class="p">}))</span>
+          <span class="p">.</span><span class="nx">setMimeType</span><span class="p">(</span><span class="nx">ContentService</span><span class="p">.</span><span class="nx">MimeType</span><span class="p">.</span><span class="nx">JSON</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ContentService</span>
+          <span class="p">.</span><span class="nx">createTextOutput</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"result"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="nx">e</span><span class="p">}))</span>
+          <span class="p">.</span><span class="nx">setMimeType</span><span class="p">(</span><span class="nx">ContentService</span><span class="p">.</span><span class="nx">MimeType</span><span class="p">.</span><span class="nx">JSON</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nx">lock</span><span class="p">.</span><span class="nx">releaseLock</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">setUp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">getActiveSpreadsheet</span><span class="p">();</span>
+    <span class="nx">SCRIPT_PROP</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">"key"</span><span class="p">,</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">clearRaid</span><span class="p">()</span> <span class="p">{</span>  
+  <span class="kd">var</span> <span class="nx">sheetActive</span> <span class="o">=</span> <span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">openById</span><span class="p">(</span><span class="nx">SHEET_ID</span><span class="p">).</span><span class="nx">getSheetByName</span><span class="p">(</span><span class="nx">SHEET_NAME</span><span class="p">);</span>
+  <span class="nx">sheetActive</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="s1">'A2:B'</span><span class="p">).</span><span class="nx">clearContent</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>I’d say I understand like 80% of this. It’s remarkably similar to JavaScript, but still, I haven’t fully read the documentation yet. StackOverflow is your friend though.</p>
+
+<p>Regardless, it works! And it works well.</p>
+
+<div class="callout">
+<div class="callout-content">
+<div class="j-row">
+<div class="j-col j-col-9">
+<img src="/assets/img/projects/destiny-2-clan-website-raid-signup.png" alt="Destiny 2 Clan Reign of Iron Raid Signups" />
+</div>
+<div class="j-col j-col-3">
+<img src="/assets/img/projects/destiny-2-clan-website-raid-signup-mobile.png" alt="Destiny 2 Clan Reign of Iron Raid Signups" />
+</div>
+</div>
+</div>
+</div>
+
+<h2 id="the-results">The Results</h2>
+
+<p>Feedback from the clan is overwhelmingly positive. People love being able to search for their name and see their stats, and the raid signup system is a <em>hit</em>. We have people signing up a week in advance, and seeing that other people are signed up encourages more to sign up, meaning <em>more raids</em>!</p>
+
+<p>I had a lot of fun coding this site, and I’m glad my clanmates are having fun using it.</p>
+
+<p>If you wanna see us play Destiny 2, follow me on Twitch at <a href="https://twitch.tv/KuroNoShinigami">@KuroNoShinigami</a>.</p>
+
+  </div>
+</section>
+<section class="post-nav">
+  <div class="content">
+    
+    
+    
+    
+      
+        
+        
+    
+      
+        
+          
+          
+          
+    
+        <a class="post-nav-link previous" href="/projects/adaptiva-academy-search"><div class="post-nav-arrow">&#x279E;</div> &nbsp; Adaptiva Academy Search</a>
+      
+    
+        <a class="post-nav-link next" href=""> &nbsp; <div class="post-nav-arrow">&#x279E;</div></a>
+      
+</div>
+</section>
+
+    <footer class="footer">
+      <div class="content">
+        <div class="j-col j-col-6 copyright">
+            All content ©<script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script> Jesse Rogers. All rights reserved.<br>
+            <span style="color:#999;">This website lovingly designed and developed by hand by yours truly.</span>
+        </div>
+        <div class="j-col j-col-6 social">
+          <a class="social-icon" href="https://twitter.com/jesserogers" target="_blank" rel="noopener">Twitter</a>
+          <a class="social-icon" href="https://instagram.com/jssrgrs" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-icon" href="https://dribbble.com/jesserogers" target="_blank" rel="noopener">Dribbble</a>
+          <a class="social-icon" href="https://youtube.com/JesseRogersTV" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/assets/js/touchswipe.js"></script>
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-28353492-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
