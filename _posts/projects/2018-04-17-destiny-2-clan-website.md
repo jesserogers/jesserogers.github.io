@@ -10,9 +10,9 @@ permalink: /projects/destiny-2-clan-website
 posted: April 17 2018
 tag: development
 ---
-As I mentioned earlier, I've been playing quite a bit of video games on my PC lately (still need to write about that machine—it's beautiful), and I play with a great group of people in the Destiny 2 clan Reign of Iron.
+As I mentioned in an earlier [post](/journal/2018/01/29/kuro-plays-games/), I've been playing quite a bit of video games on my PC lately (still need to write about that beautiful machine), and I play with a great group of people in the Destiny 2 clan Reign of Iron.
 
-This clan is a big positive in my life lately, and I thought that building a website that served real use cases for members would help make Reign of Iron the clan to be in, and help us grow our active roster with more cool people.
+This clan is a big positive in my life lately, and I thought that building a website that served real use cases for members would help make Reign of Iron _the_ clan to be in, and help us grow our active roster with more cool people.
 
 As of now, I've got a really solid build of this site in production at [reignofiron.org](https://reignofiron.org/), and I will continue to iterate and build new features. But here's what I've got so far!
 
@@ -737,4 +737,4 @@ Feedback from the clan is overwhelmingly positive. People love being able to sea
 
 I had a lot of fun coding this site, and I'm glad my clanmates are having fun using it.
 
-If you wanna see us play Destiny 2, follow me on Twitch at [@KuroNoShinigami](https://twitch.tv/KuroNoShinigami).
+If you want to see us play Destiny 2, follow me on Twitch at [@KuroNoShinigami](https://twitch.tv/KuroNoShinigami).
