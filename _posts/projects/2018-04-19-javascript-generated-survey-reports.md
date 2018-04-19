@@ -3,7 +3,7 @@ layout: projects
 title: Web Generated Survey Reports
 meta: A JavaScript object oriented approach to generate survey reports out of JSON data.
 excerpt: A JavaScript object oriented approach to generate survey reports out of JSON data
-image: destiny-2-clan-website--thumb.jpg
+image: web-generated-survey--thumb.jpg
 featured: true
 category: projects
 permalink: /projects/web-generated-survey-reports

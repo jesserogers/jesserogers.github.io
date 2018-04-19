@@ -3,7 +3,7 @@ layout: projects
 title: Destiny 2 Clan Website
 meta: A custom coded website built on Jekyll and the Bungie API for my Destiny 2 PC Clan, Reign of Iron.
 excerpt: Using Jekyll and the Bungie API to make a better group gaming experience
-image: web-generated-survey--thumb.jpg
+image: destiny-2-clan-website--thumb.jpg
 featured: true
 category: projects
 permalink: /projects/destiny-2-clan-website
