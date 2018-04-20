@@ -1,14 +1,14 @@
-- title: Destiny 2 Clan Website
-  category: 'Development, UI/UX'
-  text: Leveraging the Bungie API and Google Sheets to create a web app for my clan
-  slug: 'destiny-2-clan-website'
-  img: 'destiny-2-clan-website--thumb.jpg'
-
 - title: Web Generated Survey Reports
   category: 'Development, UI/UX'
   text: Using JavaScript to save myself time, rather than manually designing documents
   slug: 'web-generated-survey-reports'
   img: 'web-generated-survey--thumb.jpg'
+
+- title: Destiny 2 Clan Website
+  category: 'Development, UI/UX'
+  text: Leveraging the Bungie API and Google Sheets to create a web app for my clan
+  slug: 'destiny-2-clan-website'
+  img: 'destiny-2-clan-website--thumb.jpg'
 
 - title: Adaptiva Academy Search Feature
   category: 'Development, UI/UX'
