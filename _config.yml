@@ -1,6 +1,6 @@
 baseurl: ""
 repository: jesserogers/jesserogers.github.io
-exclude: ['README.md']
+exclude: ['README.md', vendor]
 permalink: pretty
 paginate: 6
 paginate_path: "/journal/:num/"
