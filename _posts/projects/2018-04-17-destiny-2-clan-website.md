@@ -14,7 +14,9 @@ As I mentioned in an earlier [post](/journal/2018/01/29/kuro-plays-games/), I've
 
 This clan is a big positive in my life lately, and I thought that building a website that served real use cases for members would help make Reign of Iron _the_ clan to be in, and help us grow our active roster with more cool people.
 
-As of now, I've got a really solid build of this site in production at [reignofiron.org](https://reignofiron.org/), and I will continue to iterate and build new features. But here's what I've got so far!
+As of now, I've got a really solid build of this site in production at [reignofiron.org](https://ascendant.gg/), and I will continue to iterate and build new features. But here's what I've got so far!
+
+**Update**: Reign of Iron is now called Λscendant. This website has gone through several major iterations since I wrote this, and I've even released an [open source](https://github.com/jesserogers/clan-app) version of one of them, if you'd like to set up your own Destiny 2 clan website.
 
 ## The Plan
 I decided the requirements were as follows:
